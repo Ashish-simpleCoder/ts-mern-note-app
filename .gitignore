@@ -1,0 +1,4 @@
+src
+client/build
+.env
+node_modules
