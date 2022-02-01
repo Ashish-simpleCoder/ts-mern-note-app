@@ -1,5 +1,5 @@
 import { genSalt, hash } from "bcrypt"
-import { model, Schema } from "mongoose"
+import { model, Schema, Document } from "mongoose"
 import validator from 'validator'
 
 const USER_SCHEMA = new Schema({
@@ -20,7 +20,7 @@ const USER_SCHEMA = new Schema({
             content:{type:String},
             bg:{
                 type:{},
-                default: [ '#fff', '#000' ]
+                default: [ '#fff', '#000' ],
             },
         }
     ]
@@ -46,5 +46,6 @@ export interface UserType extends Document{
         title?:string,
         content?:string
         bg?:[],
+        _id?:Schema.Types.ObjectId
     }[],
 }
