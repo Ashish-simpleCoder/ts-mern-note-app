@@ -6,6 +6,7 @@ const router = Router()
 
 // if user wants to login , register and logout so here are the logics
 router.route('/api/v1/user').get(handleLogin).post(handleRegister)
+router.route('/api/v1/user/login').post(handleLogin)
 router.route('/api/v1/user/logout').get(handleLogout)
 
 
