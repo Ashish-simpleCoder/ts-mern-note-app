@@ -4,7 +4,7 @@ import { UserCtxInterface, UserInterface } from "../types";
 const UserCtx = createContext<UserCtxInterface>({} as {user:UserInterface, setUser:Dispatch<SetStateAction<UserInterface>>})
 
 export const UserProvider = memo(({children})=>{
-    const [user, setUser] = useState<UserInterface>({_id:'ssdf',notes:[]})
+    const [user, setUser] = useState<UserInterface>({_id:'',notes:[]})
     return(
         <UserCtx.Provider value={{user, setUser}}>
             {children}

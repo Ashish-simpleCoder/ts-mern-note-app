@@ -26,7 +26,6 @@ const Modal = memo(({children, mode}:{children:ReactNode,mode?:string})=>{
         setErrors('')
         if(mode === 'login'){
             const data = await loginUser(states.email, states.password)
-            console.log(data)
             if(data?._id){
                 setUser({_id:data._id})
                 history.push('/')
