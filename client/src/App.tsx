@@ -1,8 +1,11 @@
+import "./styles/styles.css"
 import {memo} from 'react'
+
+
 const App = memo(()=>{
     return(
         <>
-            <h1>sfdsf</h1>
+
         </>
     )
 })
