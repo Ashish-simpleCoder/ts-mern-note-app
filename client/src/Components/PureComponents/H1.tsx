@@ -8,4 +8,5 @@ export default H1
 
 const StyledH1 = styled.h1`
     font-size:clamp(2rem, 2.2rem,2.2vw);
+    font-weight:500;
 `
