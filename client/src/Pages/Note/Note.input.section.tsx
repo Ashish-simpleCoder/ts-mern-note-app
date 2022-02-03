@@ -26,12 +26,14 @@ const NoteInput = memo(({children, mode}:{children:ReactNode, mode:string})=>{
         if(mode === 'create_note'){
             const {default:createNote} = await import('../../modules/createNote')
             const data = await createNote(note)
-            console.log(data)
             if(data?.error) setNoteError(data.error)
             if(data?.success){
                 const {default:fetchNotes} = await import("../../modules/fetchNotes")
                 const data = await fetchNotes('./api/v1/user/notes')
-                if(data?.notes) setUser(old=>({...old, notes:data.notes}))
+                if(data?.notes) {
+                    setUser(old=>({...old, notes:data.notes}))
+                    setNote({title:'', content:''})
+                }
             }
         }
     },[note])

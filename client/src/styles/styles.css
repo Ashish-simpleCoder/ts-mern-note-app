@@ -1,8 +1,9 @@
 :root {
   --prm-clr:hsl(10, 90%, 10%);
   --secondary-clr:hsl(9, 89%, 31%);
-  --body-bg:hsl(14, 90%, 99%);
+  --body-bg:hsl(0, 0%, 93%);
   --input-bg:hsl(14, 90%, 99%);
+  --form-bg:white;
 }
 
 * {

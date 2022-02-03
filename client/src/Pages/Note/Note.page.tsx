@@ -7,6 +7,7 @@ import Form from "../../Components/PureComponents/Form";
 import UserStates from "../../Context/UserContext";
 import fetchUser from "../../utils/fetchUser";
 import NoteInput from "./Note.input.section";
+import NoteOutput from "./Note.output.section";
 
 const NotePage = memo(()=>{
     const {setUser} = UserStates()
@@ -35,7 +36,7 @@ const NotePage = memo(()=>{
         width,
         height:'100%',
         justifyContent:'unset',
-        padding:'2rem'
+        padding:'2rem',
     }),[])
     const OutputStyles = useMemo(()=>({
         flexDirection:'column',
@@ -47,7 +48,7 @@ const NotePage = memo(()=>{
 
     return(
         <LeftRightWrapper>
-            <Wrapper styles={InputStyles}>
+            <Wrapper styles={InputStyles} page='note'>
                 <NoteInput mode='create_note'>
                    <Form>
                         <Input type='note_title' placeholder='note title...'/>
@@ -56,10 +57,8 @@ const NotePage = memo(()=>{
                    </Form>
                 </NoteInput>
             </Wrapper>
-            <Wrapper styles={OutputStyles}>
-                {
-
-                }
+            <Wrapper styles={OutputStyles} page='note'>
+                <NoteOutput/>
             </Wrapper>
         </LeftRightWrapper>
     )

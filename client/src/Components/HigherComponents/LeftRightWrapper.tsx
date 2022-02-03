@@ -1,9 +1,9 @@
-import { memo } from "react";
-import styled from "styled-components";
+import { memo, ReactNode } from "react";
+import styled, {StyledComponentInnerAttrs} from "styled-components";
 
-const LeftRightWrapper = memo(({children})=>{
+const LeftRightWrapper = memo(({children}:{children:ReactNode})=>{
     return(
-        <StyledLeftRightWrapper>
+        <StyledLeftRightWrapper >
             {children}
         </StyledLeftRightWrapper>
     )

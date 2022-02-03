@@ -1,12 +1,25 @@
 import { memo, ReactNode, useContext } from "react";
 import { NoteState } from "../../Pages/Note/Note.input.section";
+import styled from 'styled-components'
 
 const Form = memo(({children}:{children:ReactNode})=>{
     const {handleNoteSubmit} = useContext(NoteState)
     return(
-        <form onSubmit={(e)=>handleNoteSubmit(e)}>
+        <StyledForm onSubmit={(e)=>handleNoteSubmit(e)}>
             {children}
-        </form>
+        </StyledForm>
     )
 })
 export default Form
+
+const StyledForm = styled.form`
+    background:var(--form-bg);
+    height:40rem;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+
+    button{
+        margin-top:auto
+    }
+`
