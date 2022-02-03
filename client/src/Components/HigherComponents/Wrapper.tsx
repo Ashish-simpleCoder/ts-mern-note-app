@@ -1,9 +1,9 @@
-import { memo } from "react";
+import { memo, ReactNode } from "react";
 import styled from "styled-components";
 
-const Wrapper = memo(({children})=>{
+const Wrapper = memo(({children, styles}:{children:ReactNode, styles?:any})=>{
     return (
-        <StyledWrapper>
+        <StyledWrapper style={styles}>
             {children}
         </StyledWrapper>
     )

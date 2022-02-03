@@ -3,7 +3,9 @@ import Wrapper from "../../Components/HigherComponents/Wrapper";
 
 const NotePage = memo(()=>{
     return(
-        <Wrapper></Wrapper>
+        <Wrapper>
+            {}
+        </Wrapper>
     )
 })
 export default NotePage

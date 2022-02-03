@@ -1,13 +1,21 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
+import AnchorLink from "../../Components/PureComponents/AnchorLink";
 import H2 from "../../Components/PureComponents/H2";
 
 const NotFoundPage = memo(()=>{
+    const styles = useMemo(()=>({
+        flexDirection:'column',
+        height:'80vh',
+        maxHeight:'30rem',
+        justifyContent:'space-between',
+        padding:'2rem'
+    }),[])
     return(
-        <Wrapper>
+        <Wrapper styles={styles}>
             <H2 text="Page not found"/>
-            <Link to='/'>Go back to home page</Link>
+            <AnchorLink path='/' text='Go back to home page' />
         </Wrapper>
     )
 })
