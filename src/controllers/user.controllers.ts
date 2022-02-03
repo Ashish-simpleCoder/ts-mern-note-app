@@ -32,8 +32,6 @@ export const handleLogin = asyncWrapper(async(req:Request, res:Response, next:Ne
                 return res.cookie(cookie_name,cookie,{maxAge:200000000}).send({_id:user._id, email:user.email})
             }
         }
-    },{
-        runValidators:true,
     })
 })
 

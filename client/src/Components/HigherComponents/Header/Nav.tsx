@@ -1,5 +1,5 @@
 import { memo} from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import UserStates from "../../../Context/UserContext";
 import AnchorLink from "../../PureComponents/AnchorLink";
@@ -23,6 +23,7 @@ const Nav = memo(()=>{
             {
                 user._id ?
                     <>
+                        <Link to='/notes'>Notes</Link>
                         <button onClick={handleLogout}>logout</button>
                     </>
                 :
