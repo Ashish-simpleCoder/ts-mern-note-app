@@ -1,17 +1,28 @@
-import { memo, useEffect } from "react";
+import { memo} from "react";
+import { useHistory } from "react-router-dom";
 import UserStates from "../../../Context/UserContext";
 import AnchorLink from "../../PureComponents/AnchorLink";
 import Img from "../../PureComponents/Img";
 
 const Nav = memo(()=>{
-    const {user} = UserStates()
-    // useEffect(()=>,[user._id])
+    const {user, setUser} = UserStates()
+    const history = useHistory()
+
+    const handleLogout = async() =>{
+        const res = await fetch('./api/v1/user/logout')
+        const data:{success:boolean} = await res.json()
+        if(data.success){
+            setUser(v=>({...v,_id:'',email:''}))
+            history.push('/')
+        }
+    }
+
     return(
         <nav>
             {
                 user._id ?
                     <>
-                        <button>logout</button>
+                        <button onClick={handleLogout}>logout</button>
                     </>
                 :
                     <>

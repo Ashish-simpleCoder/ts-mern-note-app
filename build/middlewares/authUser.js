@@ -39,52 +39,47 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var bcrypt_1 = require("bcrypt");
-var mongoose_1 = require("mongoose");
-var validator_1 = __importDefault(require("validator"));
-var USER_SCHEMA = new mongoose_1.Schema({
-    email: {
-        type: String,
-        unique: true,
-        required: [true, 'email is required'],
-        validate: [validator_1.default.isEmail, 'please enter valid email']
-    },
-    password: {
-        type: String,
-        required: [true, 'password is required'],
-        minlength: [4, 'password length must be greater than 4 characters']
-    },
-    notes: [
-        {
-            title: { type: String },
-            content: { type: String },
-            bg: {
-                type: {},
-                default: ['#fff', '#000'],
-            },
-        }
-    ]
-});
-USER_SCHEMA.pre('save', function (next) {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, _b, _c;
-        return __generator(this, function (_d) {
-            switch (_d.label) {
-                case 0:
-                    if (!this.isModified('password')) return [3 /*break*/, 3];
-                    _a = this;
-                    _b = bcrypt_1.hash;
-                    _c = [this.password];
-                    return [4 /*yield*/, (0, bcrypt_1.genSalt)(10)];
-                case 1: return [4 /*yield*/, _b.apply(void 0, _c.concat([_d.sent()]))];
-                case 2:
-                    _a.password = _d.sent();
-                    next();
-                    _d.label = 3;
-                case 3: return [2 /*return*/];
-            }
+exports.returnLoggedUserDetails = exports.returnLoggedUser = void 0;
+var jsonwebtoken_1 = require("jsonwebtoken");
+var asyncWrapper_1 = __importDefault(require("../asyncWrapper/asyncWrapper"));
+var authUser = (0, asyncWrapper_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var cookie_name, secret, cookie;
+    return __generator(this, function (_a) {
+        cookie_name = process.env.cookie_name || 'cookie_name';
+        secret = process.env.secret || 'yoursecretkey';
+        cookie = req.cookies[cookie_name];
+        (0, jsonwebtoken_1.verify)(cookie, secret, { complete: true }, function (err, decoded_token) {
+            if (err)
+                return next({ status: 400, error: 'unauthorized user' });
+            next();
         });
+        return [2 /*return*/];
     });
-});
-var USER_MODEL = (0, mongoose_1.model)('user', USER_SCHEMA);
-exports.default = USER_MODEL;
+}); });
+exports.default = authUser;
+var returnLoggedUser = function (req, res, next) {
+    var cookie_name = process.env.cookie_name || 'cookie_name';
+    var secret = process.env.secret || 'yoursecretkey';
+    var cookie = req.cookies[cookie_name];
+    var user;
+    (0, jsonwebtoken_1.verify)(cookie, secret, { complete: true }, function (err, decoded_token) {
+        if (err)
+            return next({ status: 400, error: 'unauthorized user' });
+        user = decoded_token === null || decoded_token === void 0 ? void 0 : decoded_token.payload;
+    });
+    return user;
+};
+exports.returnLoggedUser = returnLoggedUser;
+var returnLoggedUserDetails = function (req, res, next) {
+    var cookie_name = process.env.cookie_name || 'cookie_name';
+    var secret = process.env.secret || 'yoursecretkey';
+    var cookie = req.cookies[cookie_name];
+    var user;
+    (0, jsonwebtoken_1.verify)(cookie, secret, { complete: true }, function (err, decoded_token) {
+        if (err)
+            return next({ status: 400, error: 'unauthorized user' });
+        user = decoded_token === null || decoded_token === void 0 ? void 0 : decoded_token.payload;
+    });
+    return res.send(user);
+};
+exports.returnLoggedUserDetails = returnLoggedUserDetails;

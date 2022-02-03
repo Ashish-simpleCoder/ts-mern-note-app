@@ -4,13 +4,13 @@ import UserStates from "../../Context/UserContext";
 import fetchUser from "../../utils/fetchUser";
 
 const HomePage = memo(()=>{
-    const {user, setUser} = UserStates()
+    const { setUser} = UserStates()
     const history = useHistory()
     useLayoutEffect(()=>{
         (async () =>{
             const res = await fetchUser()
-            if(!res?._id) history.push('/login')
-            else setUser({_id:res._id})
+            // if(!res?._id) history.push('/login')
+            res?._id && setUser({_id:res._id,email:res?.email})
         })()
     },[])
     return(

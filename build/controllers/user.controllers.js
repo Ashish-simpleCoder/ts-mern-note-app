@@ -45,6 +45,7 @@ var user_schema_1 = __importDefault(require("../schemas/user.schema"));
 var loginError_1 = __importDefault(require("../utils/loginError"));
 var bcrypt_1 = require("bcrypt");
 var genLoginToken_1 = __importDefault(require("../utils/genLoginToken"));
+var throwRequiredFieldErr_1 = __importDefault(require("../utils/throwRequiredFieldErr"));
 exports.handleRegister = (0, asyncWrapper_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -64,6 +65,9 @@ exports.handleLogin = (0, asyncWrapper_1.default)(function (req, res, next) { re
     var _a, email, password;
     return __generator(this, function (_b) {
         _a = req.body, email = _a.email, password = _a.password;
+        if (!email || !password) {
+            (0, throwRequiredFieldErr_1.default)(email, password, next);
+        }
         user_schema_1.default.findOne({ email: email }, function (err, user) { return __awaiter(void 0, void 0, void 0, function () {
             var isTruePass, cookie_name, cookie;
             return __generator(this, function (_a) {
@@ -81,10 +85,12 @@ exports.handleLogin = (0, asyncWrapper_1.default)(function (req, res, next) { re
                         return [4 /*yield*/, (0, genLoginToken_1.default)(user)];
                     case 4:
                         cookie = _a.sent();
-                        return [2 /*return*/, res.cookie(cookie_name, cookie, { maxAge: 200000000 }).send({ id: user._id })];
+                        return [2 /*return*/, res.cookie(cookie_name, cookie, { maxAge: 200000000 }).send({ _id: user._id, email: user.email })];
                 }
             });
-        }); });
+        }); }, {
+            runValidators: true,
+        });
         return [2 /*return*/];
     });
 }); });

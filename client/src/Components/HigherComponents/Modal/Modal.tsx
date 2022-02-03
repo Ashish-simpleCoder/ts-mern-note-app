@@ -1,5 +1,4 @@
-import { setDefaultResultOrder } from "dns/promises"
-import { memo, ReactNode, useState, createContext, Dispatch, SetStateAction, ChangeEvent, useMemo, FormEvent, useRef, useContext } from "react"
+import { memo, ReactNode, useState, createContext, ChangeEvent, useMemo, FormEvent, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import UserStates from "../../../Context/UserContext"
 
@@ -9,7 +8,7 @@ export const State = createContext({} as {email:string,password:string, handleCh
 const Modal = memo(({children, mode}:{children:ReactNode,mode?:string})=>{
     const [states, setState] = useState({email:'', password:''})
     const [errors, setErrors] = useState<any>()
-    const {setUser, user} = UserStates()
+    const {setUser} = UserStates()
     const history = useHistory()
 
 
@@ -23,16 +22,22 @@ const Modal = memo(({children, mode}:{children:ReactNode,mode?:string})=>{
 
     const handleSubmit = useMemo(()=>async(e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
-        setErrors('')
         if(mode === 'login'){
             const data = await loginUser(states.email, states.password)
             if(data?._id){
-                setUser({_id:data._id})
+                setUser({_id:data._id,email:data.email_id})
                 history.push('/')
             }
             data?.error && setErrors(data.error)
         }
     },[states])
+
+
+    useEffect(()=>{
+        errors &&  setTimeout(()=>setErrors(''),2000)
+    },[errors])
+
+
 
     return(
         <form onSubmit={(e)=>handleSubmit(e)}>
@@ -56,9 +61,9 @@ const loginUser = async(email:string, password:string) =>{
             body:JSON.stringify({email,password}),
            headers:{ 'Content-Type':"application/json"}
         })
-        const data:{error:string, _id:string} = await res.json()
-        const {error, _id} =  data
-        return {error, _id}
+        const data:{error:string, _id:string, email:string} = await res.json()
+        const {error, _id, email:email_id} =  data
+        return {error, _id, email_id}
     }catch(err){
         console.log(err)
     }

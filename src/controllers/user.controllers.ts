@@ -29,7 +29,7 @@ export const handleLogin = asyncWrapper(async(req:Request, res:Response, next:Ne
             else{
                 const cookie_name = process.env.cookie_name || 'cookie_name'
                 const cookie = await generateLoginToken(user)
-                return res.cookie(cookie_name,cookie,{maxAge:200000000}).send({_id:user._id})
+                return res.cookie(cookie_name,cookie,{maxAge:200000000}).send({_id:user._id, email:user.email})
             }
         }
     },{

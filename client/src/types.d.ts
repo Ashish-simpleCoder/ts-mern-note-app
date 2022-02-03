@@ -14,6 +14,7 @@ interface UserCtxInterface{
 
 interface UserInterface{
     _id:string,
+    email:string,
     notes?:NoteInterface[]
 }
 
