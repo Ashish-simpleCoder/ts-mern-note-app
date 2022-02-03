@@ -1,6 +1,8 @@
 :root {
   --prm-clr:hsl(10, 90%, 10%);
+  --secondary-clr:hsl(9, 89%, 31%);
   --body-bg:hsl(14, 90%, 99%);
+  --input-bg:hsl(14, 90%, 99%);
 }
 
 * {
@@ -17,8 +19,4 @@ html {
 
 body {
   background: var(--body-bg);
-}
-
-header {
-  padding: 0 clamp(1rem, 3rem, 3vw);
 }/*# sourceMappingURL=styles.css.map */

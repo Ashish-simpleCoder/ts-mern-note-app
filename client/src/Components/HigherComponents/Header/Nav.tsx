@@ -1,5 +1,5 @@
 import { memo} from "react";
-import { Link, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import styled from "styled-components";
 import UserStates from "../../../Context/UserContext";
 import AnchorLink from "../../PureComponents/AnchorLink";
@@ -19,11 +19,11 @@ const Nav = memo(()=>{
     }
 
     return(
-        <nav>
+        <StyledNav>
             {
                 user._id ?
                     <>
-                        <Link to='/notes'>Notes</Link>
+                        <AnchorLink path='/notes' text="Notes"/>
                         <button onClick={handleLogout}>logout</button>
                     </>
                 :
@@ -33,11 +33,15 @@ const Nav = memo(()=>{
                     </>
             }
             <Img src='./imgs/dark_mode.png' alt="dark and light mode" title='switch color themes'/>
-        </nav>
+        </StyledNav>
     )
 })
 export default Nav
 
 const StyledNav = styled.nav`
-    display:flex
+    @media (min-width:700px){
+        display:flex;
+        gap:3rem;
+        align-items:center;
+    }
 `

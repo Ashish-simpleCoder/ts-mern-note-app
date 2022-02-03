@@ -1,7 +1,6 @@
 import { memo } from "react";
 import styled from "styled-components";
-// import H1 from "../../PureComponents/H1";
-// import Img from "../../PureComponents/Img";
+
 
 
 const LogoContainer = memo(({children})=>{
@@ -20,7 +19,9 @@ const StyledLogoContainer = styled.div`
     flex:1;
 
     img{
-        transform: scale(0.6) rotate(-10deg);
-        margin-inline-end:0.5rem;
+        width:3rem;
+        height:3.5rem;
+        transform:rotate(-10deg);
+        margin-inline-end:1rem;
     }
 `

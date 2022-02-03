@@ -21,4 +21,5 @@ export default Header
 const StyledHeader = styled.header`
     display:flex;
     align-items:center;
+    padding:1rem clamp(1rem, 3rem, 3vw);
 `

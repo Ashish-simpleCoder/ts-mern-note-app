@@ -1,5 +1,4 @@
 import { memo, useMemo } from "react";
-import { Link } from "react-router-dom";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import AnchorLink from "../../Components/PureComponents/AnchorLink";
 import H2 from "../../Components/PureComponents/H2";
