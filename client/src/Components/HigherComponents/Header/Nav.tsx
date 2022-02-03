@@ -1,5 +1,6 @@
 import { memo} from "react";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import UserStates from "../../../Context/UserContext";
 import AnchorLink from "../../PureComponents/AnchorLink";
 import Img from "../../PureComponents/Img";
@@ -35,3 +36,7 @@ const Nav = memo(()=>{
     )
 })
 export default Nav
+
+const StyledNav = styled.nav`
+    display:flex
+`
