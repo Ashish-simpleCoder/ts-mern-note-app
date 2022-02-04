@@ -1,15 +1,21 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import styled from "styled-components";
 import Button from "../../Components/PureComponents/Button";
 import H3 from "../../Components/PureComponents/H3";
 import { NoteInterface } from "../../types";
+import { EditNoteCtx } from "./Note.page";
 
 
 
 const Note = memo(({note, handleDeleteNote}:{note:NoteInterface, handleDeleteNote?: (note_id: string) => Promise<void>})=>{
-
+    const {setEditNote} = useContext(EditNoteCtx)
     return(
-        <StyledNote id={note._id} style={{background:note.bg[0]}}>
+        <StyledNote id={note._id} style={{background:note.bg[0]}}
+            onClick={(e)=>{
+                e.preventDefault();
+                setEditNote(note)
+            }}
+            >
             <H3 text={note.title}/>
             <p>{note.content}</p>
             <Button text="delete" type='note_delete_btn' handleClick={handleDeleteNote} _id={note._id}/>

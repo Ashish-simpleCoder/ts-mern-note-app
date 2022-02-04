@@ -9,6 +9,7 @@
   --form-bg:white;
   --focused:hsl(10, 90%, 90%);
   --btn-hover-bg:hsl(120, 100%, 20%);
+  --edit-modal-bg:rgba(0,0,0, 0.5);
   --width:35rem;
 }
 

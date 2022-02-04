@@ -1,7 +1,17 @@
 import { memo, ReactNode } from "react";
 import styled from "styled-components";
 
-const Wrapper = memo(({children, styles, page}:{children:ReactNode, styles?:any, page?:string})=>{
+const Wrapper = memo(({children, styles, page, mode}:{
+    children:ReactNode, styles?:any, page?:string
+    mode?:string
+})=>{
+    if(mode === 'edit_note'){
+        return (
+            <StyledEditModalWrapper>
+                {children}
+            </StyledEditModalWrapper>
+        )
+    }
     if(page === 'note_output'){
         return(
             <StyledNoteOutWrapper style={styles}>
@@ -59,4 +69,16 @@ const StyledNoteOutWrapper = styled.section`
         width:calc(100% - var(--width));
         justify-content:space-around;
     }
+`
+
+const StyledEditModalWrapper = styled.section`
+    width:100%;
+    border:10px solid;
+    top:0;
+    inset:0;
+    position:absolute;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--edit-modal-bg);
 `

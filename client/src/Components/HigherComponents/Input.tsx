@@ -1,6 +1,7 @@
 import { memo, useContext } from "react";
 import styled from "styled-components";
 import { NoteState } from "../../Pages/Note/Note.input.section";
+import { EditNoteCtx } from "../../Pages/Note/Note.page";
 import { State } from "./Modal/Modal";
 
 
@@ -11,12 +12,21 @@ const Input = memo(({type, placeholder}:{
 })=>{
     const {email, password, handleChange} = useContext(State)
     const {title,content, handleNoteChange} = useContext(NoteState)
+    const {note, handleEditNoteChange} = useContext(EditNoteCtx)
+    // const {title:edit_title, content:edit_content} = note
 
     if(type === 'note_title'){
         return <StyledInput type="text" name={'title'} value={title} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={placeholder}/>
     }
     if(type === 'note_content'){
         return <StyledTextArea name={'content'} value={content} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={placeholder}/>
+    }
+
+    if(type === 'edit_note_title'){
+        return <StyledInput name={'title'} value={note.title} onChange={(e)=>handleEditNoteChange && handleEditNoteChange(e)} placeholder={placeholder}/>
+    }
+    if(type === 'edit_note_content'){
+        return <StyledTextArea name={'content'} value={note.content} onChange={(e)=>handleEditNoteChange && handleEditNoteChange(e)} placeholder={placeholder}/>
     }
     if(type === 'email'){
         return <input type="text" name={type} value={email} onChange={(e)=>handleChange && handleChange(e)} placeholder={placeholder}/>

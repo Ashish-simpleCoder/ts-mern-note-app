@@ -1,5 +1,6 @@
-import {memo} from 'react'
+import {Dispatch, memo, SetStateAction} from 'react'
 import UserStates from '../../Context/UserContext'
+import { NoteInterface } from '../../types'
 import Note from './Note'
 
 
