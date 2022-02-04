@@ -48,13 +48,15 @@ const StyledNoteInputWrapper = styled.section`
 `
 const StyledNoteOutWrapper = styled.section`
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-direction:column;
+    justify-content:center;
+    gap:2rem;
+    flex-wrap:wrap;
+    padding:3rem;
 
     @media (min-width:700px){
         position:relative;
         left:var(--width);
         width:calc(100% - var(--width));
+        justify-content:space-around;
     }
 `

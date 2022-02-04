@@ -30,12 +30,6 @@ const NotePage = memo(()=>{
         })()
     },[setUser])
 
-    // const width = '35rem'
-    // const OutputStyles = useMemo(()=>({
-    //     left:width,
-    //     width:`calc(100% - ${width})`
-    // }),[])
-
 
 
     return(
