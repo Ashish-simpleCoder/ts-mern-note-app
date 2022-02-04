@@ -1,6 +1,6 @@
-import {Dispatch, memo, SetStateAction} from 'react'
+import { memo} from 'react'
+import Wrapper from '../../Components/HigherComponents/Wrapper'
 import UserStates from '../../Context/UserContext'
-import { NoteInterface } from '../../types'
 import Note from './Note'
 
 
@@ -8,7 +8,7 @@ import Note from './Note'
 const NoteOutput = memo(()=>{
     const {user, setUser} = UserStates()
 
-    const handleDeleteNote = async(note_id:string) =>{
+    const handleDeleteNote = async(note_id?:string) =>{
         const {default: deleteNote} = await import('../../modules/deleteNote')
         const data = await deleteNote(`/api/v1/user/notes/${note_id}`)
         if(data?.success){
@@ -19,9 +19,9 @@ const NoteOutput = memo(()=>{
     }
 
     return(
-        <>
-        { user.notes &&  user.notes?.map(note=><Note key={note._id} note={note} handleDeleteNote={handleDeleteNote}/>) }
-        </>
+        <Wrapper page='note_output'>
+        { user.notes &&  user.notes?.map(note=><Note key={note._id} note={note}/>) }
+        </Wrapper>
     )
 })
 export default NoteOutput

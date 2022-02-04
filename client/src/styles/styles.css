@@ -10,6 +10,9 @@
   --focused:hsl(10, 90%, 90%);
   --btn-hover-bg:hsl(120, 100%, 20%);
   --edit-modal-bg:rgba(0,0,0, 0.5);
+  --modal-bg:white;
+  --save-btn-bg:hsl(120, 100%, 20%);
+  --delete-btn-bg:red;
   --width:35rem;
 }
 
@@ -27,4 +30,36 @@ html {
 
 body {
   background: var(--body-bg);
+}
+
+.edit_mode {
+  position: relative;
+}
+.edit_mode .edit_modal {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+  background: var(--modal-bg);
+  width: 90% !important;
+  height: 80% !important;
+  max-width: 50rem;
+  max-height: 50rem;
+}
+.edit_mode .edit_modal textarea {
+  height: 80%;
+}
+.edit_mode .edit_modal span {
+  position: absolute;
+  background: rgba(2, 61, 95, 0.3);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  -webkit-animation: animate_ripple 0.5s linear infinite;
+          animation: animate_ripple 0.5s linear infinite;
+}
+.edit_mode .note {
+  pointer-events: none;
+}
+.edit_mode .edit_modal_wrapper {
+  display: flex !important;
 }/*# sourceMappingURL=styles.css.map */

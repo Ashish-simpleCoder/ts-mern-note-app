@@ -7,18 +7,22 @@ import { EditNoteCtx } from "./Note.page";
 
 
 
-const Note = memo(({note, handleDeleteNote}:{note:NoteInterface, handleDeleteNote?: (note_id: string) => Promise<void>})=>{
+const Note = memo(({note}:{note:NoteInterface})=>{
     const {setEditNote} = useContext(EditNoteCtx)
+
+
     return(
         <StyledNote id={note._id} style={{background:note.bg[0]}}
             onClick={(e)=>{
                 e.preventDefault();
+                e.stopPropagation()
                 setEditNote(note)
             }}
+            className="note"
             >
             <H3 text={note.title}/>
             <p>{note.content}</p>
-            <Button text="delete" type='note_delete_btn' handleClick={handleDeleteNote} _id={note._id}/>
+            <Button text="delete" type='note_delete_btn' _id={note._id}/>
         </StyledNote>
     )
 })
@@ -43,5 +47,6 @@ const StyledNote = styled.div`
     }
     p{
         opacity:0.8;
+        white-space:pre-line;
     }
 `

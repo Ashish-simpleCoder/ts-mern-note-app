@@ -1,14 +1,32 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import styled from "styled-components";
+import { EditNoteCtx } from "../../Pages/Note/Note.page";
 
-const Button = memo(({text, styles, bg, type, handleClick, _id}:{text:string, styles?:any, bg?:string, type?:string, handleClick?: (note_id: string) => Promise<void>, _id?:string})=>{
+const Button = memo(({text,
+    styles,
+    bg,
+    type,
+    handleClick,
+    _id,
+    cls
+}:{text:string,
+    styles?:any,
+    bg?:string,
+    type?:string,
+    handleClick?: (note_id?: string) => Promise<void>,
+    cls?:string
+    _id?:string
+})=>{
+    const {handleDeleteNote} = useContext(EditNoteCtx)
+
+
     if(type === 'note_delete_btn'){
         return(
-            <StyledDeleteBtn onClick={()=>handleClick && _id && handleClick(_id)}>{text}</StyledDeleteBtn>
+            <StyledDeleteBtn className={cls} onClick={(e)=>{e.stopPropagation();handleDeleteNote(_id)}}>{text}</StyledDeleteBtn>
         )
     }
     return(
-        <StyledBtn style={styles} bg={bg}>{text}</StyledBtn>
+        <StyledBtn style={styles}className={cls} bg={bg} onClick={()=>handleClick && handleClick()}>{text}</StyledBtn>
     )
 })
 export default Button

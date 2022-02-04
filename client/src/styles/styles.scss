@@ -16,3 +16,37 @@ html{
 body{
     background:var(--body-bg);
 }
+
+
+.edit_mode{
+    position: relative;
+    // color:red !important;
+    .edit_modal{
+       top:50% !important;
+       left:50% !important;
+       transform: translate(-50%,-50%);
+       background: var(--modal-bg);
+       width:90% !important;
+       height: 80% !important;
+       max-width:50rem;
+       max-height: 50rem;
+       textarea{
+          height: 80%;
+       }
+       span{
+          position:absolute;
+          background: rgba(2, 61, 95,0.3);
+          transform:translate(-50%,-50%);
+          border-radius:50%;
+          pointer-events: none;
+          animation:animate_ripple 0.5s linear infinite;
+      }
+    }
+
+    .note{
+       pointer-events: none;
+    }
+    .edit_modal_wrapper{
+       display: flex !important;
+    }
+ }

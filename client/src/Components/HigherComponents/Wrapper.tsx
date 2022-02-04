@@ -7,7 +7,7 @@ const Wrapper = memo(({children, styles, page, mode}:{
 })=>{
     if(mode === 'edit_note'){
         return (
-            <StyledEditModalWrapper>
+            <StyledEditModalWrapper className='edit_modal_wrapper'>
                 {children}
             </StyledEditModalWrapper>
         )
@@ -81,4 +81,6 @@ const StyledEditModalWrapper = styled.section`
     align-items:center;
     justify-content:center;
     background:var(--edit-modal-bg);
+    display:none;
+    border-radius:0.5rem;
 `

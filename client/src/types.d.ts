@@ -24,3 +24,12 @@ interface NoteInterface{
     _id:string,
     bg:Record<string>[]
 }
+
+
+interface EditNoteType{
+    note:NoteInterface,
+    setEditNote:Dispatch<SetStateAction<NoteInterface>>,
+    handleEditNoteChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
+    handleDeleteNote:(note_id?: string | undefined) => Promise<void>,
+    handleUpdateNote: () => Promise<void>
+}
