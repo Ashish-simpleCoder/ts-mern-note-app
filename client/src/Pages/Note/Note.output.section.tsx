@@ -8,12 +8,9 @@ const NoteOutput = memo(()=>{
     const {user, setUser} = UserStates()
 
     const handleDeleteNote = async(note_id:string) =>{
-        // const data = await deleteNote(`/api/v1/user/notes/${note_id}`)
-        const res = await fetch(`/api/v1/user/notes/${note_id}`,{
-            method:'DELETE',
-        })
-        const data:{success:boolean} = await res.json()
-        if(data.success){
+        const {default: deleteNote} = await import('../../modules/deleteNote')
+        const data = await deleteNote(`/api/v1/user/notes/${note_id}`)
+        if(data?.success){
             const {default: fetchNotes}  = await import('../../modules/fetchNotes')
             const data = await fetchNotes('./api/v1/user/notes')
             if(data?.notes) setUser(old=>({...old, notes:data.notes}))
