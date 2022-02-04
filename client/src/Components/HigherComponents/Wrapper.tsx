@@ -2,8 +2,22 @@ import { memo, ReactNode } from "react";
 import styled from "styled-components";
 
 const Wrapper = memo(({children, styles, page}:{children:ReactNode, styles?:any, page?:string})=>{
+    if(page === 'note_output'){
+        return(
+            <StyledNoteOutWrapper style={styles}>
+                {children}
+            </StyledNoteOutWrapper>
+        )
+    }
+    if(page === 'note_create'){
+        return(
+            <StyledNoteInputWrapper>
+                {children}
+            </StyledNoteInputWrapper>
+        )
+    }
     return (
-        <StyledWrapper style={styles} page={page}>
+        <StyledWrapper style={styles}>
             {children}
         </StyledWrapper>
     )
@@ -15,7 +29,32 @@ const StyledWrapper = styled.section<{page?:string}>`
     display:flex;
     align-items:center;
     justify-content:center;
-    position:${(props)=>props.page === 'note' && 'unset'} !important;
-    left:${(props)=>props.page === 'note' && 'unset'} !important;
-    width:${(props)=>props.page === 'note' && '100%'} !important;
+`
+
+const StyledNoteInputWrapper = styled.section`
+   height:100%;
+   padding:2rem;
+   border-right:var(--border);
+   flex-direction:column;
+   position:unset;
+   width:100%;
+   /* display:none; */
+
+   @media (min-width:700px){
+       position:fixed;
+        width:var(--width);
+        display:flex;
+    }
+`
+const StyledNoteOutWrapper = styled.section`
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-direction:column;
+
+    @media (min-width:700px){
+        position:relative;
+        left:var(--width);
+        width:calc(100% - var(--width));
+    }
 `

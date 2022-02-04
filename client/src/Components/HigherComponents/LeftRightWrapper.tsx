@@ -1,5 +1,5 @@
 import { memo, ReactNode } from "react";
-import styled, {StyledComponentInnerAttrs} from "styled-components";
+import styled from "styled-components";
 
 const LeftRightWrapper = memo(({children}:{children:ReactNode})=>{
     return(
@@ -14,6 +14,7 @@ const StyledLeftRightWrapper = styled.section`
     display:flex;
     width:100%;
     flex-direction:column;
+    flex-wrap:wrap;
 
     @media (min-width:700px){
         flex-direction:unset;

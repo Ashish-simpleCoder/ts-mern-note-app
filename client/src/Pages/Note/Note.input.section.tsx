@@ -5,7 +5,7 @@ import UserStates from "../../Context/UserContext";
 
 export const NoteState = createContext({} as {
     title:string,content:string,
-    handleNoteChange:(e:ChangeEvent<HTMLInputElement>)=>void,
+    handleNoteChange:(e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>)=>void,
     handleNoteSubmit:(e: FormEvent<HTMLFormElement>) => Promise<void>
 })
 
@@ -14,12 +14,13 @@ const NoteInput = memo(({children, mode}:{children:ReactNode, mode:string})=>{
     const [note, setNote] = useState({title:'', content:''})
     const [note_error, setNoteError] = useState('')
     const {setUser} = UserStates()
-    const handleNoteChange = useMemo(()=>(e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>)=>{
+
+    const handleNoteChange = (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         setNote(old=>({
             ...old,
             [e.target.name]:e.target.value
         }))
-    },[note])
+    }
 
     const handleNoteSubmit = useMemo(()=>async(e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
@@ -36,11 +37,13 @@ const NoteInput = memo(({children, mode}:{children:ReactNode, mode:string})=>{
                 }
             }
         }
-    },[note])
+    },[note, mode, setUser])
+
 
     useEffect(()=>{
        note_error && setTimeout(()=>setNoteError(''),2000)
     },[note_error])
+
 
 
     return(

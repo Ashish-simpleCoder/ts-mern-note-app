@@ -9,6 +9,8 @@ import fetchUser from "../../utils/fetchUser";
 import NoteInput from "./Note.input.section";
 import NoteOutput from "./Note.output.section";
 
+
+
 const NotePage = memo(()=>{
     const {setUser} = UserStates()
 
@@ -17,7 +19,7 @@ const NotePage = memo(()=>{
             const res = await fetchUser()
             res?._id && setUser({_id:res._id,email:res?.email})
         })()
-    },[])
+    },[setUser])
 
     // useEffect for fetching notes
     useEffect(()=>{
@@ -26,38 +28,28 @@ const NotePage = memo(()=>{
             const data = await fetchNotes('./api/v1/user/notes')
             if(data?.notes) setUser(old=>({...old, notes:data.notes}))
         })()
-    },[])
+    },[setUser])
 
-    const width = '35rem'
-    const InputStyles = useMemo(()=>({
-        flexDirection:'column',
-        position:'fixed',
-        left:'0',
-        width,
-        height:'100%',
-        justifyContent:'unset',
-        padding:'2rem',
-    }),[])
-    const OutputStyles = useMemo(()=>({
-        flexDirection:'column',
-        position:'relative',
-        left:width,
-        width:`calc(100% - ${width})`
-    }),[])
+    // const width = '35rem'
+    // const OutputStyles = useMemo(()=>({
+    //     left:width,
+    //     width:`calc(100% - ${width})`
+    // }),[])
+
 
 
     return(
         <LeftRightWrapper>
-            <Wrapper styles={InputStyles} page='note'>
-                <NoteInput mode='create_note'>
+            <Wrapper  page='note_create'>
+                <NoteInput mode='create_note' >
                    <Form>
                         <Input type='note_title' placeholder='note title...'/>
                         <Input type='note_content' placeholder='type your notes here...'/>
-                        <Button text='create a new note'/>
+                        <Button text='create a new note' bg='green'/>
                    </Form>
                 </NoteInput>
             </Wrapper>
-            <Wrapper styles={OutputStyles} page='note'>
+            <Wrapper page='note_output'>
                 <NoteOutput/>
             </Wrapper>
         </LeftRightWrapper>

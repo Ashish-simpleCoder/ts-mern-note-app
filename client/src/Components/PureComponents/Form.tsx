@@ -13,7 +13,7 @@ const Form = memo(({children}:{children:ReactNode})=>{
 export default Form
 
 const StyledForm = styled.form`
-    background:var(--form-bg);
+    /* background:var(--form-bg); */
     height:40rem;
     width:100%;
     display:flex;

@@ -1,13 +1,20 @@
 :root{
     // font-clrs
     --prm-clr:hsl(10, 90%, 10%);
-    --secondary-clr:hsl(9, 89%, 31%);
+    --secondary-clr:hsl(9, 89%, 50%);
+    --border:1px solid hsl(0, 0%, 75%);
+    --btn-clr:white;
 
 
 
     // bg-clrs
-    --body-bg:hsl(0, 0%, 93%);
-    --input-bg:hsl(14, 90%, 99%);
+    --body-bg:hsl(0, 0%, 97%);
+    --input-bg:hsl(14, 90%, 100%);
     --form-bg:white;
+    --focused:hsl(10, 90%, 90%);
+    --btn-hover-bg:hsl(120, 100%, 20%);
     // color:hsl(14, 92%, 51%);
+
+
+    --width:35rem;
 }
