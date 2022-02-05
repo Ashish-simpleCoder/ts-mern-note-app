@@ -5,6 +5,9 @@ interface img_props{
     alt:string
     title?:string
     styles?:{}
+    handleClick?:Dispatch<any>
+    cls?:string
+    animate?:boolean
 }
 
 interface UserCtxInterface{

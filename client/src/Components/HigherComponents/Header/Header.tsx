@@ -22,8 +22,7 @@ const StyledHeader = styled.header`
     position:sticky;
     top:0;
     z-index:2;
-    /* border-bottom:var(--border); */
-    background:white;
+    background:var(--header-bg);
     display:flex;
     align-items:center;
     padding:1rem clamp(1rem, 3rem, 3vw);

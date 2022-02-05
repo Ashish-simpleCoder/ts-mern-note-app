@@ -35,16 +35,24 @@ const Wrapper = memo(({children, styles, page, mode}:{
 export default Wrapper
 
 const StyledWrapper = styled.section<{page?:string}>`
-    width:50%;
+    width:100%;
     display:flex;
     align-items:center;
     justify-content:center;
+    /* border:1px solid; */
+    transform-origin:center;
+    flex-direction:column;
 
     img{
         display:flex;
-        width:100%;
-        max-width:40rem;
-        transform:rotate(-20deg)
+        width:32rem;
+        height:35rem;
+        transform:rotate(-20deg) scale(0.8);
+        transform-origin:center;
+    }
+
+    @media (min-width:800px){
+        width:50%;
     }
 `
 

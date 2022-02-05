@@ -1,13 +1,29 @@
-import { memo} from "react";
+import { memo, useEffect, useState} from "react";
 import {  useHistory } from "react-router-dom";
 import styled from "styled-components";
 import UserStates from "../../../Context/UserContext";
 import AnchorLink from "../../PureComponents/AnchorLink";
 import Img from "../../PureComponents/Img";
 
+
+
 const Nav = memo(()=>{
     const {user, setUser} = UserStates()
     const history = useHistory()
+    const [dark_theme, setDarkTheme] = useState(()=>{
+        if(localStorage.getItem('dark-theme')){
+            const x:any = localStorage.getItem('dark-theme')
+            return JSON.parse(x)
+        }else{
+            return false
+        }
+    })
+
+
+    useEffect(()=>{
+        localStorage.setItem('dark-theme',JSON.stringify(dark_theme))
+        document.body.classList.toggle('dark-theme',dark_theme)
+    },[dark_theme])
 
     const handleLogout = async() =>{
         const res = await fetch('./api/v1/user/logout')
@@ -32,7 +48,7 @@ const Nav = memo(()=>{
                         <AnchorLink text='register' path='/register'/>
                     </>
             }
-            <Img src='./imgs/dark_mode.png' alt="dark and light mode" title='switch color themes'/>
+            <Img src='./imgs/dark_mode.png' alt="dark and light mode" title='switch color themes' handleClick={setDarkTheme} cls='invert'/>
         </StyledNav>
     )
 })
