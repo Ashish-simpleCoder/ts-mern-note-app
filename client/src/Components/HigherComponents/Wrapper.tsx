@@ -35,10 +35,17 @@ const Wrapper = memo(({children, styles, page, mode}:{
 export default Wrapper
 
 const StyledWrapper = styled.section<{page?:string}>`
-    width:100%;
+    width:50%;
     display:flex;
     align-items:center;
     justify-content:center;
+
+    img{
+        display:flex;
+        width:100%;
+        max-width:40rem;
+        transform:rotate(-20deg)
+    }
 `
 
 const StyledNoteInputWrapper = styled.section`

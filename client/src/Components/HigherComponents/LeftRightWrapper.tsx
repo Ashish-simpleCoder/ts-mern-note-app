@@ -15,6 +15,8 @@ const StyledLeftRightWrapper = styled.section`
     width:100%;
     flex-direction:column;
     flex-wrap:wrap;
+    height:100vh;
+    max-height:60rem;
 
     @media (min-width:700px){
         flex-direction:unset;
