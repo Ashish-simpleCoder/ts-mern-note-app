@@ -1,6 +1,7 @@
 import { memo, ReactNode, useState, createContext, ChangeEvent, useMemo, FormEvent, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import UserStates from "../../../Context/UserContext"
+import Button from "../../PureComponents/Button"
 
 export const State = createContext({} as {email:string,password:string, handleChange:(e:ChangeEvent<HTMLInputElement>)=>void})
 
@@ -30,7 +31,7 @@ const Modal = memo(({children, mode}:{children:ReactNode,mode?:string})=>{
             }
             data?.error && setErrors(data.error)
         }
-    },[states])
+    },[states, setUser, history, mode])
 
 
     useEffect(()=>{
@@ -45,7 +46,7 @@ const Modal = memo(({children, mode}:{children:ReactNode,mode?:string})=>{
                 {children}
             </State.Provider>
             <div className="error">{errors}</div>
-            <button>submit</button>
+            <Button text='submit'/>
         </form>
     )
 })

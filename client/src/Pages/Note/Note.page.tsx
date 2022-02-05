@@ -1,4 +1,4 @@
-import { ChangeEvent, createContext, memo, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { ChangeEvent, createContext,  memo, useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../../Components/HigherComponents/Input";
 import LeftRightWrapper from "../../Components/HigherComponents/LeftRightWrapper";
@@ -8,7 +8,6 @@ import Form from "../../Components/PureComponents/Form";
 import UserStates from "../../Context/UserContext";
 import { EditNoteType, NoteInterface } from "../../types";
 import fetchUser from "../../utils/fetchUser";
-import Note from "./Note";
 import NoteInput from "./Note.input.section";
 import NoteModal from "./Note.modal";
 import NoteOutput from "./Note.output.section";
@@ -30,7 +29,7 @@ const NotePage = memo(()=>{
             const res = await fetchUser()
             res?._id ? setUser({_id:res._id,email:res?.email})  : history.push('/login')
         })()
-    },[setUser])
+    },[setUser, history])
 
     // useEffect for fetching notes
     useEffect(()=>{
@@ -60,7 +59,7 @@ const NotePage = memo(()=>{
             modal.style.display='none'
             setEditNote({title:'', content:'', _id:'',bg:[]})
         },310)
-    },[edit_note])
+    },[edit_note, setUser])
 
 
     const handleUpdateNote = useCallback(async()=>{
@@ -79,7 +78,7 @@ const NotePage = memo(()=>{
             modal.style.display='none'
             setEditNote({title:'', content:'', _id:'',bg:[]})
         },310)
-    },[edit_note])
+    },[edit_note, setUser])
 
 
     // useeffect for enabling the edit modal for note
@@ -116,7 +115,7 @@ const NotePage = memo(()=>{
                    <Form>
                         <Input type='note_title' placeholder='note title...'/>
                         <Input type='note_content' placeholder='type your notes here...'/>
-                        <Button text='create a new note' bg='green'/>
+                        <Button text='create a new note' mode='create_note_btn'/>
                    </Form>
                 </NoteInput>
             </Wrapper>

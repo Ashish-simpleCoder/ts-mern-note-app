@@ -1,66 +1,62 @@
 import { memo, useContext } from "react";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import { EditNoteCtx } from "../../Pages/Note/Note.page";
 
-const Button = memo(({text,
-    styles,
-    bg,
-    type,
+const Button = memo(({
+    text,
     handleClick,
     _id,
-    cls
-}:{text:string,
-    styles?:any,
-    bg?:string,
-    type?:string,
+    mode
+}:{
+    text:string,
     handleClick?: (note_id?: string) => Promise<void> | void
-    cls?:string
     _id?:string
+    mode?:string
 })=>{
     const {handleDeleteNote} = useContext(EditNoteCtx)
 
 
-    if(type === 'note_delete_btn'){
-        return(
-            <StyledDeleteBtn className={cls} onClick={(e)=>{e.stopPropagation();handleDeleteNote(_id)}}>{text}</StyledDeleteBtn>
-        )
-    }
-    if(type === 'hero_btn'){
-        return <StyledHeroBtn onClick={()=>handleClick && handleClick()}>{text}</StyledHeroBtn>
-    }
-    return(
-        <StyledBtn style={styles}className={cls} bg={bg} onClick={()=>handleClick && handleClick()}>{text}</StyledBtn>
+    return (
+        <StyledButton mode={mode && mode} onClick={(e)=>{
+            e.stopPropagation();
+            handleClick && handleClick()
+            mode === 'delete_note_btn' && handleDeleteNote(_id)
+        }}>{text}</StyledButton>
     )
 })
 export default Button
 
-const StyledBtn = styled.button<{bg?:string}>`
+
+
+const StyledButton = styled.button<{mode:string|undefined}>`
+    border-radius:0.3rem;
     font-size:clamp(1.6rem, 1.8rem, 1.8vw);
     padding:0.5rem 1rem;
-    border:none;
-    width:100%;
-    cursor:pointer;
-    border-radius:0.3rem;
     color:var(--btn-clr);
-    background:${({bg})=>bg};
     transition:background 0.3s;
-    &:hover{
-        background:var(--btn-hover-bg);
-    }
-`
 
-const StyledDeleteBtn = styled.button`
-    position:absolute;
-    bottom:1rem;
-    right:1rem;
-`
+    ${(props)=>{
+        switch(props.mode){
+            case "hero_btn": return css`
+                padding:1rem 3rem;
+                font-size:clamp(1.8rem, 2rem, 2vw);
+                margin-top:4rem;
+                background:var(--secondary-clr);
+                color:var(--hero-btn-clr);
+                box-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.6);
+            `
 
-const StyledHeroBtn = styled.button`
-    padding:1rem 3rem;
-    border-radius:0.3rem;
-    font-size:clamp(1.8rem, 2rem ,2vw);
-    margin-top:4rem;
-    background:var(--secondary-clr);
-    color:var(--hero-btn-clr);
-    box-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.6);
+            case 'delete_note_btn': return css`
+                position:absolute;
+                bottom:1rem;
+                right:1rem;
+            `
+
+            case 'create_note_btn': return css`
+                background:var(--note-create-btn-bg);
+                bottom:1rem;
+                right:1rem;
+            `
+        }
+    }}
 `

@@ -12,7 +12,7 @@ const HomePage = memo(()=>{
             const res = await fetchUser()
             res?._id && setUser({_id:res._id,email:res?.email})
         })()
-    },[])
+    },[setUser])
 
 
     return(

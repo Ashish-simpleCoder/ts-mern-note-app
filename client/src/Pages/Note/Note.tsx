@@ -2,6 +2,7 @@ import { memo, useContext } from "react";
 import styled from "styled-components";
 import Button from "../../Components/PureComponents/Button";
 import H3 from "../../Components/PureComponents/H3";
+import { ThemeCtx } from "../../Context/UserContext";
 import { NoteInterface } from "../../types";
 import { EditNoteCtx } from "./Note.page";
 
@@ -9,20 +10,20 @@ import { EditNoteCtx } from "./Note.page";
 
 const Note = memo(({note}:{note:NoteInterface})=>{
     const {setEditNote} = useContext(EditNoteCtx)
-
+    const {dark_theme} = useContext(ThemeCtx)
 
     return(
-        <StyledNote id={note._id} style={{background:note.bg[0]}}
+        <StyledNote id={note._id} style={{background:dark_theme ? note.bg[1] : note.bg[0]}}
+            className="note"
             onClick={(e)=>{
-                e.preventDefault();
+                e.preventDefault()
                 e.stopPropagation()
                 setEditNote(note)
             }}
-            className="note"
-            >
+        >
             <H3 text={note.title}/>
             <p>{note.content}</p>
-            <Button text="delete" type='note_delete_btn' _id={note._id}/>
+            <Button text="delete"  mode='delete_note_btn' _id={note._id}/>
         </StyledNote>
     )
 })
@@ -41,7 +42,7 @@ const StyledNote = styled.div`
         padding:0.5rem;
     }
     h3{
-        border-bottom:var(--note-title-border);
+        border-bottom:var(--border);
         font-weight:500;
         text-align:center;
     }

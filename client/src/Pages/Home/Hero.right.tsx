@@ -12,7 +12,7 @@ const HeroRight = memo(()=>{
         <Wrapper>
             <H2 text='An Amazing Note App'/>
             <Caption text={'Create your notes on the go, that you can easily remember.'}/>
-            <Button text='Get Started' type="hero_btn" handleClick={handleClick}/>
+            <Button text='Get Started'  handleClick={handleClick} mode='hero_btn'/>
         </Wrapper>
     )
 })

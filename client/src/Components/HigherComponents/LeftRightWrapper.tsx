@@ -15,10 +15,10 @@ const StyledLeftRightWrapper = styled.section`
     width:100%;
     flex-direction:column;
     flex-wrap:wrap;
-    height:100vh;
-    max-height:60rem;
+    min-height:100vh;
 
     @media (min-width:700px){
+        max-height:60rem;
         flex-direction:unset;
     }
 `

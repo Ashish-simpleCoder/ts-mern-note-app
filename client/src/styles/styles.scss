@@ -56,4 +56,6 @@ a,button{
    text-decoration: none;
    border:none;
    cursor: pointer;
+   background: inherit;
+   font-size: clamp(1.6rem, 1.7rem, 1.7vw);
  }

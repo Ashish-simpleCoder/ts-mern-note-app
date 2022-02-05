@@ -13,7 +13,6 @@ const Input = memo(({type, placeholder}:{
     const {email, password, handleChange} = useContext(State)
     const {title,content, handleNoteChange} = useContext(NoteState)
     const {note, handleEditNoteChange} = useContext(EditNoteCtx)
-    // const {title:edit_title, content:edit_content} = note
 
     if(type === 'note_title'){
         return <StyledInput type="text" name={'title'} value={title} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={placeholder}/>
@@ -43,7 +42,8 @@ const StyledInput = styled.input`
     font-size:clamp(1.6rem,1.8rem,1.8vw);
     border:none;
     padding:0.5rem 1rem;
-    background:var(--input-bg);
+    background:inherit;
+    /* background:var(--input-bg); */
     outline:var(--border);
     border-radius:0.3rem;
 
@@ -61,7 +61,7 @@ const StyledTextArea = styled.textarea`
     font-size:clamp(1.6rem,1.8rem,1.8vw);
     border:none;
     padding:0.5rem 1rem;
-    background:var(--input-bg);
+    background:inherit;
     outline:var(--border);
     border-radius:0.3rem;
 

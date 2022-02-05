@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Input from "../../Components/HigherComponents/Input";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import Button from "../../Components/PureComponents/Button";
+import { ThemeCtx } from "../../Context/UserContext";
 import { EditNoteCtx } from "./Note.page";
 
 
@@ -11,17 +12,19 @@ const NoteModal = memo(({children, mode}:{
     children?:ReactNode
     mode:string
 })=>{
-    const {handleDeleteNote, handleUpdateNote} = useContext(EditNoteCtx)
+    const {note ,handleDeleteNote, handleUpdateNote} = useContext(EditNoteCtx)
+    const {dark_theme} = useContext(ThemeCtx)
+    // console.log(note)
 
     if(mode === 'edit_note'){
       return (
         <Wrapper mode={mode}>
-            <StyledEditModal  id='modal' className='edit_modal'>
+            <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? note.bg[1] : note.bg[0]}}>
                 <Input type='edit_note_title'/>
                 <Input type='edit_note_content'/>
                 <div className="btns">
-                    <Button text='save'  handleClick={handleUpdateNote} cls='save_btn' styles={{width:'unset'}}/>
-                    <Button text='delete' handleClick={handleDeleteNote} cls='delete_btn' styles={{width:'unset'}}/>
+                    <Button text='save'  handleClick={handleUpdateNote} />
+                    <Button text='delete' handleClick={handleDeleteNote}  />
                 </div>
                 {children}
             </StyledEditModal>
@@ -40,7 +43,7 @@ const StyledEditModal = styled.div`
     max-width:60%;
     border-radius:0.5rem;
     transition:all 0.3s ease;
-    background:white;
+    background:var(--modal-bg);
     position:fixed;
     overflow:hidden;
     box-shadow:0 0.3rem 1rem rgba(0, 0, 0, 0.4);
@@ -61,7 +64,7 @@ const StyledEditModal = styled.div`
         }
     }
     input{
-        border:var(--note-title-border) !important;
+        /* border:var(--note-title-border) !important; */
         text-align:center ;
         font-weight:500;
     }

@@ -1,23 +1,18 @@
-import { memo, useEffect, useState} from "react";
+import { memo, useContext, useEffect} from "react";
 import {  useHistory } from "react-router-dom";
 import styled from "styled-components";
-import UserStates from "../../../Context/UserContext";
+import UserStates, { ThemeCtx } from "../../../Context/UserContext";
 import AnchorLink from "../../PureComponents/AnchorLink";
+import Button from "../../PureComponents/Button";
 import Img from "../../PureComponents/Img";
+
 
 
 
 const Nav = memo(()=>{
     const {user, setUser} = UserStates()
     const history = useHistory()
-    const [dark_theme, setDarkTheme] = useState(()=>{
-        if(localStorage.getItem('dark-theme')){
-            const x:any = localStorage.getItem('dark-theme')
-            return JSON.parse(x)
-        }else{
-            return false
-        }
-    })
+    const {dark_theme, setDarkTheme} = useContext(ThemeCtx)
 
 
     useEffect(()=>{
@@ -39,8 +34,9 @@ const Nav = memo(()=>{
             {
                 user._id ?
                     <>
-                        <AnchorLink path='/notes' text="Notes"/>
-                        <button onClick={handleLogout}>logout</button>
+                        <AnchorLink path='/notes' text="notes"/>
+                        {/* <button onClick={handleLogout}>logout</button> */}
+                        <Button handleClick={handleLogout} text='logout' />
                     </>
                 :
                     <>
