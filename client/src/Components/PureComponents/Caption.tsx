@@ -10,6 +10,6 @@ export default Caption
 
 const StyledCaption = styled.caption`
     font-size:clamp(1.8rem, 2rem ,2vw);
-    opacity:0.8;
+    opacity:0.9;
     margin-top:1rem;
 `

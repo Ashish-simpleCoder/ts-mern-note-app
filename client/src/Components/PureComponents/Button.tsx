@@ -13,7 +13,7 @@ const Button = memo(({text,
     styles?:any,
     bg?:string,
     type?:string,
-    handleClick?: (note_id?: string) => Promise<void>,
+    handleClick?: (note_id?: string) => Promise<void> | void
     cls?:string
     _id?:string
 })=>{
@@ -24,6 +24,9 @@ const Button = memo(({text,
         return(
             <StyledDeleteBtn className={cls} onClick={(e)=>{e.stopPropagation();handleDeleteNote(_id)}}>{text}</StyledDeleteBtn>
         )
+    }
+    if(type === 'hero_btn'){
+        return <StyledHeroBtn onClick={()=>handleClick && handleClick()}>{text}</StyledHeroBtn>
     }
     return(
         <StyledBtn style={styles}className={cls} bg={bg} onClick={()=>handleClick && handleClick()}>{text}</StyledBtn>
@@ -50,4 +53,14 @@ const StyledDeleteBtn = styled.button`
     position:absolute;
     bottom:1rem;
     right:1rem;
+`
+
+const StyledHeroBtn = styled.button`
+    padding:1rem 3rem;
+    border-radius:0.3rem;
+    font-size:clamp(1.8rem, 2rem ,2vw);
+    margin-top:4rem;
+    background:var(--secondary-clr);
+    color:var(--hero-btn-clr);
+    box-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.6);
 `

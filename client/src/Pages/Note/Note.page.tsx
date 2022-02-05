@@ -1,4 +1,5 @@
 import { ChangeEvent, createContext, memo, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Input from "../../Components/HigherComponents/Input";
 import LeftRightWrapper from "../../Components/HigherComponents/LeftRightWrapper";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
@@ -20,12 +21,14 @@ export const EditNoteCtx = createContext<EditNoteType>({} as EditNoteType)
 const NotePage = memo(()=>{
     const {setUser} = UserStates()
     const [edit_note, setEditNote] = useState<NoteInterface>({_id:'', title:'', content:'', bg:[]})
+    const history = useHistory()
 
 
+    // layout effect for fetching logged user
     useLayoutEffect(()=>{
         (async () =>{
             const res = await fetchUser()
-            res?._id && setUser({_id:res._id,email:res?.email})
+            res?._id ? setUser({_id:res._id,email:res?.email})  : history.push('/login')
         })()
     },[setUser])
 
