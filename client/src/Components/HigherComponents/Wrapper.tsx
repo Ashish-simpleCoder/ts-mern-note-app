@@ -1,6 +1,8 @@
 import { memo, ReactNode } from "react";
 import styled, { css } from "styled-components";
 
+
+
 const Wrapper = memo(({children, styles, page, mode}:{
     children:ReactNode, styles?:any, page?:string
     mode?:string
@@ -19,15 +21,15 @@ const Wrapper = memo(({children, styles, page, mode}:{
             </StyledNoteOutWrapper>
         )
     }
-    if(page === 'note_create'){
-        return(
-            <StyledNoteInputWrapper>
-                {children}
-            </StyledNoteInputWrapper>
-        )
-    }
+    // if(page === 'note_create'){
+    //     return(
+    //         <StyledNoteInputWrapper>
+    //             {children}
+    //         </StyledNoteInputWrapper>
+    //     )
+    // }
     return (
-        <StyledWrapper style={styles} mode={mode}>
+        <StyledWrapper mode={mode}>
             {children}
         </StyledWrapper>
     )
@@ -36,27 +38,60 @@ export default Wrapper
 
 const StyledWrapper = styled.section<{mode?:string}>`
     display:flex;
-    /* width:100%; */
-    padding:2rem;
 
     ${(props)=>{
         switch(props.mode){
+            case 'hero': return css`
+                width:100%;
+                align-items:center;
+                justify-content:center;
+                transform-origin:center;
+                flex-direction:column;
+
+                @media (min-width:700px){
+                    width:50%;
+                }
+            `
+
             case "create_note_container": return css`
+                padding:2rem;
+                justify-content:center;
+                margin-bottom:3rem;
+                button{
+                    width:100%;
+                }
+
+                @media (min-width:700px){
+                    margin-bottom:0rem;
+                        border-right:var(--border);
+                        height:100%;
+                        position:fixed;
+                        width:var(--width);
+                    }
             `
 
-            case 'output_note_container': return css`
+            case 'notes_container_wrapper': return css`
+                flex-direction:column;
+                @media (min-width:700px){
+                    position:relative;
+                    left:var(--width);
+                    width:calc(100% - var(--width));
+                }
             `
 
+            case 'notes_container': return css`
+                justify-content:center;
+                gap:3rem;
+                padding:2rem;
+                flex-wrap:wrap;
+                @media (min-width:700px){
+                    justify-content:space-around;
+                }
+            `
             default: return css`
             `
         }
     }}
-    width:100%;
-    align-items:center;
-    justify-content:center;
-    /* border:1px solid; */
-    transform-origin:center;
-    flex-direction:column;
 
     img{
         display:flex;
@@ -64,10 +99,6 @@ const StyledWrapper = styled.section<{mode?:string}>`
         height:35rem;
         transform:rotate(-20deg) scale(0.8);
         transform-origin:center;
-    }
-
-    @media (min-width:800px){
-        width:50%;
     }
 `
 
@@ -91,6 +122,7 @@ const StyledNoteOutWrapper = styled.section`
     gap:2rem;
     flex-wrap:wrap;
     padding:2rem;
+
 
     @media (min-width:700px){
         position:relative;

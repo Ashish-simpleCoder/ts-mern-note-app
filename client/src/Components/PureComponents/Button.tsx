@@ -50,6 +50,7 @@ const StyledButton = styled.button<{mode:string|undefined}>`
                 position:absolute;
                 bottom:1rem;
                 right:1rem;
+                color:red;
             `
 
             case 'create_note_btn': return css`

@@ -20,6 +20,7 @@ const USER_SCHEMA = new Schema({
             content:{type:String},
             bg:{
                 type:{},
+                // default: [ '#fff', '#1a1a1a' ],
                 default: [ '#fff', '#000' ],
             },
         }

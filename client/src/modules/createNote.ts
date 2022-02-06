@@ -1,5 +1,4 @@
 const createNote = async(note:{title:string, content:string})=>{
-    console.log(note)
     try {
         const res = await fetch('/api/v1/user/note',{
             method:'POST',

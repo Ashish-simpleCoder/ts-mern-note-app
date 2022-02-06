@@ -4,7 +4,7 @@ import Img from "../../Components/PureComponents/Img";
 
 const HeroLeft = memo(()=>{
     return(
-        <Wrapper>
+        <Wrapper mode="hero">
             <Img src="./imgs/hero_notes.png" alt="hero banner" cls='invert-3' animate={true}/>
         </Wrapper>
     )

@@ -110,8 +110,8 @@ const NotePage = memo(()=>{
 
     return(
         <LeftRightWrapper>
-            <Wrapper  page='note_create'>
-                <NoteInput mode='create_note' >
+            <Wrapper  mode='create_note_container'>
+                <NoteInput  mode='create_note' >
                    <Form>
                         <Input type='title' placeholder='note title...' name='title'/>
                         <Input type='content' placeholder='type your notes here...' name='content'/>

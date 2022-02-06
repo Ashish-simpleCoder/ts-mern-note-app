@@ -1,11 +1,18 @@
 import { createContext, memo, useContext, useState, Dispatch, SetStateAction} from "react";
-import { UserCtxInterface, UserInterface } from "../types";
+import { ThemeCtxInterface, UserCtxInterface, UserInterface } from "../types";
 
-const UserCtx = createContext<UserCtxInterface>({} as {user:UserInterface, setUser:Dispatch<SetStateAction<UserInterface>>})
-export const ThemeCtx = createContext<{dark_theme:boolean, setDarkTheme: Dispatch<any>}>({} as {dark_theme:boolean, setDarkTheme: Dispatch<any>})
+const UserCtx = createContext<UserCtxInterface>({} as UserCtxInterface)
+
+
+export const ThemeCtx = createContext<ThemeCtxInterface>({} as ThemeCtxInterface)
+
+
 
 export const UserProvider = memo(({children})=>{
     const [user, setUser] = useState<UserInterface>({_id:'',notes:[], email:''})
+
+    const [search, setSearch] = useState('')
+
     const [dark_theme, setDarkTheme] = useState(()=>{
         if(localStorage.getItem('dark-theme')){
             const x:any = localStorage.getItem('dark-theme')
@@ -16,7 +23,7 @@ export const UserProvider = memo(({children})=>{
     })
 
     return(
-        <UserCtx.Provider value={{user, setUser}}>
+        <UserCtx.Provider value={{user, setUser, search, setSearch}}>
             <ThemeCtx.Provider value={{dark_theme, setDarkTheme}}>
             {children}
             </ThemeCtx.Provider>

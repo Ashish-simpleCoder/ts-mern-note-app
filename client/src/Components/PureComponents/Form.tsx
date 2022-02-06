@@ -12,11 +12,16 @@ const Form = memo(({children}:{children:ReactNode})=>{
 })
 export default Form
 
+
+
 const StyledForm = styled.form`
     height:40rem;
     width:100%;
     display:flex;
+    align-items:center;
     flex-direction:column;
+    /* margin-top:3rem;   //remvoe int */
+    max-width:35rem;
 
     button{
         margin-top:auto

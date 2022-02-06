@@ -13,12 +13,18 @@ interface img_props{
 interface UserCtxInterface{
     user:UserInterface,
     setUser:Dispatch<SetStateAction<UserInterface>>
+    search:string,
+    setSearch:Dispatch<SetStateAction<string>>
 }
 
 interface UserInterface{
     _id:string,
     email:string,
     notes?:NoteInterface[]
+}
+interface ThemeCtxInterface{
+    dark_theme:boolean,
+    setDarkTheme: Dispatch<any>
 }
 
 interface NoteInterface{

@@ -14,12 +14,15 @@ const NoteModal = memo(({children, mode}:{
 })=>{
     const {note:edit_note ,handleDeleteNote, handleUpdateNote} = useContext(EditNoteCtx)
     const {dark_theme} = useContext(ThemeCtx)
+    const styles = {
+        maxWidth:'unset !important'
+    }
 
     if(mode === 'edit_note'){
       return (
         <Wrapper mode={mode}>
             <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0]}}>
-                <Input type='edit_note_title' name='title'/>
+                <Input type='edit_note_title' name='title' style={styles}/>
                 <Input type='edit_note_content' name='content'/>
                 <div className="btns">
                     <Button text='save'  handleClick={handleUpdateNote} />
