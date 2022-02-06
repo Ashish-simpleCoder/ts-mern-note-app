@@ -5,20 +5,21 @@ import { EditNoteCtx } from "../../Pages/Note/Note.page";
 import { State } from "./Modal/Modal";
 
 
-const Input = memo(({type, placeholder}:{
+const Input = memo(({type, placeholder, name}:{
     type?:string,
     handleChange?:(value:string)=>void,
-    placeholder?:string
+    placeholder?:string,
+    name:string
 })=>{
     const {email, password, handleChange} = useContext(State)
     const {title,content, handleNoteChange} = useContext(NoteState)
     const {note, handleEditNoteChange} = useContext(EditNoteCtx)
 
-    if(type === 'note_title'){
-        return <StyledInput type="text" name={'title'} value={title} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={placeholder}/>
+    if(type === 'title'){
+        return <StyledInput type="text" name={name} value={title} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={placeholder}/>
     }
-    if(type === 'note_content'){
-        return <StyledTextArea name={'content'} value={content} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={placeholder}/>
+    if(type === 'content'){
+        return <StyledTextArea name={name} value={content} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={placeholder}/>
     }
 
     if(type === 'edit_note_title'){
@@ -39,11 +40,10 @@ export default Input
 const StyledInput = styled.input`
     width:100%;
     margin-top:2rem;
-    font-size:clamp(1.6rem,1.8rem,1.8vw);
+    font-size:clamp(1.5rem,1.6rem,1.6vw);
     border:none;
     padding:0.5rem 1rem;
     background:inherit;
-    /* background:var(--input-bg); */
     outline:var(--border);
     border-radius:0.3rem;
 
@@ -58,7 +58,7 @@ const StyledTextArea = styled.textarea`
     margin-bottom:2rem;
     resize:none;
     margin-top:2rem;
-    font-size:clamp(1.6rem,1.8rem,1.8vw);
+    font-size:clamp(1.5rem,1.6rem,1.6vw);
     border:none;
     padding:0.5rem 1rem;
     background:inherit;

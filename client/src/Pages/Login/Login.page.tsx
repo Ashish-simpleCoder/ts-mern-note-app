@@ -6,8 +6,8 @@ const LoginPage = memo(()=>{
     return(
         <>
             <Modal mode='login'>
-                <Input type='email' placeholder="your email"/>
-                <Input type='password' placeholder="your password"/>
+                <Input type='email' placeholder="your email" name='email'/>
+                <Input type='password' placeholder="your password" name='password'/>
             </Modal>
         </>
     )

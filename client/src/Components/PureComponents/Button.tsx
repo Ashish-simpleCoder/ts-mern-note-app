@@ -30,7 +30,7 @@ export default Button
 
 const StyledButton = styled.button<{mode:string|undefined}>`
     border-radius:0.3rem;
-    font-size:clamp(1.6rem, 1.8rem, 1.8vw);
+    font-size:clamp(1.5rem, 1.6rem, 1.6vw);
     padding:0.5rem 1rem;
     color:var(--btn-clr);
     transition:background 0.3s;
@@ -56,6 +56,7 @@ const StyledButton = styled.button<{mode:string|undefined}>`
                 background:var(--note-create-btn-bg);
                 bottom:1rem;
                 right:1rem;
+                color:white;
             `
         }
     }}

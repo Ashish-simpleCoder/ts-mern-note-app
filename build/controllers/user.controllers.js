@@ -88,9 +88,7 @@ exports.handleLogin = (0, asyncWrapper_1.default)(function (req, res, next) { re
                         return [2 /*return*/, res.cookie(cookie_name, cookie, { maxAge: 200000000 }).send({ _id: user._id, email: user.email })];
                 }
             });
-        }); }, {
-            runValidators: true,
-        });
+        }); });
         return [2 /*return*/];
     });
 }); });

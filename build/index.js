@@ -15,6 +15,7 @@ var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var json = express_1.default.json;
 var app = (0, express_1.default)();
 app.use(json());
+// app.use(urlencoded({extended:true}))
 app.use((0, cookie_parser_1.default)());
 app.use(router_1.default);
 app.use(errHandler_1.default);

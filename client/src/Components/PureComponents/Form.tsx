@@ -13,7 +13,6 @@ const Form = memo(({children}:{children:ReactNode})=>{
 export default Form
 
 const StyledForm = styled.form`
-    /* background:var(--form-bg); */
     height:40rem;
     width:100%;
     display:flex;
@@ -21,5 +20,9 @@ const StyledForm = styled.form`
 
     button{
         margin-top:auto
+    }
+
+    input,textarea{
+        background:var(--input-bg);
     }
 `

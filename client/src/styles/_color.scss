@@ -3,9 +3,13 @@
     --prm-clr:hsl(10, 90%, 10%);
     --secondary-clr:hsl(9, 89%, 50%);
     --border:1px solid hsl(0, 0%, 75%);
-    --btn-clr:white;
+    --btn-clr:black;
     --note-title-border:1px solid hsl(10, 90%, 90%);
     --hero-btn-clr:white;
+
+
+    // borders
+    --note-border:1px solid rgba(0,0, 0, 0.1);
 
 
 
@@ -15,7 +19,7 @@
     --header-bg:hsl(0, 0%, 100%);
     --input-bg:hsl(14, 90%, 100%);
     --form-bg:white;
-    --focused:hsl(10, 90%, 90%);
+    --focused:hsl(0, 0%, 90%);
     --btn-hover-bg:hsl(120, 100%, 20%);
     --edit-modal-bg:rgba(0,0,0, 0.5);
     --modal-bg:white;
@@ -38,7 +42,8 @@
     --note-title-border:1px solid hsl(10, 90%, 30%);
     --hero-btn-clr:white;
 
-
+        // borders
+        --note-border:1px solid rgba(0, 0, 0, 0.8);
 
     // bg-clrs
     --body-bg:hsl(0, 0%, 5%);
