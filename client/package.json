@@ -1,5 +1,6 @@
 {
   "name": "ts_mern_note_app_frontend",
+  "homepage": "https://ashish-simplecoder.github.io/ts-mern-note-app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,6 +15,7 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -39,6 +41,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3",
-    "@types/styled-components": "^5.1.21"
+    "@types/styled-components": "^5.1.21",
+    "gh-pages": "^3.2.3"
   }
 }
