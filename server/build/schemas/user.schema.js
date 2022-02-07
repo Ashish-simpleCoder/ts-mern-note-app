@@ -60,6 +60,7 @@ var USER_SCHEMA = new mongoose_1.Schema({
             content: { type: String },
             bg: {
                 type: {},
+                // default: [ '#fff', '#1a1a1a' ],
                 default: ['#fff', '#000'],
             },
         }

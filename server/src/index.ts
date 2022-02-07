@@ -15,7 +15,7 @@ const {json} = express
 const app = express()
 
 app.use(cors({
-    origin:mode === 'prod' ? 'https://mern-api.heroku.app' : 'http://localhost:3000'
+    origin:mode === 'prod' ? 'https://ashish-simplecoder.github.io/ts-mern-note-app/' : 'http://localhost:3000'
 }))
 app.use(json())
 // app.use(urlencoded({extended:true}))
