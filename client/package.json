@@ -1,6 +1,5 @@
 {
   "name": "ts_mern_note_app_frontend",
-  "proxy":"http://localhost:5001",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

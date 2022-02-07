@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { ChangeEvent, createContext, FormEvent, memo, ReactNode, useEffect, useMemo, useState } from "react";
 import UserStates from "../../Context/UserContext";
 
@@ -8,6 +9,8 @@ export const NoteState = createContext({} as {
     handleNoteChange:(e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>)=>void,
     handleNoteSubmit:(e: FormEvent<HTMLFormElement>) => Promise<void>
 })
+
+export const useNoteCtx= () => useContext(NoteState)
 
 
 const NoteInput = memo(({children, mode}:{children:ReactNode, mode:string})=>{

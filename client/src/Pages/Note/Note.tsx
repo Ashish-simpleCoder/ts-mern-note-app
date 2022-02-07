@@ -52,7 +52,7 @@ const StyledNote = styled.div`
     }
     h3{
         border-bottom:var(--note-title-border);
-        font-weight:500;
+        font-weight:400;
         text-align:center;
     }
     p{

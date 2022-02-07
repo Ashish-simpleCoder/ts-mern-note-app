@@ -1,11 +1,21 @@
-import { memo, ReactNode, useContext } from "react";
+import { FormEvent, memo, ReactNode, useContext } from "react";
 import { NoteState } from "../../Pages/Note/Note.input.section";
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { useLoginCtx } from "../../Pages/Login/Login.modal";
 
-const Form = memo(({children}:{children:ReactNode})=>{
+const Form = memo(({children, no_bg, mode}:{children:ReactNode, no_bg?:boolean, mode?:string})=>{
     const {handleNoteSubmit} = useContext(NoteState)
+    const {handleSubmit} = useLoginCtx()
+
     return(
-        <StyledForm onSubmit={(e)=>handleNoteSubmit(e)}>
+        <StyledForm onSubmit={(e)=>{
+                e.preventDefault()
+                handleSubmit && handleSubmit(e)
+                handleNoteSubmit && handleNoteSubmit(e)}
+            }
+            no_bg={no_bg}
+            mode={mode}   //for margin-top
+        >
             {children}
         </StyledForm>
     )
@@ -14,16 +24,46 @@ export default Form
 
 
 
-const StyledForm = styled.form`
+const StyledForm = styled.form<{no_bg?:boolean, mode?:string}>`
     height:40rem;
     width:100%;
     display:flex;
     align-items:center;
     flex-direction:column;
-    /* margin-top:3rem;   //remvoe int */
     max-width:35rem;
-    /* margin:auto; */
+    background:var(--form-bg);
 
+    ${({mode})=>{
+        if(mode === 'login'){
+            return css`
+                margin:auto;
+                max-width:40rem;
+                margin-top:3rem;
+                border-radius:0.5rem;
+                box-shadow:0 0.5rem 0.5rem rgba(0,0,0,0.4);
+                padding:2rem;
+                div{
+                    padding:0 2rem;
+                    margin-top:2rem;
+                    width:100%;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+
+                    input{
+                        background:var(--focused);
+                    }
+                }
+            `
+        }
+    }}
+    ${({no_bg})=>{
+       if(no_bg === true) {
+           return css`
+            background:inherit;
+        `
+        }
+    }}
     button{
         margin-top:auto
     }

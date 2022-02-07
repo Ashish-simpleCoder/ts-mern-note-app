@@ -58,6 +58,11 @@ const StyledButton = styled.button<{mode:string|undefined}>`
                 bottom:1rem;
                 right:1rem;
                 color:white;
+                `
+            case 'login_btn': return css`
+                background:var(--note-create-btn-bg);
+                color:white;
+                width:100%;
             `
         }
     }}

@@ -1,32 +1,43 @@
-import { CSSProperties, memo, useContext } from "react";
+import { ChangeEvent, CSSProperties, Dispatch, memo, SetStateAction, useContext } from "react";
 import styled, { css } from "styled-components";
 import UserStates from "../../Context/UserContext";
-import { NoteState } from "../../Pages/Note/Note.input.section";
+import { useLoginCtx } from "../../Pages/Login/Login.modal";
+import { NoteState, useNoteCtx } from "../../Pages/Note/Note.input.section";
 import { EditNoteCtx } from "../../Pages/Note/Note.page";
 import { State } from "./Modal/Modal";
 
 
-const Input = memo(({type, placeholder, name, style}:{
-    type?:string,
-    handleChange?:(value:string)=>void,
-    placeholder?:string,
-    name:string,
-    style?:CSSProperties
-})=>{
+const Input = memo(({type, placeholder, name, mode}: InputPropsTypes)=>{
     const {email, password, handleChange} = useContext(State)
-    const {title,content, handleNoteChange} = useContext(NoteState)
-    const {note, handleEditNoteChange} = useContext(EditNoteCtx)
-
     const {setSearch, search} = UserStates()
+    const {note, handleEditNoteChange} = useContext(EditNoteCtx)
+    const {title,content, handleNoteChange} = useContext(NoteState)
+    const {handleChanges, state} = useLoginCtx()
 
-    if(type === 'title'){
-        return <StyledInput type="text" name={name} value={title} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={placeholder}
-        mode='note_title'
+
+    // for login page
+    if(type==='login'){
+        return <StyledInput
+        type='text' name={name} value={mode && state[mode]}
+        id={mode}
+        onChange={(e)=>handleChanges && handleChanges(e)}
+        placeholder={placeholder}
         />
     }
+
+    // for creating new note-title
+    if(type === 'title'){
+        return (<StyledInput type="text" name='title' value={title} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={placeholder}
+            mode='note_title'
+            />)
+        }
+
+    // for creating new note-content
     if(type === 'content'){
-        return <StyledTextArea name={name} value={content} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={placeholder}/>
+        return (<StyledTextArea name='content' value={content} onChange={(e)=>handleNoteChange && handleNoteChange(e)} placeholder={'placeholder'} />)
     }
+
+
 
     if(type === 'edit_note_title'){
         return <StyledInput
@@ -56,17 +67,27 @@ const Input = memo(({type, placeholder, name, style}:{
 export default Input
 
 
+type InputPropsTypes = {
+    type?:string,
+    mode?:'email'|'password',
+    handleChange?:(value:string)=>void,
+    placeholder?:string,
+    name:string,
+}
+
+
 
 const StyledInput = styled.input<{mode?:string}>`
     font-size:clamp(1.5rem,1.6rem,1.6vw);
     border:none;
     padding:0.5rem 1rem;
     background:var(--input-bg);
+    outline:none;
     ${({mode})=>{
         switch (mode){
             case 'edit_note_title': return css`
                 background:inherit;
-            `
+                `
             case 'note_title': return css`
                 width:100%;
             `
@@ -74,7 +95,6 @@ const StyledInput = styled.input<{mode?:string}>`
 
             `
     }}}
-    outline:var(--border);
     border-radius:0.3rem;
 
     transition:background 0.3s;

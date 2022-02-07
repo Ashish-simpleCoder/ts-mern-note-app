@@ -16,7 +16,7 @@ const NoteOutput = memo(()=>{
         <Wrapper mode='notes_container_wrapper'>
             <SectionHeader>
                 <H3 text='Your notes'/>
-                <Input type='search' name='search' placeholder='search your notes...'/>
+                {user.notes?.length !== 0  && <Input type='search' name='search' placeholder='search your notes...'/> }
             </SectionHeader>
             <Wrapper mode='notes_container'>
                 { user.notes &&  user.notes?.map(note=><Note key={note._id} note={note} search={search}/>) }
