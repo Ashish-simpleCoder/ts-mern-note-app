@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/ts-mern-note-app/static/css/main.82e83d03.css",
+    "main.js": "/ts-mern-note-app/static/js/main.3eaf860e.js",
+    "static/js/928.8f7bfb3e.chunk.js": "/ts-mern-note-app/static/js/928.8f7bfb3e.chunk.js",
+    "static/js/58.ff9f3161.chunk.js": "/ts-mern-note-app/static/js/58.ff9f3161.chunk.js",
+    "static/js/680.dd44ba2b.chunk.js": "/ts-mern-note-app/static/js/680.dd44ba2b.chunk.js",
+    "static/js/635.cfb37a27.chunk.js": "/ts-mern-note-app/static/js/635.cfb37a27.chunk.js",
+    "static/js/109.9cf0f059.chunk.js": "/ts-mern-note-app/static/js/109.9cf0f059.chunk.js",
+    "static/js/385.491ddaa2.chunk.js": "/ts-mern-note-app/static/js/385.491ddaa2.chunk.js",
+    "static/js/661.daeeef53.chunk.js": "/ts-mern-note-app/static/js/661.daeeef53.chunk.js",
+    "static/js/279.99d1bddd.chunk.js": "/ts-mern-note-app/static/js/279.99d1bddd.chunk.js",
+    "index.html": "/ts-mern-note-app/index.html",
+    "main.82e83d03.css.map": "/ts-mern-note-app/static/css/main.82e83d03.css.map",
+    "main.3eaf860e.js.map": "/ts-mern-note-app/static/js/main.3eaf860e.js.map",
+    "928.8f7bfb3e.chunk.js.map": "/ts-mern-note-app/static/js/928.8f7bfb3e.chunk.js.map",
+    "58.ff9f3161.chunk.js.map": "/ts-mern-note-app/static/js/58.ff9f3161.chunk.js.map",
+    "680.dd44ba2b.chunk.js.map": "/ts-mern-note-app/static/js/680.dd44ba2b.chunk.js.map",
+    "635.cfb37a27.chunk.js.map": "/ts-mern-note-app/static/js/635.cfb37a27.chunk.js.map",
+    "109.9cf0f059.chunk.js.map": "/ts-mern-note-app/static/js/109.9cf0f059.chunk.js.map",
+    "385.491ddaa2.chunk.js.map": "/ts-mern-note-app/static/js/385.491ddaa2.chunk.js.map",
+    "661.daeeef53.chunk.js.map": "/ts-mern-note-app/static/js/661.daeeef53.chunk.js.map",
+    "279.99d1bddd.chunk.js.map": "/ts-mern-note-app/static/js/279.99d1bddd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.82e83d03.css",
+    "static/js/main.3eaf860e.js"
+  ]
+}

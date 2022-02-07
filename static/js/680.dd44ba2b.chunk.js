@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkts_mern_note_app_frontend=self.webpackChunkts_mern_note_app_frontend||[]).push([[680],{1680:function(n,e,t){t.r(e);var r=t(2791),s=t(184),u=(0,r.memo)((function(){return(0,s.jsx)(s.Fragment,{})}));e.default=u}}]);
+//# sourceMappingURL=680.dd44ba2b.chunk.js.map
