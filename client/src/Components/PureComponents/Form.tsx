@@ -22,6 +22,7 @@ const StyledForm = styled.form`
     flex-direction:column;
     /* margin-top:3rem;   //remvoe int */
     max-width:35rem;
+    /* margin:auto; */
 
     button{
         margin-top:auto

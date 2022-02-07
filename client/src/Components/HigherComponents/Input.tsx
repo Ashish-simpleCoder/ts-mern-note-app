@@ -68,7 +68,6 @@ const StyledInput = styled.input<{mode?:string}>`
                 background:inherit;
             `
             case 'note_title': return css`
-                /* background:inherit; */
                 width:100%;
             `
             default : return css`
