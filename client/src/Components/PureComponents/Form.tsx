@@ -1,15 +1,18 @@
 import { FormEvent, memo, ReactNode, useContext } from "react";
 import { NoteState } from "../../Pages/Note/Note.input.section";
 import styled, { css } from 'styled-components'
-import { useLoginCtx } from "../../Pages/Login/Login.modal";
+import { LoginStates } from "../../Pages/Login/Login.modal";
+import {  RegisterStates } from "../../Pages/Register/Register.modal";
 
 const Form = memo(({children, no_bg, mode}:{children:ReactNode, no_bg?:boolean, mode?:string})=>{
     const {handleNoteSubmit} = useContext(NoteState)
-    const {handleSubmit} = useLoginCtx()
+    const {handleSubmit} = LoginStates()
+    const {handleSubmit:handleRegisterSubmit} = RegisterStates()
 
     return(
         <StyledForm onSubmit={(e)=>{
                 e.preventDefault()
+                handleRegisterSubmit && handleRegisterSubmit(e)
                 handleSubmit && handleSubmit(e)
                 handleNoteSubmit && handleNoteSubmit(e)}
             }

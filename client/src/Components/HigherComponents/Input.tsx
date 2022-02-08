@@ -1,10 +1,12 @@
 import { ChangeEvent, CSSProperties, Dispatch, memo, SetStateAction, useContext } from "react";
 import styled, { css } from "styled-components";
 import UserStates from "../../Context/UserContext";
-import { useLoginCtx } from "../../Pages/Login/Login.modal";
+import { LoginStates } from "../../Pages/Login/Login.modal";
 import { NoteState, useNoteCtx } from "../../Pages/Note/Note.input.section";
 import { EditNoteCtx } from "../../Pages/Note/Note.page";
+import { RegisterStates} from "../../Pages/Register/Register.modal";
 import { State } from "./Modal/Modal";
+
 
 
 const Input = memo(({type, placeholder, name, mode}: InputPropsTypes)=>{
@@ -12,8 +14,8 @@ const Input = memo(({type, placeholder, name, mode}: InputPropsTypes)=>{
     const {setSearch, search} = UserStates()
     const {note, handleEditNoteChange} = useContext(EditNoteCtx)
     const {title,content, handleNoteChange} = useContext(NoteState)
-    const {handleChanges, state} = useLoginCtx()
-
+    const {handleChanges, state} = LoginStates()
+    const {handleChanges:handleRegisterChange, state:register_state} = RegisterStates()
 
     // for login page
     if(type==='login'){
@@ -21,6 +23,15 @@ const Input = memo(({type, placeholder, name, mode}: InputPropsTypes)=>{
         type='text' name={name} value={mode && state[mode]}
         id={mode}
         onChange={(e)=>handleChanges && handleChanges(e)}
+        placeholder={placeholder}
+        />
+    }
+    // for register page
+    if(type==='register'){
+        return <StyledInput
+        type='text' name={name} value={mode && register_state[mode]}
+        id={mode}
+        onChange={(e)=>handleRegisterChange && handleRegisterChange(e)}
         placeholder={placeholder}
         />
     }

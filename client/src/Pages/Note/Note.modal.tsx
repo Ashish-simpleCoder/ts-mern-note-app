@@ -14,9 +14,7 @@ const NoteModal = memo(({children, mode}:{
 })=>{
     const {note:edit_note ,handleDeleteNote, handleUpdateNote} = useContext(EditNoteCtx)
     const {dark_theme} = useContext(ThemeCtx)
-    const styles = {
-        maxWidth:'unset !important'
-    }
+
 
     if(mode === 'edit_note'){
       return (
