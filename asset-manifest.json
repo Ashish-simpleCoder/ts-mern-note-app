@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ts-mern-note-app/static/css/main.82e83d03.css",
-    "main.js": "/ts-mern-note-app/static/js/main.f3d853bb.js",
+    "main.js": "/ts-mern-note-app/static/js/main.ce01530e.js",
     "static/js/928.8f7bfb3e.chunk.js": "/ts-mern-note-app/static/js/928.8f7bfb3e.chunk.js",
     "static/js/642.17b45434.chunk.js": "/ts-mern-note-app/static/js/642.17b45434.chunk.js",
     "static/js/680.d2ddf105.chunk.js": "/ts-mern-note-app/static/js/680.d2ddf105.chunk.js",
@@ -12,7 +12,7 @@
     "static/js/279.2244722a.chunk.js": "/ts-mern-note-app/static/js/279.2244722a.chunk.js",
     "index.html": "/ts-mern-note-app/index.html",
     "main.82e83d03.css.map": "/ts-mern-note-app/static/css/main.82e83d03.css.map",
-    "main.f3d853bb.js.map": "/ts-mern-note-app/static/js/main.f3d853bb.js.map",
+    "main.ce01530e.js.map": "/ts-mern-note-app/static/js/main.ce01530e.js.map",
     "928.8f7bfb3e.chunk.js.map": "/ts-mern-note-app/static/js/928.8f7bfb3e.chunk.js.map",
     "642.17b45434.chunk.js.map": "/ts-mern-note-app/static/js/642.17b45434.chunk.js.map",
     "680.d2ddf105.chunk.js.map": "/ts-mern-note-app/static/js/680.d2ddf105.chunk.js.map",
@@ -24,6 +24,6 @@
   },
   "entrypoints": [
     "static/css/main.82e83d03.css",
-    "static/js/main.f3d853bb.js"
+    "static/js/main.ce01530e.js"
   ]
 }
