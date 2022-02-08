@@ -13,19 +13,20 @@ import cookieParser from 'cookie-parser'
 const {json} = express
 const app = express()
 
+console.log(MODE)
 
 if(MODE === 'prod'){
-    const {join, resolve} = require('path')
+    const {join} = require('path')
     console.log(join(__dirname,'../',"client/build"))
     app.use(express.static(join(__dirname,'../', 'client/build')))
     connect(MONGO || 'mongodb://localhost:27017/your_db').then(()=>console.log('db ok')).catch(()=>console.log('failed db'))
  }
 
 
-// app.use(cors({
-//     origin:'*',
-//     methods:['GET','POST','DELETE', 'PATCH', 'PUT']
-// }))
+app.use(cors({
+    origin:'*',
+    methods:['GET','POST','DELETE', 'PATCH', 'PUT']
+}))
 app.use(json())
 app.use(urlencoded({extended:true}))
 app.use(cookieParser())
