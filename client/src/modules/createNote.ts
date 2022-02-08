@@ -1,6 +1,6 @@
 const createNote = async(note:{title:string, content:string})=>{
     try {
-        const res = await fetch('/api/v1/user/note',{
+        const res = await fetch('https://ts-mern-note-api.herokuapp.com/api/v1/user/note',{
             method:'POST',
             body:JSON.stringify(note),
             headers:{'Content-Type':'application/json'}

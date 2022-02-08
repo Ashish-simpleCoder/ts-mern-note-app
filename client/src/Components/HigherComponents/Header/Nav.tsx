@@ -21,7 +21,7 @@ const Nav = memo(()=>{
     },[dark_theme])
 
     const handleLogout = async() =>{
-        const res = await fetch('./api/v1/user/logout')
+        const res = await fetch('https://ts-mern-note-api.herokuapp.com/api/v1/user/logout')
         const data:{success:boolean} = await res.json()
         if(data.success){
             setUser(v=>({...v,_id:'',email:''}))

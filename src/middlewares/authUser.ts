@@ -3,8 +3,8 @@ import { verify } from "jsonwebtoken";
 import asyncWrapper from "../asyncWrapper/asyncWrapper";
 
 const authUser = asyncWrapper(async(req:Request, res:Response, next:NextFunction)=>{
-    const cookie_name = process.env.cookie_name || 'cookie_name'
-    const secret = process.env.secret || 'yoursecretkey'
+    const cookie_name = process.env.COOKIE_NAME || 'cookie_name'
+    const secret = process.env.SECRET || 'yoursecretkey'
     const cookie = req.cookies[cookie_name]
     verify(cookie, secret,{complete:true}, (err, decoded_token)=>{
         if(err) return next({status:400,error:'unauthorized user'})
@@ -15,8 +15,8 @@ export default authUser
 
 
 export const returnLoggedUser = (req:Request, res:Response, next:NextFunction)=>{
-    const cookie_name = process.env.cookie_name || 'cookie_name'
-    const secret = process.env.secret || 'yoursecretkey'
+    const cookie_name = process.env.COOKIE_NAME || 'cookie_name'
+    const secret = process.env.SECRET || 'yoursecretkey'
     const cookie = req.cookies[cookie_name]
     let user;
     verify(cookie, secret,{complete:true}, (err, decoded_token)=>{
@@ -26,8 +26,8 @@ export const returnLoggedUser = (req:Request, res:Response, next:NextFunction)=>
     return user
 }
 export const returnLoggedUserDetails = (req:Request, res:Response, next:NextFunction)=>{
-    const cookie_name = process.env.cookie_name || 'cookie_name'
-    const secret = process.env.secret || 'yoursecretkey'
+    const cookie_name = process.env.COOKIE_NAME || 'cookie_name'
+    const secret = process.env.SECRET || 'yoursecretkey'
     const cookie = req.cookies[cookie_name]
     let user;
     verify(cookie, secret,{complete:true}, (err, decoded_token)=>{

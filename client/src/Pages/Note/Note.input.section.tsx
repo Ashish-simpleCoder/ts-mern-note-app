@@ -33,7 +33,7 @@ const NoteInput = memo(({children, mode}:{children:ReactNode, mode:string})=>{
             if(data?.error) setNoteError(data.error)
             if(data?.success){
                 const {default:fetchNotes} = await import("../../modules/fetchNotes")
-                const data = await fetchNotes('./api/v1/user/notes')
+                const data = await fetchNotes('https://ts-mern-note-api.herokuapp.com/api/v1/user/notes')
                 if(data?.notes) {
                     setUser(old=>({...old, notes:data.notes}))
                     setNote({title:'', content:''})

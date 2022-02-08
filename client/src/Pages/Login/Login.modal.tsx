@@ -56,10 +56,10 @@ export const LoginStates = () => useContext(LoginCtx)
 
 const loginUser = async(email:string, password:string) =>{
     try{
-        const res = await fetch('/api/v1/user/login',{
+        const res = await fetch('https://ts-mern-note-api.herokuapp.com/api/v1/user/login',{
             method:'POST',
             body:JSON.stringify({email,password}),
-            headers:{ 'Content-Type':"application/json"}
+            headers:{ 'Content-Type':"application/json"},
         })
         const data:{error:string, _id:string, email:string} = await res.json()
         console.log(data)

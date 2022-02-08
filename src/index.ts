@@ -1,10 +1,10 @@
 import {config} from 'dotenv'
 config()
 import cors from 'cors'
-const {mongo, port, mode} = process.env
+const {MONGO, PORT, MODE} = process.env
 
 import { connect } from 'mongoose'
-connect(mongo || 'mongodb://localhost:27017/your_db').then(()=>console.log('db ok')).catch(()=>console.log('failed db'))
+connect(MONGO || 'mongodb://localhost:27017/your_db').then(()=>console.log('db ok')).catch(()=>console.log('failed db'))
 
 
 import express from 'express'
@@ -15,7 +15,7 @@ const {json} = express
 const app = express()
 
 app.use(cors({
-    origin:mode === 'prod' ? 'https://ashish-simplecoder.github.io/ts-mern-note-app/' : 'http://localhost:3000'
+    origin:MODE === 'prod' ? 'https://ashish-simplecoder.github.io/ts-mern-note-app/' : 'http://localhost:3000'
 }))
 app.use(json())
 // app.use(urlencoded({extended:true}))
@@ -24,4 +24,4 @@ app.use(router)
 app.use(errHandler)
 
 
-app.listen(port || 5001)
+app.listen(PORT || 5001)

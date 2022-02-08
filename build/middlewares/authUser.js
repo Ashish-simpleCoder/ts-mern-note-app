@@ -45,8 +45,8 @@ var asyncWrapper_1 = __importDefault(require("../asyncWrapper/asyncWrapper"));
 var authUser = (0, asyncWrapper_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var cookie_name, secret, cookie;
     return __generator(this, function (_a) {
-        cookie_name = process.env.cookie_name || 'cookie_name';
-        secret = process.env.secret || 'yoursecretkey';
+        cookie_name = process.env.COOKIE_NAME || 'cookie_name';
+        secret = process.env.SECRET || 'yoursecretkey';
         cookie = req.cookies[cookie_name];
         (0, jsonwebtoken_1.verify)(cookie, secret, { complete: true }, function (err, decoded_token) {
             if (err)
@@ -58,8 +58,8 @@ var authUser = (0, asyncWrapper_1.default)(function (req, res, next) { return __
 }); });
 exports.default = authUser;
 var returnLoggedUser = function (req, res, next) {
-    var cookie_name = process.env.cookie_name || 'cookie_name';
-    var secret = process.env.secret || 'yoursecretkey';
+    var cookie_name = process.env.COOKIE_NAME || 'cookie_name';
+    var secret = process.env.SECRET || 'yoursecretkey';
     var cookie = req.cookies[cookie_name];
     var user;
     (0, jsonwebtoken_1.verify)(cookie, secret, { complete: true }, function (err, decoded_token) {
@@ -71,8 +71,8 @@ var returnLoggedUser = function (req, res, next) {
 };
 exports.returnLoggedUser = returnLoggedUser;
 var returnLoggedUserDetails = function (req, res, next) {
-    var cookie_name = process.env.cookie_name || 'cookie_name';
-    var secret = process.env.secret || 'yoursecretkey';
+    var cookie_name = process.env.COOKIE_NAME || 'cookie_name';
+    var secret = process.env.SECRET || 'yoursecretkey';
     var cookie = req.cookies[cookie_name];
     var user;
     (0, jsonwebtoken_1.verify)(cookie, secret, { complete: true }, function (err, decoded_token) {

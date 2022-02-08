@@ -35,7 +35,7 @@ const NotePage = memo(()=>{
     useEffect(()=>{
         (async()=>{
             const {default:fetchNotes} = await import('../../modules/fetchNotes')
-            const data = await fetchNotes('/api/v1/user/notes')
+            const data = await fetchNotes('https://ts-mern-note-api.herokuapp.com/api/v1/user/notes')
             if(data?.notes) setUser(old=>({...old, notes:data.notes}))
         })()
     },[setUser])
@@ -43,7 +43,7 @@ const NotePage = memo(()=>{
 
     const handleDeleteNote = useCallback(async(_id?:string) =>{
         const {default: deleteNote} = await import('../../modules/deleteNote')
-        const data = await deleteNote(`/api/v1/user/notes/${edit_note._id ? edit_note._id : _id}`)
+        const data = await deleteNote(`https://ts-mern-note-api.herokuapp.com/api/v1/user/notes/${edit_note._id ? edit_note._id : _id}`)
 
         if(data?.success){
             const {default: fetchNotes}  = await import('../../modules/fetchNotes')
@@ -72,7 +72,7 @@ const NotePage = memo(()=>{
             setEditNote({title:'', content:'', _id:'',bg:[]})
         },310)
         const {default:updateNotes} = await import('../../modules/updateNote')
-        const data = await updateNotes(`/api/v1/user/notes/${edit_note._id}`,edit_note)
+        const data = await updateNotes(`https://ts-mern-note-api.herokuapp.com/api/v1/user/notes/${edit_note._id}`,edit_note)
         if(data?.success){
             const {default: fetchNotes}  = await import('../../modules/fetchNotes')
             const data = await fetchNotes('./api/v1/user/notes')
