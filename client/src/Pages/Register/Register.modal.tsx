@@ -24,7 +24,7 @@ const RegisterModal = memo(({children})=>{
 
     const registerUser = useCallback(async(email:string, password:string)=>{
         try{
-            const res = await fetch('https://ts-mern-note-api.herokuapp.com/api/v1/user',{
+            const res = await fetch('/api/v1/user',{
                 method:'POST',
                 body:JSON.stringify({email,password}),
                 headers:{ 'Content-Type':"application/json"}

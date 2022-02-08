@@ -19,11 +19,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = require("express");
-var user_controllers_1 = require("../controllers/user.controllers");
-var user_notes_controllers_1 = require("../controllers/user.notes.controllers");
-var authUser_1 = __importStar(require("../middlewares/authUser"));
-var router = (0, express_1.Router)();
+const express_1 = require("express");
+const user_controllers_1 = require("../controllers/user.controllers");
+const user_notes_controllers_1 = require("../controllers/user.notes.controllers");
+const authUser_1 = __importStar(require("../middlewares/authUser"));
+const router = (0, express_1.Router)();
 // if user wants to login , register and logout so here are the logics
 router.route('/api/v1/user').get(authUser_1.returnLoggedUserDetails).post(user_controllers_1.handleRegister);
 router.route('/api/v1/user/login').post(user_controllers_1.handleLogin);
