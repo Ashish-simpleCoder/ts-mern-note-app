@@ -13,7 +13,7 @@ import NoteModal from "./Note.modal";
 import NoteOutput from "./Note.output.section";
 
 
-export const EditNoteCtx = createContext<EditNoteType>({} as EditNoteType)
+export const EditNoteCtx = createContext({} as EditNoteType)
 
 
 
@@ -21,6 +21,10 @@ const NotePage = memo(()=>{
     const {setUser} = UserStates()
     const [edit_note, setEditNote] = useState<NoteInterface>({_id:'', title:'', content:'', bg:[]})
     const history = useHistory()
+
+    useEffect(()=>{
+        console.log(edit_note)
+    }, [edit_note])
 
 
     // layout effect for fetching logged user
@@ -99,25 +103,25 @@ const NotePage = memo(()=>{
     },[edit_note, setUser])
 
 
-    const handleEditNoteChange = (e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) =>{
+    const handleEditNoteChange = useCallback((e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) =>{
         setEditNote(old=>({
             ...old,
             [e.target.name]:e.target.value
         }))
-    }
+    }, [setEditNote])
 
 
 
     return(
         <LeftRightWrapper>
             <Wrapper  mode='create_note_container'>
-                <NoteInput  mode='create_note' >
-                   <Form no_bg={true}>
+                <NoteInput  mode='create_note' />
+                   {/* <Form no_bg={true}>
                         <Input type='title' placeholder='note title...' name='title'/>
                         <Input type='content' placeholder='type your notes here...' name='content'/>
                         <Button text='create a new note' mode='create_note_btn'/>
-                   </Form>
-                </NoteInput>
+                   </Form> */}
+                {/* </NoteInput> */}
             </Wrapper>
 
 

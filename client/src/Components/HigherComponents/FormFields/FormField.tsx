@@ -24,7 +24,7 @@ const StyledFormField = styled.div`
     width:100%;
     position:relative;
     margin-top:5rem;
-    box-shadow:0 0.1rem 0.3rem rgba(0, 0, 0, 0.5);
+    /* box-shadow:0 0.1rem 0.3rem rgba(0, 0, 0, 0.5); */
 
     /* giving margin on email form field */
     &:nth-of-type(1){

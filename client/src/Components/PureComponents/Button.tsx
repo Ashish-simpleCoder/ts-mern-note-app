@@ -27,8 +27,9 @@ const Button = memo(({
             handleClick && handleClick()
             mode === 'delete_note_btn' && handleDeleteNote(_id)
         }}>
-            {  (mode === 'login_btn' || mode === 'register_btn' || mode==='logout_btn') && (loader ? <Loader/> : text)  }
+            {  (mode === 'login_btn' || mode === 'register_btn' || mode==='logout_btn' || mode=== 'create_note_btn') && (loader ? <Loader/> : text)  }
             { mode === 'hero_btn' && text }
+            { mode === undefined && text}
         </StyledButton>
     )
 })

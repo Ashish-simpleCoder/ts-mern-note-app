@@ -23,7 +23,6 @@ const StyledInput = styled.input`
     padding:0.5rem 1rem;
     background:var(--focused) !important;
     font-size:clamp(1.5rem, 1.6rem, 1.6vw);
-
 `
 
 
