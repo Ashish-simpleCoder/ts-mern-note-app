@@ -1,23 +1,23 @@
 import { memo, useContext } from "react";
 import styled, {css} from "styled-components";
 import { EditNoteCtx } from "../../Pages/Note/Note.page";
-import {LoginStates} from '../../Pages/Login/Login.modal'
 import Loader from "./Loader";
-import { RegisterStates } from "../../Pages/Register/Register.modal";
+
+
 
 const Button = memo(({
     text,
     handleClick,
     _id,
-    mode
+    mode,
+    loader
 }:{
     text:string,
     handleClick?: (note_id?: string) => Promise<void> | void
     _id?:string
-    mode?:string
+    mode?:string,
+    loader?:boolean
 })=>{
-    const {login_loader} = LoginStates()
-    const {register_loader} = RegisterStates()
     const {handleDeleteNote} = useContext(EditNoteCtx)
 
 
@@ -27,15 +27,15 @@ const Button = memo(({
             handleClick && handleClick()
             mode === 'delete_note_btn' && handleDeleteNote(_id)
         }}>
-            {  mode === 'login_btn' && (login_loader ? <Loader/> : text)  }
-            {  mode === 'register_btn' && (register_loader ? <Loader/> : text)  }
+            {  (mode === 'login_btn' || mode === 'register_btn' || mode==='logout_btn') && (loader ? <Loader/> : text)  }
+            { mode === 'hero_btn' && text }
         </StyledButton>
     )
 })
 export default Button
 
 
-//mode - login_btn, register_btn, create_note_btn, delete_note_btn
+//mode - login_btn, register_btn, create_note_btn, delete_note_btn, hero_btn
 
 
 
@@ -52,6 +52,8 @@ const StyledButton = styled.button<{mode:string|undefined}>`
         switch(props.mode){
             case "hero_btn": return css`
                 padding:1rem 3rem;
+                display:flex;
+                align-items:center;    //making text vertically center
                 font-size:clamp(1.8rem, 2rem, 2vw);
                 margin-top:4rem;
                 background:var(--secondary-clr);

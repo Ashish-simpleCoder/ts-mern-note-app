@@ -1,19 +1,18 @@
-import { FormEvent, memo, ReactNode, useContext, useState } from "react";
+import { FormEvent, memo, ReactNode, useContext } from "react";
 import { NoteState } from "../../Pages/Note/Note.input.section";
 import styled, { css } from 'styled-components'
-import { LoginStates } from "../../Pages/Login/Login.modal";
-import {  RegisterStates } from "../../Pages/Register/Register.modal";
 
-const Form = memo(({children, no_bg, mode}:{children:ReactNode, no_bg?:boolean, mode?:string})=>{
+
+
+const Form = memo(({children, no_bg, mode, handleSubmit}:{
+    children:ReactNode, no_bg?:boolean, mode?:string, handleSubmit?: (e: FormEvent<HTMLFormElement>) => Promise<void>
+})=>{
     const {handleNoteSubmit} = useContext(NoteState)
-    const {handleSubmit} = LoginStates()
-    const {handleSubmit:handleRegisterSubmit} = RegisterStates()
 
 
     return(
         <StyledForm onSubmit={(e)=>{
                 e.preventDefault()
-                handleRegisterSubmit && handleRegisterSubmit(e)
                 handleSubmit && handleSubmit(e)
                 handleNoteSubmit && handleNoteSubmit(e)}
             }
@@ -38,7 +37,7 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string}>`
     background:var(--form-bg);
 
     ${({mode})=>{
-        if(mode === 'login'){
+        if(mode === 'login' || mode === 'register'){
             return css`
                 margin: auto;
                 max-width:40rem;
@@ -49,7 +48,7 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string}>`
                 >h3{
                     padding:1rem 0 2rem 0;
                 }
-                >div{
+                .div{
                     padding:0 2rem;
                     margin-top:2rem;
                     width:100%;

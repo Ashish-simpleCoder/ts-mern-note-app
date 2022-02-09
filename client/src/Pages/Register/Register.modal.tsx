@@ -1,14 +1,17 @@
-import { ChangeEvent, createContext, FormEvent, memo, useCallback, useContext, useMemo, useState } from "react";
+import { ChangeEvent,  FormEvent, memo, useCallback,  useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
+import FormField from "../../Components/HigherComponents/FormFields/FormField";
+import InputField from "../../Components/HigherComponents/FormFields/InputField";
+import LabelField from "../../Components/HigherComponents/FormFields/LabelField";
+import Button from "../../Components/PureComponents/Button";
+import ErrorDisplayer from "../../Components/PureComponents/Error";
+import Form from "../../Components/PureComponents/Form";
+import H3 from "../../Components/PureComponents/H3";
 import UserStates from "../../Context/UserContext";
 
-const RegisterUserCtx = createContext({} as { state:{email:string, password:string} , handleSubmit:(e: FormEvent<HTMLFormElement>) => Promise<void> , handleChanges: (e: ChangeEvent<HTMLInputElement>) => void, register_loader:boolean })
-
-export const RegisterStates = ()=> useContext(RegisterUserCtx)
 
 
-
-const RegisterModal = memo(({children})=>{
+const RegisterModal = memo(()=>{
     const [state, setState] = useState({email:'', password:""})
     const [errors, setErrors] = useState<{email:string, password:string}>()
     const {setUser} = UserStates()
@@ -16,12 +19,12 @@ const RegisterModal = memo(({children})=>{
     const [register_loader, setRegisterLoader] = useState(false)
 
 
-    const handleChanges = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
+    const handleChange = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
         setState(old=>({
             ...old,
             [e.target.name]:e.target.value
         }))
-    },[])
+    },[setState])
 
     const registerUser = useCallback(async(email:string, password:string)=>{
         try{
@@ -48,18 +51,32 @@ const RegisterModal = memo(({children})=>{
         }
         setRegisterLoader(false)
         data?.errors && setErrors(data.errors)
-    },[state, setUser, history])
+    },[state, setUser, history, registerUser])
 
-    const value = useMemo(()=>({
-        state,handleChanges, handleSubmit, register_loader
-    }),[state,handleChanges, handleSubmit])
+    const EmailProps = useMemo(()=>({
+        state:state.email, handleChange, name:'email'
+    }),[state.email, handleChange])
+    const PasswordProps = useMemo(()=>({
+        state:state.password, handleChange, name:'password'
+    }),[state.password, handleChange])
 
     return(
-        <RegisterUserCtx.Provider value={value}>
-            {children}
-            <div className="error">{errors?.email}</div>
-            <div className="error">{errors?.password}</div>
-        </RegisterUserCtx.Provider>
+        <>
+            <Form mode='register' handleSubmit={handleSubmit}>
+                <H3 text='Register'/>
+                <FormField>
+                    <LabelField text='email'/>
+                    <InputField props={EmailProps}/>
+                </FormField>
+                <FormField>
+                    <LabelField text='password'/>
+                    <InputField props={PasswordProps}/>
+                </FormField>
+                {  errors?.email && <ErrorDisplayer error={errors.email}/> }
+                {  errors?.password && <ErrorDisplayer error={errors.password}/> }
+                <Button  text='submit'  mode='login_btn' loader={register_loader} />
+            </Form>
+        </>
     )
 })
 export default RegisterModal

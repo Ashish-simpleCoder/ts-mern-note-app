@@ -21,13 +21,6 @@ const Wrapper = memo(({children, styles, page, mode}:{
             </StyledNoteOutWrapper>
         )
     }
-    // if(page === 'note_create'){
-    //     return(
-    //         <StyledNoteInputWrapper>
-    //             {children}
-    //         </StyledNoteInputWrapper>
-    //     )
-    // }
     return (
         <StyledWrapper mode={mode}>
             {children}
@@ -47,6 +40,7 @@ const StyledWrapper = styled.section<{mode?:string}>`
                 justify-content:center;
                 transform-origin:center;
                 flex-direction:column;
+                text-align:center;
 
                 @media (min-width:700px){
                     width:50%;
@@ -102,20 +96,7 @@ const StyledWrapper = styled.section<{mode?:string}>`
     }
 `
 
-const StyledNoteInputWrapper = styled.section`
-   padding:2rem;
-   flex-direction:column;
-   position:unset;
-   width:100%;
 
-   @media (min-width:700px){
-        border-right:var(--border);
-        height:100%;
-        position:fixed;
-        width:var(--width);
-        display:flex;
-    }
-`
 const StyledNoteOutWrapper = styled.section`
     display:flex;
     justify-content:center;

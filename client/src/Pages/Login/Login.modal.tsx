@@ -1,20 +1,20 @@
-import { useCallback, useContext } from "react";
-import { createContext } from "react";
-import { ChangeEvent, FormEvent, memo, useEffect, useMemo, useState } from "react";
+import { useCallback } from "react";
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Input from "../../Components/HigherComponents/Input";
+import FormField from "../../Components/HigherComponents/FormFields/FormField";
+import InputField from "../../Components/HigherComponents/FormFields/InputField";
+import LabelField from "../../Components/HigherComponents/FormFields/LabelField";
 import Button from "../../Components/PureComponents/Button";
 import ErrorDisplayer from "../../Components/PureComponents/Error";
 import Form from "../../Components/PureComponents/Form";
 import H3 from "../../Components/PureComponents/H3";
-import Label from "../../Components/PureComponents/Label";
 import UserStates from "../../Context/UserContext";
 
-const LoginCtx = createContext({} as { state:{email:string, password:string} , handleSubmit:(e: FormEvent<HTMLFormElement>) => Promise<void> , handleChanges: (e: ChangeEvent<HTMLInputElement>) => void, login_loader:boolean})
 
-const LoginModal = memo(()=>{
+
+const LoginModal = ()=>{
     const [state, setState] = useState({email:'', password:""})
-    const [errors, setErrors] = useState<any>()
+    const [errors, setErrors] = useState({} as {email?:string, password?:string, err?:string})
     const {setUser} = UserStates()
     const history = useHistory()
     const [login_loader, setLoginLoader] = useState(false)
@@ -29,10 +29,11 @@ const LoginModal = memo(()=>{
             history.push('/')
         }
         setLoginLoader(false)      //making loader disappear
-        data?.error && setErrors(data.error)
+        data?.errors && setErrors(data.errors)
+        data?.error && setErrors({email:'', password:'', err:data.error})
     },[state, setUser, history])
 
-    const handleChanges = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
+    const handleChange = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
         setState(old=>({
             ...old,
             [e.target.name]:e.target.value
@@ -40,38 +41,44 @@ const LoginModal = memo(()=>{
     },[])
 
     useEffect(()=>{
-        errors &&  setTimeout(()=>setErrors(''),2000)
+        const clr = errors &&  setTimeout(()=>setErrors({email:'', password:'', err:''}), 3000)
+        // errors &&  setTimeout(()=>setErrors({email:'', password:'', err:''}),3000)
+        return(()=>{
+            clearInterval(clr)
+        })
     },[errors])      //resetting the errors or removig or cleaning
 
 
-    const states = useMemo(()=>({
-        state,handleChanges, handleSubmit, login_loader
-    }),[,state, handleChanges, handleSubmit, login_loader])
 
+    const EmailProps = useMemo(()=>({
+        state:state.email, handleChange, name:'email'
+    }),[state.email, handleChange])
+    const PasswordProps = useMemo(()=>({
+        state:state.password, handleChange, name:'password'
+    }),[state.password, handleChange])
 
     return(
-        <LoginCtx.Provider value={states}>
-            <Form mode='login'>
+        <>
+            <Form mode='login' handleSubmit={handleSubmit}>
                 <H3  text='Login'/>
-                <div>
-                    <Label  text='email'/>
-                    <Input  type="login" mode='email' name='email' placeholder='your email'/>
-                </div>
-                <div>
-                    <Label  text='password'/>
-                    <Input  type='login' mode='password' name='password' placeholder='your password'/>
-                </div>
-                { errors &&  <ErrorDisplayer  error={errors}/> }
-                <Button  text='submit'  mode='login_btn'  />
+                <FormField>
+                    <LabelField text='email'/>
+                    <InputField props={EmailProps}/>
+                </FormField>
+                <FormField>
+                    <LabelField text='password'/>
+                    <InputField props={PasswordProps}/>
+                </FormField>
+                { errors.email &&  <ErrorDisplayer  error={errors.email}/> }
+                { errors.password &&  <ErrorDisplayer  error={errors.password}/> }
+                { errors.err &&  <ErrorDisplayer  error={errors.err}/> }
+                <Button  text='submit'  mode='login_btn' loader={login_loader} />
             </Form>
-        </LoginCtx.Provider>
+        </>
     )
-})
+}
 export default LoginModal
 
-
-// login states context
-export const LoginStates = () => useContext(LoginCtx)
 
 
 const loginUser = async(email:string, password:string) =>{
@@ -81,10 +88,9 @@ const loginUser = async(email:string, password:string) =>{
             body:JSON.stringify({email,password}),
             headers:{ 'Content-Type':"application/json"},
         })
-        const data:{error:string, _id:string, email:string} = await res.json()
-        console.log(data)
-        const {error, _id, email:email_id} =  data
-        return {error, _id, email_id}
+        const data:{errors:{email?:string, password?:string,}, error?:string, _id:string, email:string} = await res.json()
+        const {errors, error,  _id, email:email_id} =  data
+        return {errors, error, _id, email_id}
     }catch(err){
         console.log(err)
     }
