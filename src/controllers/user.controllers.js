@@ -42,7 +42,6 @@ exports.handleLogin = (0, asyncWrapper_1.default)((req, res, next) => __awaiter(
             else {
                 const cookie_name = process.env.COOKIE_NAME || 'cookie_name';
                 const cookie = (0, genLoginToken_1.default)(user);
-                console.log(cookie);
                 res.cookie(cookie_name, cookie, { maxAge: 200000000 });
                 return res.send({ _id: user._id, email: user.email });
             }

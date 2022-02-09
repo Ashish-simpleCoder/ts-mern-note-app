@@ -1,10 +1,7 @@
 import { ChangeEvent, createContext,  memo, useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Input from "../../Components/HigherComponents/Input";
 import LeftRightWrapper from "../../Components/HigherComponents/LeftRightWrapper";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
-import Button from "../../Components/PureComponents/Button";
-import Form from "../../Components/PureComponents/Form";
 import UserStates from "../../Context/UserContext";
 import { EditNoteType, NoteInterface } from "../../types";
 import fetchUser from "../../utils/fetchUser";
@@ -21,10 +18,6 @@ const NotePage = memo(()=>{
     const {setUser} = UserStates()
     const [edit_note, setEditNote] = useState<NoteInterface>({_id:'', title:'', content:'', bg:[]})
     const history = useHistory()
-
-    useEffect(()=>{
-        console.log(edit_note)
-    }, [edit_note])
 
 
     // layout effect for fetching logged user
@@ -116,12 +109,6 @@ const NotePage = memo(()=>{
         <LeftRightWrapper>
             <Wrapper  mode='create_note_container'>
                 <NoteInput  mode='create_note' />
-                   {/* <Form no_bg={true}>
-                        <Input type='title' placeholder='note title...' name='title'/>
-                        <Input type='content' placeholder='type your notes here...' name='content'/>
-                        <Button text='create a new note' mode='create_note_btn'/>
-                   </Form> */}
-                {/* </NoteInput> */}
             </Wrapper>
 
 

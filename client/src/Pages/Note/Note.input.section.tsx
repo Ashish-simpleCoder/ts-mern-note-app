@@ -2,6 +2,7 @@ import { useCallback, useContext } from "react";
 import { ChangeEvent, createContext, FormEvent, memo, ReactNode, useEffect, useMemo, useState } from "react";
 import Input from "../../Components/HigherComponents/Input";
 import Button from "../../Components/PureComponents/Button";
+import ErrorDisplayer from "../../Components/PureComponents/Error";
 import Form from "../../Components/PureComponents/Form";
 import Textarea from "../../Components/PureComponents/Textarea";
 import UserStates from "../../Context/UserContext";
@@ -19,7 +20,7 @@ export const useNoteCtx= () => useContext(NoteState)
 
 const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
     const [note, setNote] = useState({title:'', content:''})
-    const [note_error, setNoteError] = useState('')
+    const [note_error, setNoteError] = useState({err:''})
     const {setUser} = UserStates()
 
     const handleNoteChange = useCallback((e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
@@ -34,7 +35,7 @@ const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
         if(mode === 'create_note'){
             const {default:createNote} = await import('../../modules/createNote')
             const data = await createNote(note)
-            if(data?.error) setNoteError(data.error)
+            if(data?.error) setNoteError({err:data.error})
             if(data?.success){
                 const {default:fetchNotes} = await import("../../modules/fetchNotes")
                 const data = await fetchNotes('/api/v1/user/notes')
@@ -48,8 +49,10 @@ const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
 
 
     useEffect(()=>{
-        const clr = note_error && setTimeout(()=>setNoteError(''),3000)
-    //    return(()=>{clearInterval(clr)})
+        const clr = note_error && setTimeout(()=>setNoteError({err:''}), 3000)
+        return(()=>{
+            clearInterval(clr)
+        })
     },[note_error])
 
 
@@ -59,11 +62,10 @@ const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
         <>
             <Form no_bg={true} handleSubmit={handleNoteSubmit}>
                 <Input type='title' placeholder='note title...' name='title' value={note.title} handleChange={handleNoteChange} mode='note_title'/>
-                {/* <Input type='content' placeholder='type your notes here...' name='content' value={note.content} handleChange={handleNoteChange}/> */}
                 <Textarea name='content'  value={note.content} handleChange={handleNoteChange} placeholder="type your notes...."/>
                 <Button text='create a new note' mode='create_note_btn'/>
+            { note_error.err &&  <ErrorDisplayer error={note_error.err}/>}
             </Form>
-            { note_error && <p>{note_error}</p> }
         </>
         // </NoteState.Provider>
     )

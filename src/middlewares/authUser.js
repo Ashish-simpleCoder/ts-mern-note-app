@@ -43,7 +43,6 @@ const returnLoggedUserDetails = (req, res, next) => {
     const cookie_name = process.env.COOKIE_NAME || 'cookie_name';
     const secret = process.env.SECRET || 'yoursecretkey';
     const cookie = req.cookies[cookie_name];
-    console.log(cookie, cookie_name);
     let user;
     (0, jsonwebtoken_1.verify)(cookie, secret, { complete: true }, (err, decoded_token) => {
         if (err)

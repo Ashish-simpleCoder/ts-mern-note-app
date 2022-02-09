@@ -6,6 +6,8 @@ const genLoginError = (type, login) => {
     const { MODE } = process.env;
     // if user does not enter email or password then throw the below errors
     if (login) {
+        if (type === 'both')
+            return { email: 'email is required', password: 'password is required', status };
         if (type === 'email')
             return { email: 'email is required', status };
         if (type === 'password')
