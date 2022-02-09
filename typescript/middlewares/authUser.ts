@@ -18,9 +18,8 @@ export const returnLoggedUser = (req:Request, res:Response, next:NextFunction)=>
     const cookie_name = process.env.COOKIE_NAME || 'cookie_name'
     const secret = process.env.SECRET || 'yoursecretkey'
     const cookie = req.cookies[cookie_name]
-    console.log(cookie, req.cookies[cookie_name])
     let user;
-    verify(req.cookies.jwt, secret,{complete:true}, (err, decoded_token)=>{
+    verify(cookie, secret,{complete:true}, (err, decoded_token)=>{
         if(err) return next({status:400,error:'unauthorized user'})
         user = decoded_token?.payload
     })

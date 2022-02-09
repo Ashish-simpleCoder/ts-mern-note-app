@@ -8,7 +8,7 @@ const Caption = memo(({text}:{text:string})=>{
 })
 export default Caption
 
-const StyledCaption = styled.caption`
+const StyledCaption = styled.p`
     font-size:clamp(1.8rem, 2rem ,2vw);
     opacity:0.9;
     margin-top:1rem;

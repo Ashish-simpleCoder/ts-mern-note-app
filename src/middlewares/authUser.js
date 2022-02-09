@@ -30,9 +30,8 @@ const returnLoggedUser = (req, res, next) => {
     const cookie_name = process.env.COOKIE_NAME || 'cookie_name';
     const secret = process.env.SECRET || 'yoursecretkey';
     const cookie = req.cookies[cookie_name];
-    console.log(cookie, req.cookies[cookie_name]);
     let user;
-    (0, jsonwebtoken_1.verify)(req.cookies.jwt, secret, { complete: true }, (err, decoded_token) => {
+    (0, jsonwebtoken_1.verify)(cookie, secret, { complete: true }, (err, decoded_token) => {
         if (err)
             return next({ status: 400, error: 'unauthorized user' });
         user = decoded_token === null || decoded_token === void 0 ? void 0 : decoded_token.payload;
