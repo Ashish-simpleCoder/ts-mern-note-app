@@ -40,10 +40,11 @@ exports.handleLogin = (0, asyncWrapper_1.default)((req, res, next) => __awaiter(
             if (!isTruePass)
                 return next((0, loginError_1.default)('password'));
             else {
-                const cookie_name = process.env.cookie_name || 'cookie_name';
+                const cookie_name = process.env.COOKIE_NAME || 'cookie_name';
                 const cookie = (0, genLoginToken_1.default)(user);
                 console.log(cookie);
-                return res.cookie(cookie_name, cookie, { maxAge: 200000000 }).send({ _id: user._id, email: user.email });
+                res.cookie(cookie_name, cookie, { maxAge: 200000000 });
+                return res.send({ _id: user._id, email: user.email });
             }
         }
     }));
