@@ -1,8 +1,9 @@
-import { memo, ReactNode, useContext } from "react";
+import { ChangeEvent, memo, ReactNode, useCallback, useContext } from "react";
 import styled from "styled-components";
 import Input from "../../Components/HigherComponents/Input";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import Button from "../../Components/PureComponents/Button";
+import Textarea from "../../Components/PureComponents/Textarea";
 import { ThemeCtx } from "../../Context/UserContext";
 import { EditNoteCtx } from "./Note.page";
 
@@ -12,16 +13,23 @@ const NoteModal = memo(({children, mode}:{
     children?:ReactNode
     mode:string
 })=>{
-    const {note:edit_note ,handleDeleteNote, handleUpdateNote} = useContext(EditNoteCtx)
+    const {note:edit_note ,handleDeleteNote, handleUpdateNote, setEditNote} = useContext(EditNoteCtx)
     const {dark_theme} = useContext(ThemeCtx)
+
+    const handleChange = useCallback((e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>)=>{
+        setEditNote(v=>({
+            ...v,
+            [e.target.name]:e.target.value
+        }))
+    },[])
 
 
     if(mode === 'edit_note'){
       return (
         <Wrapper mode={mode}>
             <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0]}}>
-                <Input type='edit_note_title' name='title' />
-                <Input type='edit_note_content' name='content'/>
+                <Input   name='title' value={edit_note.title} handleChange={handleChange} mode="edit_note"/>
+                <Textarea   name='content' value={edit_note.content} handleChange={handleChange} />
                 <div className="btns">
                     <Button text='save'  handleClick={handleUpdateNote} />
                     <Button text='delete' handleClick={handleDeleteNote}  />

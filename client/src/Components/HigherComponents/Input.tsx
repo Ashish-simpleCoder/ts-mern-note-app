@@ -1,37 +1,17 @@
-import { ChangeEvent, memo, useContext } from "react";
+import { ChangeEvent, memo } from "react";
 import styled, { css } from "styled-components";
 import UserStates from "../../Context/UserContext";
-// import { EditNoteCtx } from "../../Pages/Note/Note.page";
-// import { State } from "./Modal/Modal";
 
 
 
-const Input = memo(({ placeholder, name, value, handleChange}: InputPropsTypes)=>{
-    // const {email, password, handleChange} = useContext(State)
-    const {setSearch, search} = UserStates()
-    // const {note, handleEditNoteChange} = useContext(EditNoteCtx)
-    // const {title,content, handleNoteChange} = useContext(NoteState)
+const Input = memo(({ placeholder, name, value, handleChange, mode}: InputPropsTypes)=>{
+    const {setSearch} = UserStates()
 
 
-    // if(type === 'edit_note_title'){
-    //     return <StyledInput
-    //         name={'title'} value={note.title}
-    //         placeholder={placeholder}
-    //         onChange={(e)=>handleEditNoteChange && handleEditNoteChange(e)}
-    //         mode='edit_note_title'
-    //     />
-    // }
-
-    // if(type === 'search'){
-    //     return (
-    //         <StyledInput
-    //             name={name} type='text'  value={search}  placeholder={placeholder}  onChange={(e)=>setSearch(e.target.value)}
-    //         />
-    //     )
-    // }
 
     return <StyledInput
         type='text' name={name} value={value}
+        mode={mode}
         onChange={(e)=>{
             if(name === 'search'){
                 setSearch(e.target.value)
@@ -47,7 +27,7 @@ export default Input
 
 type InputPropsTypes = {
     type?:string
-    mode?:'email'|'password'
+    mode?:string
     value?:string
     handleChange?:(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
     placeholder?:string
@@ -62,9 +42,10 @@ const StyledInput = styled.input<{mode?:string}>`
     padding:0.5rem 1rem;
     background:var(--input-bg);
     outline:none;
+
     ${({mode})=>{
         switch (mode){
-            case 'edit_note_title': return css`
+            case 'edit_note': return css`
                 background:inherit;
                 `
             case 'note_title': return css`

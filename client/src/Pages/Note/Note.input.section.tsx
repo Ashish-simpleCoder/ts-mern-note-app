@@ -58,7 +58,7 @@ const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
         // <NoteState.Provider value={{...note, handleNoteChange, handleNoteSubmit}}>
         <>
             <Form no_bg={true} handleSubmit={handleNoteSubmit}>
-                <Input type='title' placeholder='note title...' name='title' value={note.title} handleChange={handleNoteChange}/>
+                <Input type='title' placeholder='note title...' name='title' value={note.title} handleChange={handleNoteChange} mode='note_title'/>
                 {/* <Input type='content' placeholder='type your notes here...' name='content' value={note.content} handleChange={handleNoteChange}/> */}
                 <Textarea name='content'  value={note.content} handleChange={handleNoteChange} placeholder="type your notes...."/>
                 <Button text='create a new note' mode='create_note_btn'/>
