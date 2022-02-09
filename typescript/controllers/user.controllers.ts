@@ -28,7 +28,8 @@ export const handleLogin = asyncWrapper(async(req:Request, res:Response, next:Ne
             if(!isTruePass) return next(genLoginError('password'))
             else{
                 const cookie_name = process.env.cookie_name || 'cookie_name'
-                const cookie = await generateLoginToken(user)
+                const cookie = generateLoginToken(user)
+                console.log(cookie)
                 return res.cookie(cookie_name,cookie,{maxAge:200000000}).send({_id:user._id, email:user.email})
             }
         }
