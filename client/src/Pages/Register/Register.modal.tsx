@@ -2,7 +2,7 @@ import { ChangeEvent, createContext, FormEvent, memo, useCallback, useContext, u
 import { useHistory } from "react-router-dom";
 import UserStates from "../../Context/UserContext";
 
-const RegisterUserCtx = createContext({} as { state:{email:string, password:string} , handleSubmit:(e: FormEvent<HTMLFormElement>) => Promise<void> , handleChanges: (e: ChangeEvent<HTMLInputElement>) => void})
+const RegisterUserCtx = createContext({} as { state:{email:string, password:string} , handleSubmit:(e: FormEvent<HTMLFormElement>) => Promise<void> , handleChanges: (e: ChangeEvent<HTMLInputElement>) => void, register_loader:boolean })
 
 export const RegisterStates = ()=> useContext(RegisterUserCtx)
 
@@ -13,6 +13,7 @@ const RegisterModal = memo(({children})=>{
     const [errors, setErrors] = useState<{email:string, password:string}>()
     const {setUser} = UserStates()
     const history = useHistory()
+    const [register_loader, setRegisterLoader] = useState(false)
 
 
     const handleChanges = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
@@ -39,16 +40,18 @@ const RegisterModal = memo(({children})=>{
 
     const handleSubmit = useCallback(async(e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
+        setRegisterLoader(true)
         const data = await registerUser(state.email, state.password)
         if(data?._id){
             setUser(v=>({...v,_id:data._id}))
             history.push('/login')
         }
+        setRegisterLoader(false)
         data?.errors && setErrors(data.errors)
     },[state, setUser, history])
 
     const value = useMemo(()=>({
-        state,handleChanges, handleSubmit
+        state,handleChanges, handleSubmit, register_loader
     }),[state,handleChanges, handleSubmit])
 
     return(
