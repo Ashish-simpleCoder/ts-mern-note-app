@@ -36,7 +36,7 @@
     // font-clrs
     --prm-clr:hsl(10, 90%, 95%);
     --secondary-clr:hsl(9, 89%, 50%);
-    --border:1px solid hsl(0, 0%, 10%);
+    --border:1px solid hsl(0, 0%, 15%);
     --btn-clr:white;
     --hero-btn-clr:white;
 
@@ -45,12 +45,12 @@
     --note-title-border:1px solid hsl(0, 0%, 15%);
 
     // bg-clrs
-    // --body-bg:hsl(0, 0%, 7%);
-    --body-bg:hsl(195, 12%, 7%);
-    // --header-bg:hsl(0, 0%, 10%);
-    --header-bg:hsl(195, 20%, 4%);
-    // --input-bg:hsl(0, 0%, 10%);
-    --input-bg:hsl(195, 20%, 4%);
+    --body-bg:hsl(210, 5%, 10%);
+    --header-bg:hsl(210, 5%, 6%);
+    // --body-bg:hsl(195, 12%, 7%);
+    // --header-bg:hsl(195, 20%, 4%);
+    // --input-bg:hsl(195, 20%, 4%);
+    --input-bg:hsl(210, 5%, 6%);
     --form-bg:hsl(0, 0%, 10%);
     --focused:hsl(0, 0%, 5%);
     --btn-hover-bg:hsl(120, 100%, 20%);
@@ -58,8 +58,8 @@
     --modal-bg:hsl(0, 0%, 10%);
     --save-btn-bg:hsl(120, 100%, 20%);
     --delete-btn-bg:red;
-    // --note-bg:hsl(0, 0%, 10%);
-    --note-bg:rgb(8, 11, 12);
+    // --note-bg:#181a1b;
+    --note-bg:hsl(195, 20%, 4%);
 
 
     // vars
