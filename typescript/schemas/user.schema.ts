@@ -21,7 +21,7 @@ const USER_SCHEMA = new Schema({
             bg:{
                 type:{},
                 // default: [ '#fff', '#1a1a1a' ],
-                default: [ '#fff', '#000' ],
+                default: [ '#fff', '#080b0c' ],
             },
         }
     ]
