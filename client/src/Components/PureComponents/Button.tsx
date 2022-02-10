@@ -1,4 +1,4 @@
-import { memo, useContext } from "react";
+import { memo, useContext, useEffect, useState } from "react";
 import styled, {css} from "styled-components";
 import { EditNoteCtx } from "../../Pages/Note/Note.page";
 import Loader from "./Loader";
@@ -19,7 +19,6 @@ const Button = memo(({
     loader?:boolean
 })=>{
     const {handleDeleteNote} = useContext(EditNoteCtx)
-    console.log(mode)
 
 
     return (
@@ -72,8 +71,8 @@ const StyledButton = styled.button<{mode:string|undefined}>`
 
             case 'create_note_btn': return css`
                 background:var(--note-create-btn-bg);
-                bottom:1rem;
-                right:1rem;
+                /* bottom:1rem;
+                right:1rem; */
                 color:white;
                 `
             case 'login_btn': return css`

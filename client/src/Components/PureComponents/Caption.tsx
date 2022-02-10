@@ -1,7 +1,7 @@
 import { memo } from "react";
 import styled from "styled-components";
 
-const Caption = memo(({text}:{text:string})=>{
+const Caption = memo(({text}:{text?:string})=>{
     return(
         <StyledCaption>{text}</StyledCaption>
     )

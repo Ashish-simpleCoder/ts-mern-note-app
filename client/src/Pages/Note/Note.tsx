@@ -1,11 +1,15 @@
 import { memo, useContext } from "react";
 import styled from "styled-components";
+import OverlayMenu from "../../Components/HigherComponents/OverlayMenu";
 import Button from "../../Components/PureComponents/Button";
 import H3 from "../../Components/PureComponents/H3";
 import RandomSpan from "../../Components/PureComponents/RandomSpan";
 import { ThemeCtx } from "../../Context/UserContext";
 import { NoteInterface } from "../../types";
 import { EditNoteCtx } from "./Note.page";
+import Clr from "../../Components/Svg/Clr";
+import ActionLink from "../../Components/PureComponents/ActionLink";
+
 
 
 
@@ -27,12 +31,21 @@ const Note = memo(({note, search}:{note:NoteInterface, search:string})=>{
         >
             <H3 text={note.title}/>
             <p>{note.content}</p>
-            <Button text="D"  mode='delete_note_btn' _id={note._id}/>
+            {/* <Button text="D"  mode='delete_note_btn' _id={note._id}/> */}
+            <OverlayMenu>
+                <ActionLink tooltip_text="change color of note">
+                    <Clr/>
+                </ActionLink>
+                {/* <ActionLink> <Clr/> </ActionLink>
+                <ActionLink> <Clr/> </ActionLink> */}
+            </OverlayMenu>
             <RandomSpan cls='random_span'/>
         </StyledNote>
     )
 })
 export default Note
+
+
 
 const StyledNote = styled.div`
     width:100%;
@@ -43,7 +56,7 @@ const StyledNote = styled.div`
     position:relative;
     border:var(--note-border);
     overflow:hidden;
-    cursor:pointer;
+    /* cursor:pointer; */
 
 
     h3,p{
@@ -70,5 +83,19 @@ const StyledNote = styled.div`
         height:5rem;
         border-radius:50%;
         transform:translate(-50%, -50%);
+    }
+
+    div.overlay_menu{
+        position:absolute;
+        height:4rem;
+        width:100%;
+        left:0;
+        bottom:0;
+        /* display:none; */
+    }
+    &:hover{
+        div.overlay_menu{
+            display:flex;
+        }
     }
 `

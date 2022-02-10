@@ -5,6 +5,7 @@ const UserCtx = createContext<UserCtxInterface>({} as UserCtxInterface)
 
 
 export const ThemeCtx = createContext<ThemeCtxInterface>({} as ThemeCtxInterface)
+export const useThemeStates = () => useContext(ThemeCtx)
 
 
 

@@ -9,19 +9,12 @@ import UserStates from "../../Context/UserContext";
 
 
 
-export const NoteState = createContext({} as {
-    title:string,content:string,
-    handleNoteChange:(e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>)=>void,
-    handleNoteSubmit:(e: FormEvent<HTMLFormElement>) => Promise<void>
-})
-
-export const useNoteCtx= () => useContext(NoteState)
-
 
 const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
     const [note, setNote] = useState({title:'', content:''})
     const [note_error, setNoteError] = useState({err:''})
     const {setUser} = UserStates()
+    const [loader, setLoader] = useState(false)
 
     const handleNoteChange = useCallback((e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         setNote(old=>({
@@ -32,19 +25,19 @@ const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
 
     const handleNoteSubmit = useMemo(()=>async(e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
-        if(mode === 'create_note'){
-            const {default:createNote} = await import('../../modules/createNote')
-            const data = await createNote(note)
-            if(data?.error) setNoteError({err:data.error})
-            if(data?.success){
-                const {default:fetchNotes} = await import("../../modules/fetchNotes")
-                const data = await fetchNotes('/api/v1/user/notes')
-                if(data?.notes) {
-                    setUser(old=>({...old, notes:data.notes}))
-                    setNote({title:'', content:''})
-                }
+        setLoader(true)
+        const {default:createNote} = await import('../../modules/createNote')
+        const data = await createNote(note)
+        if(data?.error) setNoteError({err:data.error})
+        if(data?.success){
+            const {default:fetchNotes} = await import("../../modules/fetchNotes")
+            const data = await fetchNotes('/api/v1/user/notes')
+            if(data?.notes) {
+                setUser(old=>({...old, notes:data.notes}))
+                setNote({title:'', content:''})
             }
         }
+        setLoader(false)
     },[note, mode, setUser])
 
 
@@ -58,16 +51,15 @@ const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
 
 
     return(
-        // <NoteState.Provider value={{...note, handleNoteChange, handleNoteSubmit}}>
-        <>
-            <Form no_bg={true} handleSubmit={handleNoteSubmit}>
-                <Input type='title' placeholder='note title...' name='title' value={note.title} handleChange={handleNoteChange} mode='note_title'/>
-                <Textarea name='content'  value={note.content} handleChange={handleNoteChange} placeholder="type your notes...."/>
-                <Button text='create a new note' mode='create_note_btn'/>
+        <Form no_bg={true} handleSubmit={handleNoteSubmit}>
+            <Input type='title' placeholder='note title...' name='title' value={note.title} handleChange={handleNoteChange} mode='note_title'/>
+
+            <Textarea name='content'  value={note.content} handleChange={handleNoteChange} placeholder="type your notes...."/>
+
+            <Button text='create a new note' mode='create_note_btn' loader={loader}/>
+
             { note_error.err &&  <ErrorDisplayer error={note_error.err}/>}
-            </Form>
-        </>
-        // </NoteState.Provider>
+        </Form>
     )
 })
 export default NoteInput

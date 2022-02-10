@@ -1,4 +1,4 @@
-import { ChangeEvent, createContext,  memo, useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { ChangeEvent, createContext,  Dispatch,  memo, SetStateAction, useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import LeftRightWrapper from "../../Components/HigherComponents/LeftRightWrapper";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
@@ -38,7 +38,8 @@ const NotePage = memo(()=>{
     },[setUser])
 
 
-    const handleDeleteNote = useCallback(async(_id?:string) =>{
+    const handleDeleteNote = useCallback(async(_id?:string, setLoader?:Dispatch<SetStateAction<boolean>>) =>{
+        setLoader && setLoader(true)     //displaying the loader while deleting the note
         const {default: deleteNote} = await import('../../modules/deleteNote')
         const data = await deleteNote(`/api/v1/user/notes/${edit_note._id ? edit_note._id : _id}`)
 
@@ -52,7 +53,7 @@ const NotePage = memo(()=>{
         const p = modal.parentElement as any
         document.body.classList.remove('edit_mode')
         setTimeout(()=>{
-            p.style.display='none'
+           p.style.display='none'
             modal.style.display='none'
             setEditNote({title:'', content:'', _id:'',bg:[]})
         },310)

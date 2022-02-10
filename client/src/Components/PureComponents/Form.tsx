@@ -1,5 +1,5 @@
 import { FormEvent, memo, ReactNode, useContext } from "react";
-import { NoteState } from "../../Pages/Note/Note.input.section";
+// import { NoteState } from "../../Pages/Note/Note.input.section";
 import styled, { css } from 'styled-components'
 
 
@@ -7,15 +7,15 @@ import styled, { css } from 'styled-components'
 const Form = memo(({children, no_bg, mode, handleSubmit}:{
     children:ReactNode, no_bg?:boolean, mode?:string, handleSubmit?: (e: FormEvent<HTMLFormElement>) => Promise<void>
 })=>{
-    const {handleNoteSubmit} = useContext(NoteState)
+    // const {handleNoteSubmit} = useContext(NoteState)
 
 
     return(
         <StyledForm onSubmit={(e)=>{
                 e.preventDefault()
                 handleSubmit && handleSubmit(e)
-                handleNoteSubmit && handleNoteSubmit(e)}
-            }
+            }}
+            // handleNoteSubmit && handleNoteSubmit(e)}
             no_bg={no_bg}
             mode={mode}   //for margin-top
         >
