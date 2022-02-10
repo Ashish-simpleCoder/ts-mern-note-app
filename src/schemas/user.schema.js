@@ -34,7 +34,7 @@ const USER_SCHEMA = new mongoose_1.Schema({
             bg: {
                 type: {},
                 // default: [ '#fff', '#1a1a1a' ],
-                default: ['#fff', '#080b0c'],
+                default: ['#fff', '#000'],
             },
         }
     ]

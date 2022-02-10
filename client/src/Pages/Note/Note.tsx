@@ -47,7 +47,7 @@ const StyledNote = styled.div`
 
 
     h3,p{
-        font-size:clamp(1.5rem,1.7rem, 1.7vw);
+        font-size:clamp(1.6rem,1.7rem,1.7vw);
         padding:0.5rem;
     }
     h3{
