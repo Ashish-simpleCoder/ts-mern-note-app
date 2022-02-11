@@ -13,10 +13,8 @@ export default OverlayMenu
 
 
 const StyledMenu = styled.div`
-    /* border:1px solid; */
     display:flex;
     align-items:center;
     justify-content:space-around;
-    transition:all 0.3s;
     flex-direction:row;
 `

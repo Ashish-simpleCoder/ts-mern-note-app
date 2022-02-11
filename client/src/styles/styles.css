@@ -19,6 +19,7 @@
   --delete-btn-bg:red;
   --note-create-btn-bg:green;
   --note-bg:hsl(0, 0%, 100%);
+  --tooltip-bg:hsl(9, 89%, 50%);
   --width:35rem;
 }
 
@@ -123,5 +124,31 @@ a, button {
   cursor: pointer;
   background: inherit;
   font-size: clamp(1.6rem, 1.7rem, 1.7vw);
+}
+
+@-webkit-keyframes show {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    z-index: 10;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    z-index: 10;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

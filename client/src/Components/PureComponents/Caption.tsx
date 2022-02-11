@@ -1,9 +1,9 @@
 import { memo } from "react";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
-const Caption = memo(({text}:{text?:string})=>{
+const Caption = memo(({text, styles}:{text?:string, styles?:CSSProperties})=>{
     return(
-        <StyledCaption>{text}</StyledCaption>
+        <StyledCaption style={styles}>{text}</StyledCaption>
     )
 })
 export default Caption
@@ -11,5 +11,9 @@ export default Caption
 const StyledCaption = styled.p`
     font-size:clamp(1.8rem, 2rem ,2vw);
     opacity:0.9;
+    /* opacity:0.8; */
+    white-space:pre-line;
+    word-break:break-all;
     margin-top:1rem;
+    width:max-content;
 `

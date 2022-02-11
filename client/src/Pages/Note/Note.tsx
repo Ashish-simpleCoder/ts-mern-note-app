@@ -9,6 +9,8 @@ import { NoteInterface } from "../../types";
 import { EditNoteCtx } from "./Note.page";
 import Clr from "../../Components/Svg/Clr";
 import ActionLink from "../../Components/PureComponents/ActionLink";
+import Wrapper from "../../Components/HigherComponents/Wrapper";
+import ColorList from "../../Components/HigherComponents/ColorList";
 
 
 
@@ -20,26 +22,37 @@ const Note = memo(({note, search}:{note:NoteInterface, search:string})=>{
     const search_key = search?.trim().toLowerCase()
     const matched = note.title.trim().toLowerCase().includes(search_key)  || note.content.trim().toLowerCase().includes(search_key)
 
+    const handleClick = () => setEditNote(note)
+
+
     return(
         <StyledNote id={note._id} style={{background:dark_theme ? note.bg[1] : note.bg[0], display:!matched ? 'none' : 'block'}}
             className="note"
-            onClick={(e)=>{
-                e.preventDefault()
-                e.stopPropagation()
-                setEditNote(note)
-            }}
+            // onClick={(e)=>{
+            //     e.preventDefault()
+            //     e.stopPropagation()
+            //     setEditNote(note)
+            // }}
         >
-            <H3 text={note.title}/>
-            <p>{note.content}</p>
+            <Wrapper >
+                <RandomSpan cls='random_span'/>
+                <H3 text={note.title} styles={{width:'100%'}} handleClick={handleClick}/>
+            </Wrapper>
+            <Wrapper styles={{overflow:'hidden',height:'60%'}}>
+                <p onClick={handleClick}>{note.content}</p>
+            </Wrapper>
             {/* <Button text="D"  mode='delete_note_btn' _id={note._id}/> */}
-            <OverlayMenu>
-                <ActionLink tooltip_text="change color of note">
-                    <Clr/>
-                </ActionLink>
-                {/* <ActionLink> <Clr/> </ActionLink>
-                <ActionLink> <Clr/> </ActionLink> */}
-            </OverlayMenu>
-            <RandomSpan cls='random_span'/>
+            {/* <OverlayMenu> */}
+                {/* <ActionLink tooltip_text="change color of note"> */}
+                    {/* <a href="#/notes"><Clr/></a> */}
+                    {/* <summary><Clr/></summary> */}
+                    {/* <details> */}
+                    {/* <ColorList note={note} /> */}
+                    {/* </details> */}
+                {/* </ActionLink> */}
+                {/* <ActionLink><Clr/></ActionLink>
+                <ActionLink><Clr/></ActionLink> */}
+            {/* </OverlayMenu> */}
         </StyledNote>
     )
 })
@@ -55,25 +68,24 @@ const StyledNote = styled.div`
     box-shadow:0 0.3rem 0.5rem rgba(0,0,0,0.1);
     position:relative;
     border:var(--note-border);
-    overflow:hidden;
-    /* cursor:pointer; */
-
 
     h3,p{
         font-size:clamp(1.6rem,1.7rem,1.7vw);
         padding:0.5rem;
     }
     h3{
-        border-bottom:var(--note-title-border);
+        border-bottom:var(--border);
         font-weight:400;
         text-align:center;
+        width:100%;
     }
     p{
         opacity:0.8;
         white-space:pre-line;
         word-break:break-all;
         /* flex:1; */
-        height:100%;
+        /* height:100%; */
+        /* border:1px solid; */
     }
 
     span.random_span{
@@ -86,16 +98,16 @@ const StyledNote = styled.div`
     }
 
     div.overlay_menu{
-        position:absolute;
         height:4rem;
         width:100%;
-        left:0;
-        bottom:0;
-        /* display:none; */
+        display:flex;
+        opacity:0;
+        pointer-events:none;
     }
-    &:hover{
+    &:hover, &:focus, &:focus-within{
         div.overlay_menu{
-            display:flex;
+            opacity:1;
+            pointer-events:all;
         }
     }
 `

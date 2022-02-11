@@ -1,45 +1,48 @@
-import { Children, cloneElement, ReactChild, ReactNode, useState } from "react"
-import styled, { css } from "styled-components"
+import { Children, cloneElement, useEffect, useState } from "react"
+import styled from "styled-components"
 import Caption from "./Caption"
 
-const ActionLink = ({children, tooltip_text}:{children:JSX.Element, tooltip_text?:string}) =>{
-    const [open, setOpen] = useState(false)
+const ActionLink = ({children, tooltip_text}:{children:JSX.Element | JSX.Element[], tooltip_text?:string}) =>{
+
     return(
-        <StyledLink tooltip_text={tooltip_text} onClick={(e)=>{
-            e.stopPropagation()
-            setOpen(v=>!v)
-        }}>
-            {/* {
-                Children.map(children, (child:JSX.Element)=>{
-                    if(typeof child.type === 'string'){
-                        return child
-                    }
-                    cloneElement(child, {open})
-                })
-            } */}
+        <StyledLink>
+            {children}
+            {/* { tooltip_text && <Caption text={tooltip_text} styles={{background:'var(--tooltip-bg)', padding:'0.5rem', borderRadius:'0.3rem'}}/>  } */}
         </StyledLink>
     )
 }
-{/* <Caption text={tooltip_text}/> */}
 export default ActionLink
 
 
-const StyledLink = styled.div<{tooltip_text?:string}>`
+const StyledLink = styled.details<{tooltip_text?:string}>`
     position:relative;
     overflow:none;
     cursor: pointer;
 
     >p{
-        display:none;
+        /* display:none; */
         position:absolute;
-        top:0%;
-        z-index:10;
-        width:100rem;
+        top:100%;
+        pointer-events:none;
+        opacity:0;
+        pointer-events:none;
+        font-size:clamp(1.3rem, 1.4rem, 1.4vw);
     }
+
     &:hover{
-        /* transform:scale(2); */
-        >p{
-            display:block;
+        >p{        //displaying tooltip text on hover
+            animation:show 3s ease both;
+        }
+    }
+    .clr-list{
+        opacity:0;
+        pointer-events:none;
+    }
+
+    &:focus-within, &:focus{
+        .clr-list{
+            opacity:1;
+            pointer-events:all;
         }
     }
 

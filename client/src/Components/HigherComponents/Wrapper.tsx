@@ -1,10 +1,10 @@
 import { memo, ReactNode } from "react";
-import styled, { css } from "styled-components";
+import styled, { css, CSSProperties } from "styled-components";
 
 
 
 const Wrapper = memo(({children, styles, page, mode}:{
-    children:ReactNode, styles?:any, page?:string
+    children:ReactNode, styles?:CSSProperties, page?:string
     mode?:string
 })=>{
     if(mode === 'edit_note'){
@@ -22,7 +22,7 @@ const Wrapper = memo(({children, styles, page, mode}:{
         )
     }
     return (
-        <StyledWrapper mode={mode}>
+        <StyledWrapper mode={mode} style={styles}>
             {children}
         </StyledWrapper>
     )
@@ -31,6 +31,8 @@ export default Wrapper
 
 const StyledWrapper = styled.section<{mode?:string}>`
     display:flex;
+    overflow:hidden;
+    position:relative;
 
     ${(props)=>{
         switch(props.mode){

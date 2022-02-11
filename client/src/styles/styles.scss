@@ -64,3 +64,17 @@ a,button{
    background: inherit;
    font-size: clamp(1.6rem, 1.7rem, 1.7vw);
  }
+
+
+ @keyframes show {
+   0%{
+      opacity: 0;
+   }
+   20%{
+      opacity: 1;
+      z-index:10;
+   }
+   100%{
+      opacity: 0;
+   }
+ }

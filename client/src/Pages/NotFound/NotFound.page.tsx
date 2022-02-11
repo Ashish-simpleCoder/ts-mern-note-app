@@ -1,10 +1,11 @@
 import { memo, useMemo } from "react";
+import { CSSProperties } from "styled-components";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import AnchorLink from "../../Components/PureComponents/AnchorLink";
 import H2 from "../../Components/PureComponents/H2";
 
 const NotFoundPage = memo(()=>{
-    const styles = useMemo(()=>({
+    const styles:CSSProperties = useMemo(()=>({
         flexDirection:'column',
         height:'80vh',
         maxHeight:'30rem',

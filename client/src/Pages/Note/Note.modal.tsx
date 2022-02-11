@@ -27,7 +27,7 @@ const NoteModal = memo(({children, mode}:{
     if(mode === 'edit_note'){
       return (
         <Wrapper mode={mode}>
-            <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0]}}>
+            <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0]}} onClick={(e)=>{e.stopPropagation()}}>
                 <Input   name='title' value={edit_note.title} handleChange={handleChange} mode="edit_note"/>
                 <Textarea   name='content' value={edit_note.content} handleChange={handleChange} />
                 <div className="btns">

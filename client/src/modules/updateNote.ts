@@ -4,6 +4,7 @@ const updateNote = async (url:string, note:{
     _id:string,
     bg:string[]
 }) =>{
+    console.log(note)
     try {
         const res = await fetch(url,{
             method:'PATCH',
