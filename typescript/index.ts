@@ -17,7 +17,7 @@ console.log(MODE)
 
 if(MODE === 'prod'){
     const {join} = require('path')
-    console.log(join(__dirname,'../',"client/build"))
+    // console.log(join(__dirname,'../',"client/build"))
     app.use(express.static(join(__dirname,'../', 'client/build')))
     connect(MONGO || 'mongodb://localhost:27017/your_db').then(()=>console.log('db ok')).catch(()=>console.log('failed db'))
  }

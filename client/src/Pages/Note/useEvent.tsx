@@ -1,15 +1,19 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 
-const useEventListener = ({eventType, handler}:{eventType:any, handler:any}) =>{
+
+const useEventListener = ({eventType, handler, element}:{eventType:any, handler:any, element?:any}) =>{
+    const hanlderRef = useRef(handler)
+
     useEffect(()=>{
-        document.addEventListener(eventType, (e) => {
-            if(e.key === 'Escape'){
-                handler()
-            }
-        })
+        hanlderRef.current = handler
+    },[handler])
+
+    useEffect(()=>{
+        const eventListener = (e:any) => e.key === 'Escape' && hanlderRef.current()
+        element?.addEventListener(eventType, (e:any) => eventListener(e))
         return () => {
-            document.removeEventListener(eventType, handler)
+            document.removeEventListener(eventType, eventListener)
         }
-    }, [eventType, handler])
+    }, [eventType])
 }
 export default useEventListener

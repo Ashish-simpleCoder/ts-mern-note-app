@@ -1,9 +1,8 @@
-import { ChangeEvent, createContext,  Dispatch,  memo, SetStateAction, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { ChangeEvent, createContext,  Dispatch,  memo, SetStateAction, useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import LeftRightWrapper from "../../Components/HigherComponents/LeftRightWrapper";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import UserStates from "../../Context/UserContext";
-import updateNote from "../../modules/updateNote";
 import { EditNoteType, NoteInterface } from "../../types";
 import fetchUser from "../../utils/fetchUser";
 import NoteInput from "./Note.input.section";
@@ -22,8 +21,6 @@ const NotePage = memo(()=>{
     const [edit_note, setEditNote] = useState<NoteInterface>({_id:'', title:'', content:'', bg:[]})
     const history = useHistory()
 
-    const note_ref = useRef(edit_note)
-
 
     // layout effect for fetching logged user
     useLayoutEffect(()=>{
@@ -32,6 +29,7 @@ const NotePage = memo(()=>{
             res?._id ? setUser({_id:res._id,email:res?.email})  : history.push('/login')
         })()
     },[setUser, history])
+
 
     // useEffect for fetching notes
     useEffect(()=>{
@@ -43,6 +41,7 @@ const NotePage = memo(()=>{
     },[setUser])
 
 
+    // function for deleting note
     const handleDeleteNote = useCallback(async(_id?:string, setLoader?:Dispatch<SetStateAction<boolean>>) =>{
         setLoader && setLoader(true)     //displaying the loader while deleting the note
         const {default: deleteNote} = await import('../../modules/deleteNote')
@@ -65,6 +64,7 @@ const NotePage = memo(()=>{
     },[edit_note, setUser])
 
 
+    // function for updating note
     const handleUpdateNote = useCallback(async()=>{
         const modal = document.getElementById('modal') as HTMLDivElement
         const p = modal.parentElement as any
@@ -75,13 +75,13 @@ const NotePage = memo(()=>{
             setEditNote({title:'', content:'', _id:'',bg:[]})
         },310)
         const {default:updateNotes} = await import('../../modules/updateNote')
-        const data = await updateNotes(`/api/v1/user/notes/${note_ref.current._id}`,note_ref.current)
+        const data = await updateNotes(`/api/v1/user/notes/${edit_note._id}`,edit_note)
         if(data?.success){
             const {default: fetchNotes}  = await import('../../modules/fetchNotes')
             const data = await fetchNotes('./api/v1/user/notes')
             if(data?.notes) setUser(old=>({...old, notes:data.notes}))
         }
-    },[note_ref, setUser])
+    },[edit_note, setUser])
 
 
     // useeffect for enabling the edit modal for note
@@ -89,7 +89,7 @@ const NotePage = memo(()=>{
         const modal = document.getElementById('modal') as HTMLDivElement
         const p = modal.parentElement as any
         if(edit_note._id){
-            note_ref.current = edit_note
+            // note_ref.current = edit_note
             const element = document.getElementById(edit_note._id) as HTMLDivElement
             const {top, left, width, height} = element.getBoundingClientRect()
             modal.style.top = top+'px'
@@ -103,9 +103,11 @@ const NotePage = memo(()=>{
     },[edit_note, setUser])
 
 
-    //custom hooks for saving notes with mouse click and escape key
-    useEventListener({eventType:'keyup', handler:handleUpdateNote})
-    // useClickListener({eventType:'click', handler:handleUpdateNote})
+    //custom hooks for saving notes with escape key
+    useEventListener({eventType:'keyup', handler:handleUpdateNote, element:window})
+
+    // saving the note when user clicks outside of the edit modal or on body(edit_modal_wrapper)
+    useClickListener({eventType:'click', handler:handleUpdateNote, element:document.body})
 
 
 

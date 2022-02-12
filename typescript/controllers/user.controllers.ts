@@ -39,6 +39,6 @@ export const handleLogin = asyncWrapper(async(req:Request, res:Response, next:Ne
 
 
 export const handleLogout = asyncWrapper(async(req:Request, res:Response, next:NextFunction)=>{
-    const cookie_name = process.env.cookie_name || 'cookie_name'
+    const cookie_name = process.env.COOKIE_NAME || 'cookie_name'
     return res.cookie(cookie_name,'',{maxAge:10}).send({success:true})
 })

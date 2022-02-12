@@ -117,9 +117,10 @@ const StyledNoteOutWrapper = styled.section`
 
 const StyledEditModalWrapper = styled.section`
     width:100%;
-    top:0;
+    height:100%;
+    top:0 !important;
     inset:0;
-    position:absolute;
+    position:fixed;
     display:flex;
     align-items:center;
     justify-content:center;

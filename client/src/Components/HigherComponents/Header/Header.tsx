@@ -19,9 +19,9 @@ const Header = memo(()=>{
 export default Header
 
 const StyledHeader = styled.header`
-    position:sticky;
+    /* position:sticky;
     top:0;
-    z-index:2;
+    z-index:2; */
     background:var(--header-bg);
     display:flex;
     align-items:center;
