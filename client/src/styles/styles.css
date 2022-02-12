@@ -1,10 +1,10 @@
 :root {
-  --prm-clr:hsl(10, 90%, 10%);
-  --secondary-clr:hsl(9, 89%, 50%);
+  --prm-clr:hsl(10, 10%, 15%);
+  --secondary-clr:hsl(10, 90%, 50%);
   --border:1px solid hsl(0, 0%, 75%);
   --btn-clr:black;
   --hero-btn-clr:white;
-  --transform-label-clr:hsl(9, 89%, 50%);
+  --transform-label-clr:hsl(10, 90%, 50%);
   --note-border:1px solid rgba(0,0, 0, 0.1);
   --note-title-border:1px solid hsl(0, 0%, 85%);
   --body-bg:hsl(0, 0%, 96%);
@@ -20,11 +20,12 @@
   --note-create-btn-bg:green;
   --note-bg:hsl(0, 0%, 100%);
   --tooltip-bg:hsl(9, 89%, 50%);
+  --input-hover-bg:hsl(10, 100%, 96%);
   --width:35rem;
 }
 
 .dark-theme {
-  --prm-clr:hsl(10, 90%, 95%);
+  --prm-clr:hsl(0, 0%, 85%);
   --secondary-clr:hsl(9, 89%, 50%);
   --border:1px solid hsl(0, 0%, 15%);
   --btn-clr:white;
@@ -41,7 +42,7 @@
   --modal-bg:hsl(0, 0%, 10%);
   --save-btn-bg:hsl(120, 100%, 20%);
   --delete-btn-bg:rgb(224, 12, 12);
-  --note-bg:#04080d;
+  --input-hover-bg:hsl(10, 100%, 10%);
   --width:35rem;
 }
 
@@ -55,6 +56,11 @@
           filter: invert(0.3);
 }
 
+.dark-theme .note {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -62,7 +68,9 @@
           box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: var(--prm-clr);
-  letter-spacing: 1.5;
+  line-height: 1.5;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
 }
 
 html {
@@ -71,6 +79,10 @@ html {
 
 body {
   background: var(--body-bg);
+}
+
+.accent {
+  color: var(--secondary-clr);
 }
 
 .error {

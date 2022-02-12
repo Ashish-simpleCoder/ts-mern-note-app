@@ -50,8 +50,10 @@ const StyledInput = styled.input<{mode?:string}>`
                 `
             case 'note_title': return css`
                 width:100%;
-            `
+                &:hover{  background: var(--input-hover-bg);  }
+                `
             default : return css`
+            &:hover{  background: var(--input-hover-bg);  }
 
             `
     }}}

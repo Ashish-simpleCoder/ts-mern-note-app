@@ -22,6 +22,6 @@ const StyledLogoContainer = styled.div`
         width:3rem;
         height:3.5rem;
         transform:rotate(-10deg);
-        margin-inline-end:1rem;
+        margin-inline-end:2rem;
     }
 `

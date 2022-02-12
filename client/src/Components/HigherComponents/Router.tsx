@@ -1,6 +1,7 @@
-import { lazy, memo, Suspense } from "react";
+import { lazy, memo, Suspense, ReactNode } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { UserProvider } from "../../Context/UserContext";
+import H1 from "../PureComponents/H1";
 import Header from "./Header/Header";
 
 const HomePage = lazy(()=>import('../../Pages/Home/Home.page'))
@@ -18,11 +19,11 @@ const CustomRouter = memo(()=>{
             <Header/>
             <main>
             <Switch>
-                <Route path='/' exact><Suspense fallback={<h3>loading....</h3>}><HomePage/></Suspense></Route>
-                <Route path='/login' exact><Suspense fallback={<h3>loading....</h3>}><LoginPage/></Suspense></Route>
-                <Route path='/register' exact><Suspense fallback={<h3>loading....</h3>}><RegisterPage/></Suspense></Route>
-                <Route path='/notes' exact><Suspense fallback={<h3>loading....</h3>}><NotePage/></Suspense></Route>
-                <Route path='*' exact><Suspense fallback={<h3>loading....</h3>}><NotFoundPage/></Suspense></Route>
+                <Route path='/' exact><Suspense fallback={<H1 heading="loding...." />}><HomePage/></Suspense></Route>
+                <Route path='/login' exact><Suspense fallback={<H1 heading="loding...." />}><LoginPage/></Suspense></Route>
+                <Route path='/register' exact><Suspense fallback={<H1 heading="loding...." />}><RegisterPage/></Suspense></Route>
+                <Route path='/notes' exact><Suspense fallback={<H1 heading="loding...." />}><NotePage/></Suspense></Route>
+                <Route path='*' exact><Suspense fallback={<H1 heading="loding...." />}><NotFoundPage/></Suspense></Route>
             </Switch>
             </main>
         </HashRouter>

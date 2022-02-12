@@ -1,12 +1,11 @@
 :root{
     // font-clrs
-    --prm-clr:hsl(10, 90%, 10%);
-    --secondary-clr:hsl(9, 89%, 50%);
+    --prm-clr:hsl(10, 10%, 15%);
+    --secondary-clr:hsl(10, 90%, 50%);
     --border:1px solid hsl(0, 0%, 75%);
-    // --border:1px solid hsl(9, 100%, 90%);
     --btn-clr:black;
     --hero-btn-clr:white;
-    --transform-label-clr:hsl(9, 89%, 50%);
+    --transform-label-clr:hsl(10, 90%, 50%);
 
 
     // borders
@@ -27,8 +26,9 @@
     --delete-btn-bg:red;
     --note-create-btn-bg:green;
     --note-bg:hsl(0, 0%, 100%);
-
     --tooltip-bg:hsl(9, 89%, 50%);
+
+    --input-hover-bg:hsl(10, 100%, 96%);
 
     // vars
     --width:35rem;
@@ -36,10 +36,9 @@
 
 .dark-theme{
     // font-clrs
-    --prm-clr:hsl(10, 90%, 95%);
+    --prm-clr:hsl(0, 0%, 85%);
     --secondary-clr:hsl(9, 89%, 50%);
     --border:1px solid hsl(0, 0%, 15%);
-    // --border:1px solid hsl(10, 42%, 11%);
     --btn-clr:white;
     --hero-btn-clr:white;
 
@@ -58,17 +57,20 @@
     --modal-bg:hsl(0, 0%, 10%);
     --save-btn-bg:hsl(120, 100%, 20%);
     --delete-btn-bg:rgb(224, 12, 12);
-    --note-bg:#04080d;
 
+    --input-hover-bg:hsl(10, 100%, 10%);
 
     // vars
     --width:35rem;
 
 
     .invert{
-        filter:invert(0.9);
+        filter:invert(0.9) ;
     }
     .invert-3{
         filter:invert(0.3);
+    }
+    .note{
+        box-shadow: none;
     }
 }

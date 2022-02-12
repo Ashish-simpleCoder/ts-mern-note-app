@@ -41,9 +41,8 @@ export default Button
 
 
 const StyledButton = styled.button<{mode:string|undefined}>`
-    border-radius:0.3rem;
+    border-radius:0.5rem;
     font-size:clamp(1.5rem, 1.6rem, 1.6vw);
-    /* padding:0.5rem 1rem; */
     height:4rem;
     color:var(--btn-clr);
     transition:background 0.3s;
@@ -56,7 +55,7 @@ const StyledButton = styled.button<{mode:string|undefined}>`
                 display:flex;
                 align-items:center;    //making text vertically center
                 font-size:clamp(1.8rem, 2rem, 2vw);
-                margin-top:4rem;
+                margin-top:5rem;
                 background:var(--secondary-clr);
                 color:var(--hero-btn-clr);
                 box-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.6);
@@ -74,7 +73,10 @@ const StyledButton = styled.button<{mode:string|undefined}>`
                 /* bottom:1rem;
                 right:1rem; */
                 color:white;
-                `
+            `
+            case 'logout_btn': return css`
+                height:unset;
+            `
             case 'login_btn': return css`
                 background:var(--note-create-btn-bg);
                 color:white;

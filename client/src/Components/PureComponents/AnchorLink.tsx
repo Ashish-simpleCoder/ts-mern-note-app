@@ -1,8 +1,12 @@
-import { memo } from "react";
+import { memo, ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { CSSProperties } from "styled-components";
 
-const AnchorLink = memo(({text, path}:{text:string, path:string})=>{
-    return <Link to={path} style={{fontSize:'clamp(1.6rem,1.7rem ,1.7vw)'}}>{text}</Link>
+const AnchorLink = memo(({text, path, styles, children}:{text?:string, path:string, styles?:CSSProperties, children?:ReactNode})=>{
+    return <Link to={path} style={styles}>
+        {text && text}
+        {children && children}
+    </Link>
 })
 export default AnchorLink
 

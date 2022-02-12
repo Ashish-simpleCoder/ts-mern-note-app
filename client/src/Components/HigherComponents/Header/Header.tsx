@@ -1,6 +1,6 @@
 import { memo } from "react";
 import styled from "styled-components";
-import H1 from "../../PureComponents/H1";
+import AnchorLink from "../../PureComponents/AnchorLink";
 import Img from "../../PureComponents/Img";
 import LogoContainer from "./LogoContainer";
 import Nav from "./Nav";
@@ -10,7 +10,9 @@ const Header = memo(()=>{
         <StyledHeader>
             <LogoContainer>
                 <Img src='./imgs/note.png' alt='note'/>
-                <H1 heading="Material Note App"/>
+                <AnchorLink  path="/" styles={{fontWeight:'600'}}>
+                    Material <span className="accent">Note</span> App
+                </AnchorLink>
             </LogoContainer>
             <Nav/>
         </StyledHeader>
@@ -19,11 +21,11 @@ const Header = memo(()=>{
 export default Header
 
 const StyledHeader = styled.header`
-    /* position:sticky;
+    position:sticky;
     top:0;
-    z-index:2; */
+    z-index:2;
     background:var(--header-bg);
     display:flex;
     align-items:center;
-    padding:1rem clamp(1rem, 3rem, 3vw);
+    padding:1rem clamp(1rem, 2rem, 2vw);
 `

@@ -1,10 +1,11 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, MutableRefObject, SetStateAction } from "react";
+import { CSSProperties } from "styled-components";
 
 interface img_props{
     src:string
     alt:string
     title?:string
-    styles?:{}
+    styles?:CSSProperties
     handleClick?:Dispatch<any>
     cls?:string
     animate?:boolean

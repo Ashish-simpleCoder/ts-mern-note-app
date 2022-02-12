@@ -42,7 +42,6 @@ const LoginModal = ()=>{
 
     useEffect(()=>{
         const clr = errors &&  setTimeout(()=>setErrors({email:'', password:'', err:''}), 3000)
-        // errors &&  setTimeout(()=>setErrors({email:'', password:'', err:''}),3000)
         return(()=>{
             clearInterval(clr)
         })
@@ -60,7 +59,7 @@ const LoginModal = ()=>{
     return(
         <>
             <Form mode='login' handleSubmit={handleSubmit}>
-                <H3  text='Login'/>
+                <H3  text='Login'  styles={{color:'var(--secondary-clr)'}}  />
                 <FormField>
                     <LabelField text='email'/>
                     <InputField props={EmailProps}/>

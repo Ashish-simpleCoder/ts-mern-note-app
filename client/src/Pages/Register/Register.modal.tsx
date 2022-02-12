@@ -7,14 +7,12 @@ import Button from "../../Components/PureComponents/Button";
 import ErrorDisplayer from "../../Components/PureComponents/Error";
 import Form from "../../Components/PureComponents/Form";
 import H3 from "../../Components/PureComponents/H3";
-import UserStates from "../../Context/UserContext";
 
 
 
 const RegisterModal = memo(()=>{
     const [state, setState] = useState({email:'', password:""})
     const [errors, setErrors] = useState<{email:string, password:string}>()
-    const {setUser} = UserStates()
     const history = useHistory()
     const [register_loader, setRegisterLoader] = useState(false)
 
@@ -24,7 +22,7 @@ const RegisterModal = memo(()=>{
             ...old,
             [e.target.name]:e.target.value
         }))
-    },[setState])
+    },[])
 
     const registerUser = useCallback(async(email:string, password:string)=>{
         try{
@@ -34,8 +32,7 @@ const RegisterModal = memo(()=>{
                 headers:{ 'Content-Type':"application/json"}
             })
             const data:{errors:{email:string, password:string}, _id:string} = await res.json()
-            const {errors, _id} =  data
-            return {errors, _id}
+            return {...data}
         }catch(err){
             console.log(err)
         }
@@ -46,12 +43,11 @@ const RegisterModal = memo(()=>{
         setRegisterLoader(true)
         const data = await registerUser(state.email, state.password)
         if(data?._id){
-            setUser(v=>({...v,_id:data._id}))
-            history.push('/login')
+            return history.push('/login')
         }
         setRegisterLoader(false)
         data?.errors && setErrors(data.errors)
-    },[state, setUser, history, registerUser])
+    },[state, history, registerUser])
 
     const EmailProps = useMemo(()=>({
         state:state.email, handleChange, name:'email'
@@ -63,7 +59,7 @@ const RegisterModal = memo(()=>{
     return(
         <>
             <Form mode='register' handleSubmit={handleSubmit}>
-                <H3 text='Register'/>
+                <H3  text='Register'  styles={{color:'var(--secondary-clr)'}}  />
                 <FormField>
                     <LabelField text='email'/>
                     <InputField props={EmailProps}/>

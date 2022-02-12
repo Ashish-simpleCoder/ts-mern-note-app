@@ -28,7 +28,7 @@ export default Form
 
 
 const StyledForm = styled.form<{no_bg?:boolean, mode?:string}>`
-    height:40rem;
+    height:45rem;
     width:90%;
     display:flex;
     align-items:center;

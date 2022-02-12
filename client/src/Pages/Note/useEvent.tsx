@@ -10,9 +10,9 @@ const useEventListener = ({eventType, handler, element}:{eventType:any, handler:
 
     useEffect(()=>{
         const eventListener = (e:any) => e.key === 'Escape' && hanlderRef.current()
-        element?.addEventListener(eventType, (e:any) => eventListener(e))
+        element?.addEventListener(eventType, eventListener)
         return () => {
-            document.removeEventListener(eventType, eventListener)
+            element?.removeEventListener(eventType, eventListener)
         }
     }, [eventType])
 }

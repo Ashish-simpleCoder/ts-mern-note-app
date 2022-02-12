@@ -1,5 +1,5 @@
-import { useCallback, useContext } from "react";
-import { ChangeEvent, createContext, FormEvent, memo, ReactNode, useEffect, useMemo, useState } from "react";
+import { useCallback} from "react";
+import { ChangeEvent, FormEvent, memo, useEffect, useMemo, useState } from "react";
 import Input from "../../Components/HigherComponents/Input";
 import Button from "../../Components/PureComponents/Button";
 import ErrorDisplayer from "../../Components/PureComponents/Error";
@@ -10,7 +10,7 @@ import UserStates from "../../Context/UserContext";
 
 
 
-const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
+const NoteInput = memo(()=>{
     const [note, setNote] = useState({title:'', content:''})
     const [note_error, setNoteError] = useState({err:''})
     const {setUser} = UserStates()
@@ -38,7 +38,7 @@ const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
             }
         }
         setLoader(false)
-    },[note, mode, setUser])
+    },[note, setUser])
 
 
     useEffect(()=>{
@@ -54,7 +54,7 @@ const NoteInput = memo(({children, mode}:{children?:ReactNode, mode:string})=>{
         <Form no_bg={true} handleSubmit={handleNoteSubmit}>
             <Input type='title' placeholder='note title...' name='title' value={note.title} handleChange={handleNoteChange} mode='note_title'/>
 
-            <Textarea name='content'  value={note.content} handleChange={handleNoteChange} placeholder="type your notes...."/>
+            <Textarea name='content'  value={note.content} handleChange={handleNoteChange} placeholder="type your notes...."   hover_bg={true}/>
 
             <Button text='create a new note' mode='create_note_btn' loader={loader}/>
 

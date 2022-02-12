@@ -41,7 +41,7 @@ const Note = memo(({note, search}:{note:NoteInterface, search:string})=>{
             <Wrapper styles={{overflow:'hidden',height:'60%'}}>
                 <p onClick={handleClick}>{note.content}</p>
             </Wrapper>
-            {/* <Button text="D"  mode='delete_note_btn' _id={note._id}/> */}
+            <Button text="D"  mode='delete_note_btn' _id={note._id}/>
             {/* <OverlayMenu> */}
                 {/* <ActionLink tooltip_text="change color of note"> */}
                     {/* <a href="#/notes"><Clr/></a> */}
@@ -64,7 +64,7 @@ const StyledNote = styled.div`
     width:100%;
     max-width:40rem;
     height:20rem;
-    border-radius:0.5rem;
+    border-radius:1rem;
     box-shadow:0 0.3rem 0.5rem rgba(0,0,0,0.1);
     position:relative;
     border:var(--note-border);

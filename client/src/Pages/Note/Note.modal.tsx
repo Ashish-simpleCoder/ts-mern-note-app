@@ -5,7 +5,7 @@ import Wrapper from "../../Components/HigherComponents/Wrapper";
 import Button from "../../Components/PureComponents/Button";
 import Textarea from "../../Components/PureComponents/Textarea";
 import { ThemeCtx } from "../../Context/UserContext";
-import { EditNoteCtx } from "./Note.page";
+import { useEditNoteCtx } from "./Note.page";
 
 
 
@@ -13,7 +13,8 @@ const NoteModal = memo(({children, mode}:{
     children?:ReactNode
     mode:string
 })=>{
-    const {note:edit_note ,handleDeleteNote, handleUpdateNote, setEditNote} = useContext(EditNoteCtx)
+    // const {note:edit_note ,handleDeleteNote, handleUpdateNote, setEditNote} = useContext(EditNoteCtx)
+    const {note:edit_note ,handleDeleteNote, handleUpdateNote, setEditNote} = useEditNoteCtx()
     const {dark_theme} = useContext(ThemeCtx)
 
     const handleChange = useCallback((e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>)=>{
@@ -21,7 +22,7 @@ const NoteModal = memo(({children, mode}:{
             ...v,
             [e.target.name]:e.target.value
         }))
-    },[])
+    },[setEditNote])
 
 
     if(mode === 'edit_note'){
@@ -29,7 +30,7 @@ const NoteModal = memo(({children, mode}:{
         <Wrapper mode={mode}>
             <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0]}} >
                 <Input   name='title' value={edit_note.title} handleChange={handleChange} mode="edit_note"/>
-                <Textarea   name='content' value={edit_note.content} handleChange={handleChange} />
+                <Textarea   name='content' value={edit_note.content} handleChange={handleChange}/>
                 <div className="btns">
                     <Button text='save'  handleClick={handleUpdateNote} />
                     <Button text='delete' handleClick={handleDeleteNote}  />
@@ -66,7 +67,7 @@ const StyledEditModal = styled.div`
         border:none !important;
         outline:none;
         border-radius:0;
-        font-size:clamp(1.5rem,1.6rem, 1.6vw);
+        font-size:clamp(1.6rem,1.7rem, 1.7vw);
         /* background:white; */
         &:focus{
             background:inherit;

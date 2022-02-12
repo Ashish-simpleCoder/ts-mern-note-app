@@ -1,4 +1,4 @@
-import { ChangeEvent, createContext,  Dispatch,  memo, SetStateAction, useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { ChangeEvent, createContext,  Dispatch,  memo, SetStateAction, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import LeftRightWrapper from "../../Components/HigherComponents/LeftRightWrapper";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
@@ -13,13 +13,15 @@ import useEventListener from "./useEvent";
 
 
 export const EditNoteCtx = createContext({} as EditNoteType)
-
+export const useEditNoteCtx = () => useContext(EditNoteCtx)
 
 
 const NotePage = memo(()=>{
     const {setUser} = UserStates()
     const [edit_note, setEditNote] = useState<NoteInterface>({_id:'', title:'', content:'', bg:[]})
     const history = useHistory()
+
+    const editNoteRef = useRef(edit_note)
 
 
     // layout effect for fetching logged user
@@ -31,7 +33,7 @@ const NotePage = memo(()=>{
     },[setUser, history])
 
 
-    // useEffect for fetching notes
+    // useEffect for fetching notes when user visits note page
     useEffect(()=>{
         (async()=>{
             const {default:fetchNotes} = await import('../../modules/fetchNotes')
@@ -40,12 +42,11 @@ const NotePage = memo(()=>{
         })()
     },[setUser])
 
-
     // function for deleting note
     const handleDeleteNote = useCallback(async(_id?:string, setLoader?:Dispatch<SetStateAction<boolean>>) =>{
         setLoader && setLoader(true)     //displaying the loader while deleting the note
         const {default: deleteNote} = await import('../../modules/deleteNote')
-        const data = await deleteNote(`/api/v1/user/notes/${edit_note._id ? edit_note._id : _id}`)
+        const data = await deleteNote(`/api/v1/user/notes/${editNoteRef.current._id ? editNoteRef.current._id : _id}`)
 
         if(data?.success){
             const {default: fetchNotes}  = await import('../../modules/fetchNotes')
@@ -61,8 +62,7 @@ const NotePage = memo(()=>{
             modal.style.display='none'
             setEditNote({title:'', content:'', _id:'',bg:[]})
         },310)
-    },[edit_note, setUser])
-
+    },[editNoteRef, setUser])
 
     // function for updating note
     const handleUpdateNote = useCallback(async()=>{
@@ -75,21 +75,20 @@ const NotePage = memo(()=>{
             setEditNote({title:'', content:'', _id:'',bg:[]})
         },310)
         const {default:updateNotes} = await import('../../modules/updateNote')
-        const data = await updateNotes(`/api/v1/user/notes/${edit_note._id}`,edit_note)
+        const data = await updateNotes(`/api/v1/user/notes/${editNoteRef.current._id}`,editNoteRef.current)
         if(data?.success){
             const {default: fetchNotes}  = await import('../../modules/fetchNotes')
             const data = await fetchNotes('./api/v1/user/notes')
             if(data?.notes) setUser(old=>({...old, notes:data.notes}))
         }
-    },[edit_note, setUser])
-
+    },[editNoteRef, setUser])
 
     // useeffect for enabling the edit modal for note
     useEffect(()=>{
         const modal = document.getElementById('modal') as HTMLDivElement
         const p = modal.parentElement as any
         if(edit_note._id){
-            // note_ref.current = edit_note
+            editNoteRef.current = edit_note      //setting note_ref to new edit_note
             const element = document.getElementById(edit_note._id) as HTMLDivElement
             const {top, left, width, height} = element.getBoundingClientRect()
             modal.style.top = top+'px'
@@ -109,21 +108,19 @@ const NotePage = memo(()=>{
     // saving the note when user clicks outside of the edit modal or on body(edit_modal_wrapper)
     useClickListener({eventType:'click', handler:handleUpdateNote, element:document.body})
 
-
-
     const handleEditNoteChange = useCallback((e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) =>{
         setEditNote(old=>({
             ...old,
             [e.target.name]:e.target.value
         }))
-    }, [setEditNote])
+    }, [])
 
 
 
     return(
         <LeftRightWrapper>
             <Wrapper  mode='create_note_container'>
-                <NoteInput  mode='create_note' />
+                <NoteInput />
             </Wrapper>
 
             <EditNoteCtx.Provider value={{note:edit_note, setEditNote, handleEditNoteChange, handleDeleteNote, handleUpdateNote}}>
