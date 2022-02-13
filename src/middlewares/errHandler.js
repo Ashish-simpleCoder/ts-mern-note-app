@@ -11,9 +11,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const errHandler = (err, req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    const errors = { email: '', password: '' };
+    const errors = { email: '', password: '', err: '' };
     // if login  credentials are wrong then dev has to show the errors to the user
-    const { email, password, status, error } = err;
+    const { email, password, status, error, mode } = err;
     if (email || password) {
         email && (errors.email = err.email);
         password && (errors.password = err.password);
@@ -21,7 +21,11 @@ const errHandler = (err, req, res, next) => __awaiter(void 0, void 0, void 0, fu
     }
     // dev has to show the errors occured during the login process
     if (error) {
-        return res.status(status ? status : 200).send({ error });
+        if (mode === 'note') {
+            return res.status(status ? status : 200).send({ error });
+        }
+        errors.err = error;
+        return res.status(status ? status : 200).send({ errors });
     }
     // if registered email comes again for registration then dev has to show unique emai error
     if (err.code === 11000) {

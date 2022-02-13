@@ -32,7 +32,7 @@ exports.createOneNote = (0, asyncWrapper_1.default)((req, res, next) => __awaite
     if (!user)
         return next({ status: 400, error: 'unauthorised user' });
     if (!req.body.title && !req.body.content)
-        return next({ error: 'notes can not be blanked' });
+        return next({ error: 'notes can not be blanked', mode: 'note' });
     user.notes.push(req.body);
     user.save();
     res.status(201).send({ success: true });
