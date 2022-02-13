@@ -6,6 +6,7 @@ import UserStates from "../../Context/UserContext";
 import { EditNoteType, NoteInterface } from "../../types";
 import fetchUser from "../../utils/fetchUser";
 import useFetchUser from "../Home/hooks/useFetchUser";
+import useDeleteNote from "./CustomHooks/useDeleteNote";
 import useNoteFetch from "./CustomHooks/useNoteFetch";
 import NoteInput from "./Note.input.section";
 import NoteModal from "./Note.modal";
@@ -37,45 +38,45 @@ const NotePage = memo(()=>{
     // },[setUser])
 
     // function for deleting note
-    const handleDeleteNote = useCallback(async(_id?:string, setLoader?:Dispatch<SetStateAction<boolean>>) =>{
-        setLoader && setLoader(true)     //displaying the loader while deleting the note
-        const {default: deleteNote} = await import('../../modules/deleteNote')
-        const data = await deleteNote(`/api/v1/user/notes/${editNoteRef.current._id ? editNoteRef.current._id : _id}`)
+    // const handleDeleteNote = useCallback(async(_id?:string, setLoader?:Dispatch<SetStateAction<boolean>>) =>{
+    //     setLoader && setLoader(true)     //displaying the loader while deleting the note
+    //     const {default: deleteNote} = await import('../../modules/deleteNote')
+    //     const data = await deleteNote(`/api/v1/user/notes/${editNoteRef.current._id ? editNoteRef.current._id : _id}`)
 
-        if(data?.success){
-            const {default: fetchNotes}  = await import('../../modules/fetchNotes')
-            const data = await fetchNotes('./api/v1/user/notes')
-            if(data?.notes) setUser(old=>({...old, notes:data.notes}))
-        }
+    //     if(data?.success){
+    //         const {default: fetchNotes}  = await import('../../modules/fetchNotes')
+    //         const data = await fetchNotes('./api/v1/user/notes')
+    //         if(data?.notes) setUser(old=>({...old, notes:data.notes}))
+    //     }
 
-        const modal = document.getElementById('modal') as HTMLDivElement
-        const p = modal.parentElement as any
-        document.body.classList.remove('edit_mode')
-        setTimeout(()=>{
-           p.style.display='none'
-            modal.style.display='none'
-            setEditNote({title:'', content:'', _id:'',bg:[]})
-        },310)
-    },[editNoteRef, setUser])
+    //     const modal = document.getElementById('modal') as HTMLDivElement
+    //     const p = modal.parentElement as any
+    //     document.body.classList.remove('edit_mode')
+    //     setTimeout(()=>{
+    //        p.style.display='none'
+    //         modal.style.display='none'
+    //         setEditNote({title:'', content:'', _id:'',bg:[]})
+    //     },310)
+    // },[editNoteRef, setUser])
 
     // function for updating note
-    const handleUpdateNote = useCallback(async()=>{
-        const modal = document.getElementById('modal') as HTMLDivElement
-        const p = modal.parentElement as any
-        document.body.classList.remove('edit_mode')
-        setTimeout(()=>{
-            p.style.display='none'
-            modal.style.display='none'
-            setEditNote({title:'', content:'', _id:'',bg:[]})
-        },310)
-        const {default:updateNotes} = await import('../../modules/updateNote')
-        const data = await updateNotes(`/api/v1/user/notes/${editNoteRef.current._id}`,editNoteRef.current)
-        if(data?.success){
-            const {default: fetchNotes}  = await import('../../modules/fetchNotes')
-            const data = await fetchNotes('./api/v1/user/notes')
-            if(data?.notes) setUser(old=>({...old, notes:data.notes}))
-        }
-    },[editNoteRef, setUser])
+    // const handleUpdateNote = useCallback(async()=>{
+    //     const modal = document.getElementById('modal') as HTMLDivElement
+    //     const p = modal.parentElement as any
+    //     document.body.classList.remove('edit_mode')
+    //     setTimeout(()=>{
+    //         p.style.display='none'
+    //         modal.style.display='none'
+    //         setEditNote({title:'', content:'', _id:'',bg:[]})
+    //     },310)
+    //     const {default:updateNotes} = await import('../../modules/updateNote')
+    //     const data = await updateNotes(`/api/v1/user/notes/${editNoteRef.current._id}`,editNoteRef.current)
+    //     if(data?.success){
+    //         const {default: fetchNotes}  = await import('../../modules/fetchNotes')
+    //         const data = await fetchNotes('./api/v1/user/notes')
+    //         if(data?.notes) setUser(old=>({...old, notes:data.notes}))
+    //     }
+    // },[editNoteRef, setUser])
 
     // useeffect for enabling the edit modal for note
     useEffect(()=>{
@@ -97,10 +98,10 @@ const NotePage = memo(()=>{
 
 
     //custom hooks for saving notes with escape key
-    useEventListener({eventType:'keyup', handler:handleUpdateNote, element:window})
-
+    const {handleUpdateNote, handleDeleteNote} = useDeleteNote()
+    useEventListener({eventType:'keyup', handler:()=>handleUpdateNote(edit_note), element:window})
     // saving the note when user clicks outside of the edit modal or on body(edit_modal_wrapper)
-    useClickListener({eventType:'click', handler:handleUpdateNote, element:document.body})
+    useClickListener({eventType:'click', handler:()=>handleUpdateNote(edit_note), element:document.body})
 
     const handleEditNoteChange = useCallback((e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) =>{
         setEditNote(old=>({

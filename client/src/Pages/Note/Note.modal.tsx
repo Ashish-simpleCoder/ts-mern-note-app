@@ -5,6 +5,7 @@ import Wrapper from "../../Components/HigherComponents/Wrapper";
 import Button from "../../Components/PureComponents/Button";
 import Textarea from "../../Components/PureComponents/Textarea";
 import { ThemeCtx } from "../../Context/UserContext";
+import useDeleteNote from "./CustomHooks/useDeleteNote";
 import { useEditNoteCtx } from "./Note.page";
 
 
@@ -14,8 +15,9 @@ const NoteModal = memo(({children, mode}:{
     mode:string
 })=>{
     // const {note:edit_note ,handleDeleteNote, handleUpdateNote, setEditNote} = useContext(EditNoteCtx)
-    const {note:edit_note ,handleDeleteNote, handleUpdateNote, setEditNote} = useEditNoteCtx()
+    const {note:edit_note , setEditNote} = useEditNoteCtx()
     const {dark_theme} = useContext(ThemeCtx)
+    const {loader, handleDeleteNote, handleUpdateNote} = useDeleteNote()
 
     const handleChange = useCallback((e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>)=>{
         setEditNote(v=>({
@@ -32,8 +34,8 @@ const NoteModal = memo(({children, mode}:{
                 <Input   name='title' value={edit_note.title} handleChange={handleChange} mode="edit_note"/>
                 <Textarea   name='content' value={edit_note.content} handleChange={handleChange}/>
                 <div className="btns">
-                    <Button text='save'  handleClick={handleUpdateNote} />
-                    <Button text='delete' handleClick={()=>handleDeleteNote(edit_note._id)}  />
+                    <Button text='save' loader={loader}  handleClick={()=>handleUpdateNote(edit_note)} />
+                    <Button text='delete' loader={loader} handleClick={()=>handleDeleteNote(edit_note._id)}  />
                 </div>
                 {children}
             </StyledEditModal>
