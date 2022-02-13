@@ -11,7 +11,7 @@ import Clr from "../../Components/Svg/Clr";
 import ActionLink from "../../Components/PureComponents/ActionLink";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import ColorList from "../../Components/HigherComponents/ColorList";
-import useDeleteNote from "./CustomHooks/useDeleteNote";
+import useDeleteNote from "./CustomHooks/useNoteOperations";
 
 
 const Note = memo(({note, search}:{note:NoteInterface, search:string})=>{

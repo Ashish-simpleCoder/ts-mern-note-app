@@ -39,7 +39,8 @@ interface NoteInterface{
 interface EditNoteType{
     note:NoteInterface,
     setEditNote:Dispatch<SetStateAction<NoteInterface>>,
-    handleEditNoteChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
+    // handleChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
+    handleNoteChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
     // handleDeleteNote:(note_id?: string | undefined, setLoader?:Dispatch<SetStateAction<boolean>>) => Promise<void>,
     // handleUpdateNote: () => Promise<void>
     // handleDeleteNote: (_id: string, setEditNote?: Dispatch<SetStateAction<{

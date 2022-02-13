@@ -5,7 +5,7 @@ import Button from "../../Components/PureComponents/Button";
 import ErrorDisplayer from "../../Components/PureComponents/Error";
 import Form from "../../Components/PureComponents/Form";
 import Textarea from "../../Components/PureComponents/Textarea";
-import useDeleteNote from "./CustomHooks/useDeleteNote";
+import useDeleteNote from "./CustomHooks/useNoteOperations";
 import useHandleChange from "./CustomHooks/useHandleChange";
 
 
