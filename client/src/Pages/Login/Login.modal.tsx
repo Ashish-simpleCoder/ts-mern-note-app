@@ -9,6 +9,7 @@ import ErrorDisplayer from "../../Components/PureComponents/Error";
 import Form from "../../Components/PureComponents/Form";
 import H3 from "../../Components/PureComponents/H3";
 import UserStates from "../../Context/UserContext";
+import useHandleChange from "../Note/CustomHooks/useHandleChange";
 
 
 
@@ -33,11 +34,9 @@ const LoginModal = ()=>{
         data?.error && setErrors({email:'', password:'', err:data.error})
     },[state, setUser, history])
 
-    const handleChange = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
-        setState(old=>({
-            ...old,
-            [e.target.name]:e.target.value
-        }))
+    const {handleChange} = useHandleChange()
+    const handleChanges = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
+       handleChange(e, setState)
     },[])
 
     useEffect(()=>{
@@ -50,11 +49,11 @@ const LoginModal = ()=>{
 
 
     const EmailProps = useMemo(()=>({
-        state:state.email, handleChange, name:'email'
-    }),[state.email, handleChange])
+        state:state.email, handleChanges, name:'email'
+    }),[state.email, handleChanges])
     const PasswordProps = useMemo(()=>({
-        state:state.password, handleChange, name:'password'
-    }),[state.password, handleChange])
+        state:state.password, handleChanges, name:'password'
+    }),[state.password, handleChanges])
 
     return(
         <>

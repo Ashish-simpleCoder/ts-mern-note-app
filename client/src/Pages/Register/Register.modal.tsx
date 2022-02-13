@@ -1,5 +1,4 @@
-import { ChangeEvent,  FormEvent, memo, useCallback,  useMemo, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { memo,  useMemo,} from "react";
 import FormField from "../../Components/HigherComponents/FormFields/FormField";
 import InputField from "../../Components/HigherComponents/FormFields/InputField";
 import LabelField from "../../Components/HigherComponents/FormFields/LabelField";
@@ -7,54 +6,19 @@ import Button from "../../Components/PureComponents/Button";
 import ErrorDisplayer from "../../Components/PureComponents/Error";
 import Form from "../../Components/PureComponents/Form";
 import H3 from "../../Components/PureComponents/H3";
+import useRegister from "../LoginRegister/Hooks/useRegister";
 
 
 
 const RegisterModal = memo(()=>{
-    const [state, setState] = useState({email:'', password:""})
-    const [errors, setErrors] = useState<{email:string, password:string}>()
-    const history = useHistory()
-    const [register_loader, setRegisterLoader] = useState(false)
-
-
-    const handleChange = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
-        setState(old=>({
-            ...old,
-            [e.target.name]:e.target.value
-        }))
-    },[])
-
-    const registerUser = useCallback(async(email:string, password:string)=>{
-        try{
-            const res = await fetch('/api/v1/user',{
-                method:'POST',
-                body:JSON.stringify({email,password}),
-                headers:{ 'Content-Type':"application/json"}
-            })
-            const data:{errors:{email:string, password:string}, _id:string} = await res.json()
-            return {...data}
-        }catch(err){
-            console.log(err)
-        }
-    },[])
-
-    const handleSubmit = useCallback(async(e:FormEvent<HTMLFormElement>)=>{
-        e.preventDefault()
-        setRegisterLoader(true)
-        const data = await registerUser(state.email, state.password)
-        if(data?._id){
-            return history.push('/login')
-        }
-        setRegisterLoader(false)
-        data?.errors && setErrors(data.errors)
-    },[state, history, registerUser])
+    const {handleSubmit, loader, errors, state, setState, handleChanges} = useRegister()
 
     const EmailProps = useMemo(()=>({
-        state:state.email, handleChange, name:'email'
-    }),[state.email, handleChange])
+        state:state.email, handleChanges, name:'email'
+    }),[state.email, handleChanges])
     const PasswordProps = useMemo(()=>({
-        state:state.password, handleChange, name:'password'
-    }),[state.password, handleChange])
+        state:state.password, handleChanges, name:'password'
+    }),[state.password, handleChanges])
 
     return(
         <>
@@ -70,7 +34,8 @@ const RegisterModal = memo(()=>{
                 </FormField>
                 {  errors?.email && <ErrorDisplayer error={errors.email}/> }
                 {  errors?.password && <ErrorDisplayer error={errors.password}/> }
-                <Button  text='submit'  mode='login_btn' loader={register_loader} />
+                {  errors?.err && <ErrorDisplayer error={errors.err}/> }
+                <Button  text='submit'  mode='login_btn' loader={loader} />
             </Form>
         </>
     )

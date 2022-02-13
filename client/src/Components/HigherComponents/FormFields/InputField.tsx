@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import Img from '../../PureComponents/Img'
 
 const InputField = (({props, setFocus}:{props:InputProps, setFocus?:Dispatch<SetStateAction<boolean>>})=>{
-    const {state, name, handleChange} = props
+    const {state, name, handleChanges} = props
     return(
         <>
         <Img src={`./imgs/${name}.avif`} alt={name}/>
-        <StyledInput type="text" value={state} name={name} onChange={(e)=>handleChange(e)} onFocus={()=>setFocus && setFocus(true)}
+        <StyledInput type="text" value={state} name={name} onChange={(e)=>handleChanges(e)} onFocus={()=>setFocus && setFocus(true)}
             onBlur={(e)=>{
                 setFocus && setFocus(e.target.value.length>0 )
             }}
@@ -30,5 +30,6 @@ const StyledInput = styled.input`
 type InputProps = {
     name:string,
     state:string,
-    handleChange: (e: ChangeEvent<HTMLInputElement>) => void,
+    // handleChange: (e: ChangeEvent<HTMLInputElement>) => void,
+    handleChanges: (e: ChangeEvent<HTMLInputElement>) => void
 }
