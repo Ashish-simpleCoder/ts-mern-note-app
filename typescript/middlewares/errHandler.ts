@@ -1,8 +1,8 @@
 const errHandler = async(err:any, req:any, res:any, next:any) => {
-    const errors:any = { email:'', password:'' }
+    const errors:any = { email:'', password:'',err:'' }
 
     // if login  credentials are wrong then dev has to show the errors to the user
-    const {email, password, status, error} = err
+    const {email, password, status, error, mode} = err
     if(email || password){
         email && (errors.email = err.email)
         password && (errors.password = err.password)
@@ -10,7 +10,11 @@ const errHandler = async(err:any, req:any, res:any, next:any) => {
     }
     // dev has to show the errors occured during the login process
     if(error){
-        return res.status(status ? status : 200).send({error})
+        if(mode === 'note'){
+            return res.status(status ? status : 200).send({error})
+        }
+        errors.err = error
+        return res.status(status ? status : 200).send({errors})
     }
 
     // if registered email comes again for registration then dev has to show unique emai error

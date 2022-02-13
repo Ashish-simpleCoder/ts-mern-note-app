@@ -11,7 +11,7 @@ import useRegister from "../LoginRegister/Hooks/useRegister";
 
 
 const RegisterModal = memo(()=>{
-    const {handleSubmit, loader, errors, state, setState, handleChanges} = useRegister()
+    const {handleSubmit, loader, errors, state, handleChanges} = useRegister()
 
     const EmailProps = useMemo(()=>({
         state:state.email, handleChanges, name:'email'
@@ -22,7 +22,7 @@ const RegisterModal = memo(()=>{
 
     return(
         <>
-            <Form mode='register' handleSubmit={handleSubmit}>
+            <Form mode='register' handleSubmit={(e)=>handleSubmit(e, 'register')}>
                 <H3  text='Register'  styles={{color:'var(--secondary-clr)'}}  />
                 <FormField>
                     <LabelField text='email'/>

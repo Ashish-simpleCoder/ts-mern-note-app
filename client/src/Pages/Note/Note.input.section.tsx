@@ -19,7 +19,6 @@ const NoteInput = memo(()=>{
     }, [])
 
 
-
     return(
         <Form no_bg={true} handleSubmit={(e)=>handleNoteSubmit(e, note, setNote)}>
             <Input type='title' placeholder='note title...' name='title' value={note.title} handleChange={handleNoteChange} mode='note_title'/>

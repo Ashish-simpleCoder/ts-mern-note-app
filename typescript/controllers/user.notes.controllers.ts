@@ -17,7 +17,7 @@ export const createOneNote = asyncWrapper(async(req:Request, res:Response, next:
     const logged_user:any = returnLoggedUser(req, res, next)
     const user:UserType = await USER_MODEL.findById(logged_user._id)
     if(!user) return next({status:400,error:'unauthorised user'})
-    if(!req.body.title && !req.body.content) return next({error:'notes can not be blanked'})
+    if(!req.body.title && !req.body.content) return next({error:'notes can not be blanked', mode:'note'})
     user.notes.push(req.body)
     user.save()
     res.status(201).send({success:true})

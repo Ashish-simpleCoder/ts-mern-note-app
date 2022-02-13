@@ -1,11 +1,26 @@
 import { Dispatch, FormEvent, SetStateAction, useCallback, useEffect, useState } from 'react'
 import { useUserCtx } from '../../../Context/UserContext'
 import { NoteInterface } from '../../../types'
+import useNoteFetch from './useNoteFetch'
 
 const useDeleteNote = () =>{
     const {setUser} = useUserCtx()
     const [loader, setLoader] = useState(false)
     const [error, setError] = useState({err:''})
+    const [refetch, setRefetch] = useState(false)
+
+    useEffect(()=>{
+        if(refetch){
+            ( async () =>{
+                const {default:fetchNotes} = await import("../../../modules/fetchNotes")
+                const data = await fetchNotes('/api/v1/user/notes')
+                if(data?.notes) {
+                   setUser(old=>({...old, notes:data.notes}))
+                }
+                setRefetch(false)
+            })()
+        }
+    }, [refetch])
 
     useEffect(()=>{
         const clr = error && setTimeout(()=>setError({err:''}), 3000)
@@ -18,12 +33,7 @@ const useDeleteNote = () =>{
         setLoader(true)     //displaying the loader while deleting the note
         const {default: deleteNote} = await import('../../../modules/deleteNote')
         const data = await deleteNote(`/api/v1/user/notes/${_id}`)
-
-        if(data?.success){
-            const {default: fetchNotes}  = await import('../../../modules/fetchNotes')
-            const data = await fetchNotes('./api/v1/user/notes')
-            if(data?.notes) setUser(old=>({...old, notes:data.notes}))
-        }
+        data?.success && setRefetch(true)
 
         const modal = document.getElementById('modal') as HTMLDivElement
         const p = modal.parentElement as any
@@ -47,11 +57,8 @@ const useDeleteNote = () =>{
         },310)
         const {default:updateNotes} = await import('../../../modules/updateNote')
         const data = await updateNotes(`/api/v1/user/notes/${note._id}`,note)
-        if(data?.success){
-            const {default: fetchNotes}  = await import('../../../modules/fetchNotes')
-            const data = await fetchNotes('./api/v1/user/notes')
-            if(data?.notes) setUser(old=>({...old, notes:data.notes}))
-        }
+        data?.success && setRefetch(true)
+
     }
 
     const handleNoteSubmit = async(e:FormEvent<HTMLFormElement>, note:{title:string, content:string}, setNote:Dispatch<SetStateAction<{title:string, content:string}>>)=>{
@@ -61,12 +68,8 @@ const useDeleteNote = () =>{
         const data = await createNote(note)
         if(data?.error) setError({err:data.error})
         if(data?.success){
-            const {default:fetchNotes} = await import("../../../modules/fetchNotes")
-            const data = await fetchNotes('/api/v1/user/notes')
-            if(data?.notes) {
-                setUser(old=>({...old, notes:data.notes}))
-                setNote({title:'', content:''})
-            }
+            setRefetch(true)
+            setNote({title:'', content:''})
         }
         setLoader(false)
     }

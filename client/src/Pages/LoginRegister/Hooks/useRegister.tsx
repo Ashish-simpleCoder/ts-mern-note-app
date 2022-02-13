@@ -1,18 +1,34 @@
 import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
+import UserStates from "../../../Context/UserContext"
 import useHandleChange from "../../Note/CustomHooks/useHandleChange"
 
 const useRegister = () => {
     const [state, setState] = useState({email:'', password:""})
-    const [errors, setErrors] = useState<{email:string, password:string, err:string}>({email:'', password:'', err:""})
+    const [errors, setErrors] = useState<{email?:string, password?:string, err?:string}>({email:'', password:'', err:""})
     const [loader, setLoader] = useState(false)
     const history = useHistory()
     const {handleChange} = useHandleChange()
+    const {setUser} = UserStates()
 
     const handleChanges = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
         handleChange(e, setState)
     },[])
 
+    const loginUser = useCallback(async(email:string, password:string) =>{
+        try{
+            const res = await fetch('/api/v1/user/login',{
+                method:'POST',
+                body:JSON.stringify({email,password}),
+                headers:{ 'Content-Type':"application/json"},
+            })
+            const data:{errors:{email?:string, password?:string, err?:string}, _id:string, email:string} = await res.json()
+            const {errors, _id, email:email_id} =  data
+            return {errors, _id, email_id}
+        }catch(err){
+            console.log(err)
+        }
+    }, [])
 
     const registerUser = useCallback(async(email:string, password:string)=>{
         try{
@@ -25,16 +41,24 @@ const useRegister = () => {
             return {...data}
         }catch(err){
             console.log(err)
-            // setErrors()
         }
     },[])
 
-    const handleSubmit = useCallback(async(e:FormEvent<HTMLFormElement>)=>{
+    const handleSubmit = useCallback(async(e:FormEvent<HTMLFormElement>, mode:string = 'login')=>{
         e.preventDefault()
         setLoader(true)
-        const data = await registerUser(state.email, state.password)
-        if(data?._id){
-            return history.push('/login')
+        let data;
+        if(mode === 'login'){
+            data = await loginUser(state.email, state.password)
+            if(data?._id){
+                setUser({_id:data._id,email:data.email_id})
+                history.push('/')
+            }
+        }else{
+            data = await registerUser(state.email, state.password)
+            if(data?._id){
+                return history.push('/login')
+            }
         }
         setLoader(false)
         data?.errors && setErrors(data.errors)
