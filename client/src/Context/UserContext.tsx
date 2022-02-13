@@ -1,7 +1,8 @@
-import { createContext, memo, useContext, useState, Dispatch, SetStateAction} from "react";
+import { createContext, memo, useContext, useState } from "react";
 import { ThemeCtxInterface, UserCtxInterface, UserInterface } from "../types";
 
 const UserCtx = createContext<UserCtxInterface>({} as UserCtxInterface)
+export const useUserCtx = () => useContext(UserCtx)
 
 
 export const ThemeCtx = createContext<ThemeCtxInterface>({} as ThemeCtxInterface)

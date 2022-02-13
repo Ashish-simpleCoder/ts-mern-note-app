@@ -5,6 +5,8 @@ import Wrapper from "../../Components/HigherComponents/Wrapper";
 import UserStates from "../../Context/UserContext";
 import { EditNoteType, NoteInterface } from "../../types";
 import fetchUser from "../../utils/fetchUser";
+import useFetchUser from "../Home/hooks/useFetchUser";
+import useNoteFetch from "./CustomHooks/useNoteFetch";
 import NoteInput from "./Note.input.section";
 import NoteModal from "./Note.modal";
 import NoteOutput from "./Note.output.section";
@@ -17,30 +19,22 @@ export const useEditNoteCtx = () => useContext(EditNoteCtx)
 
 
 const NotePage = memo(()=>{
+    useFetchUser({auth:true})
+    useNoteFetch()
+
     const {setUser} = UserStates()
     const [edit_note, setEditNote] = useState<NoteInterface>({_id:'', title:'', content:'', bg:[]})
-    const history = useHistory()
-
     const editNoteRef = useRef(edit_note)
 
 
-    // layout effect for fetching logged user
-    useLayoutEffect(()=>{
-        (async () =>{
-            const res = await fetchUser()
-            res?._id ? setUser({_id:res._id,email:res?.email})  : history.push('/login')
-        })()
-    },[setUser, history])
-
-
     // useEffect for fetching notes when user visits note page
-    useEffect(()=>{
-        (async()=>{
-            const {default:fetchNotes} = await import('../../modules/fetchNotes')
-            const data = await fetchNotes('/api/v1/user/notes')
-            if(data?.notes) setUser(old=>({...old, notes:data.notes}))
-        })()
-    },[setUser])
+    // useEffect(()=>{
+    //     (async()=>{
+    //         const {default:fetchNotes} = await import('../../modules/fetchNotes')
+    //         const data = await fetchNotes('/api/v1/user/notes')
+    //         if(data?.notes) setUser(old=>({...old, notes:data.notes}))
+    //     })()
+    // },[setUser])
 
     // function for deleting note
     const handleDeleteNote = useCallback(async(_id?:string, setLoader?:Dispatch<SetStateAction<boolean>>) =>{

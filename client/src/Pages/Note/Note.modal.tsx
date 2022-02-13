@@ -33,7 +33,7 @@ const NoteModal = memo(({children, mode}:{
                 <Textarea   name='content' value={edit_note.content} handleChange={handleChange}/>
                 <div className="btns">
                     <Button text='save'  handleClick={handleUpdateNote} />
-                    <Button text='delete' handleClick={handleDeleteNote}  />
+                    <Button text='delete' handleClick={()=>handleDeleteNote(edit_note._id)}  />
                 </div>
                 {children}
             </StyledEditModal>

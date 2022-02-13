@@ -1,24 +1,11 @@
-import { memo, useLayoutEffect } from "react";
-// import { useHistory } from "react-router-dom";
-import UserStates from "../../Context/UserContext";
-import fetchUser from "../../utils/fetchUser";
+import { memo } from "react";
 import HeroSection from "./Hero.section";
+import useFetchUser from "./hooks/useFetchUser";
+
 
 const HomePage = memo(()=>{
-    const { setUser} = UserStates()
-    // const history = useHistory()
-    useLayoutEffect(()=>{
-        (async () =>{
-            const res = await fetchUser()
-            res?._id && setUser({_id:res._id,email:res?.email})
-        })()
-    },[setUser])
+    useFetchUser({auth : false})   //fetching the logged user
 
-
-    return(
-        <>
-            <HeroSection/>
-        </>
-    )
+    return  <HeroSection/>
 })
 export default HomePage

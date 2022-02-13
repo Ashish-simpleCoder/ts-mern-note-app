@@ -11,6 +11,7 @@ import Clr from "../../Components/Svg/Clr";
 import ActionLink from "../../Components/PureComponents/ActionLink";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import ColorList from "../../Components/HigherComponents/ColorList";
+import useDeleteNote from "./CustomHooks/useDeleteNote";
 
 
 
@@ -18,6 +19,7 @@ import ColorList from "../../Components/HigherComponents/ColorList";
 const Note = memo(({note, search}:{note:NoteInterface, search:string})=>{
     const {setEditNote} = useContext(EditNoteCtx)
     const {dark_theme} = useContext(ThemeCtx)
+    const {loader, setLoader, handleDeleteNote} = useDeleteNote()
 
     const search_key = search?.trim().toLowerCase()
     const matched = note.title.trim().toLowerCase().includes(search_key)  || note.content.trim().toLowerCase().includes(search_key)
@@ -28,20 +30,18 @@ const Note = memo(({note, search}:{note:NoteInterface, search:string})=>{
     return(
         <StyledNote id={note._id} style={{background:dark_theme ? note.bg[1] : note.bg[0], display:!matched ? 'none' : 'block'}}
             className="note"
-            // onClick={(e)=>{
-            //     e.preventDefault()
-            //     e.stopPropagation()
-            //     setEditNote(note)
-            // }}
         >
             <Wrapper >
                 <RandomSpan cls='random_span'/>
                 <H3 text={note.title} styles={{width:'100%'}} handleClick={handleClick}/>
             </Wrapper>
+
             <Wrapper styles={{overflow:'hidden',height:'60%'}}>
                 <p onClick={handleClick}>{note.content}</p>
             </Wrapper>
-            <Button text="D"  mode='delete_note_btn' _id={note._id}/>
+
+            {/* <Button text="D"  mode='delete_note_btn' _id={note._id}/> */}
+            <Button  text='d' mode='delete_note_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
             {/* <OverlayMenu> */}
                 {/* <ActionLink tooltip_text="change color of note"> */}
                     {/* <a href="#/notes"><Clr/></a> */}
