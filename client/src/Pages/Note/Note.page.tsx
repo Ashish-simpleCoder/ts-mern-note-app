@@ -4,7 +4,6 @@ import Wrapper from "../../Components/HigherComponents/Wrapper";
 import { EditNoteType, NoteInterface } from "../../types";
 import useFetchUser from "../Home/hooks/useFetchUser";
 import useEnableEditModal from "../Login/useEnableEditModal";
-import useDeleteNote from "./CustomHooks/useNoteOperations";
 import useNoteFetch from "./CustomHooks/useNoteFetch";
 import NoteInput from "./Note.input.section";
 import NoteModal from "./Note.modal";
@@ -12,6 +11,7 @@ import NoteOutput from "./Note.output.section";
 import useClickListener from "./useClickListener";
 import useEventListener from "./useEvent";
 import useHandleChange from "./CustomHooks/useHandleChange";
+import useNoteOperations from "./CustomHooks/useNoteOperations";
 
 export const EditNoteCtx = createContext({} as EditNoteType)
 export const useEditNoteCtx = () => useContext(EditNoteCtx)
@@ -26,7 +26,7 @@ const NotePage = memo(()=>{
 
 
     //custom hooks for saving notes with escape key
-    const {handleUpdateNote} = useDeleteNote()
+    const {handleUpdateNote} = useNoteOperations()
     useEventListener({eventType:'keyup', handler:()=>handleUpdateNote(edit_note), element:window})
     // saving the note when user clicks outside of the edit modal or on body(edit_modal_wrapper)
     useClickListener({eventType:'click', handler:()=>handleUpdateNote(edit_note), element:document.body})
