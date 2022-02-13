@@ -14,12 +14,10 @@ import ColorList from "../../Components/HigherComponents/ColorList";
 import useDeleteNote from "./CustomHooks/useDeleteNote";
 
 
-
-
 const Note = memo(({note, search}:{note:NoteInterface, search:string})=>{
     const {setEditNote} = useContext(EditNoteCtx)
     const {dark_theme} = useContext(ThemeCtx)
-    const {loader, setLoader, handleDeleteNote} = useDeleteNote()
+    const {loader, handleDeleteNote} = useDeleteNote()
 
     const search_key = search?.trim().toLowerCase()
     const matched = note.title.trim().toLowerCase().includes(search_key)  || note.content.trim().toLowerCase().includes(search_key)

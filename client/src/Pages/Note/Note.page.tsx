@@ -6,6 +6,7 @@ import UserStates from "../../Context/UserContext";
 import { EditNoteType, NoteInterface } from "../../types";
 import fetchUser from "../../utils/fetchUser";
 import useFetchUser from "../Home/hooks/useFetchUser";
+import useEnableEditModal from "../Login/useEnableEditModal";
 import useDeleteNote from "./CustomHooks/useDeleteNote";
 import useNoteFetch from "./CustomHooks/useNoteFetch";
 import NoteInput from "./Note.input.section";
@@ -20,88 +21,40 @@ export const useEditNoteCtx = () => useContext(EditNoteCtx)
 
 
 const NotePage = memo(()=>{
-    useFetchUser({auth:true})
-    useNoteFetch()
+    useFetchUser({auth:true})    //first checking if the user is loggedin or not
+    useNoteFetch()     //fetching the notes of logged user
 
     const {setUser} = UserStates()
     const [edit_note, setEditNote] = useState<NoteInterface>({_id:'', title:'', content:'', bg:[]})
-    const editNoteRef = useRef(edit_note)
+    // const editNoteRef = useRef(edit_note)
 
-
-    // useEffect for fetching notes when user visits note page
-    // useEffect(()=>{
-    //     (async()=>{
-    //         const {default:fetchNotes} = await import('../../modules/fetchNotes')
-    //         const data = await fetchNotes('/api/v1/user/notes')
-    //         if(data?.notes) setUser(old=>({...old, notes:data.notes}))
-    //     })()
-    // },[setUser])
-
-    // function for deleting note
-    // const handleDeleteNote = useCallback(async(_id?:string, setLoader?:Dispatch<SetStateAction<boolean>>) =>{
-    //     setLoader && setLoader(true)     //displaying the loader while deleting the note
-    //     const {default: deleteNote} = await import('../../modules/deleteNote')
-    //     const data = await deleteNote(`/api/v1/user/notes/${editNoteRef.current._id ? editNoteRef.current._id : _id}`)
-
-    //     if(data?.success){
-    //         const {default: fetchNotes}  = await import('../../modules/fetchNotes')
-    //         const data = await fetchNotes('./api/v1/user/notes')
-    //         if(data?.notes) setUser(old=>({...old, notes:data.notes}))
-    //     }
-
-    //     const modal = document.getElementById('modal') as HTMLDivElement
-    //     const p = modal.parentElement as any
-    //     document.body.classList.remove('edit_mode')
-    //     setTimeout(()=>{
-    //        p.style.display='none'
-    //         modal.style.display='none'
-    //         setEditNote({title:'', content:'', _id:'',bg:[]})
-    //     },310)
-    // },[editNoteRef, setUser])
-
-    // function for updating note
-    // const handleUpdateNote = useCallback(async()=>{
-    //     const modal = document.getElementById('modal') as HTMLDivElement
-    //     const p = modal.parentElement as any
-    //     document.body.classList.remove('edit_mode')
-    //     setTimeout(()=>{
-    //         p.style.display='none'
-    //         modal.style.display='none'
-    //         setEditNote({title:'', content:'', _id:'',bg:[]})
-    //     },310)
-    //     const {default:updateNotes} = await import('../../modules/updateNote')
-    //     const data = await updateNotes(`/api/v1/user/notes/${editNoteRef.current._id}`,editNoteRef.current)
-    //     if(data?.success){
-    //         const {default: fetchNotes}  = await import('../../modules/fetchNotes')
-    //         const data = await fetchNotes('./api/v1/user/notes')
-    //         if(data?.notes) setUser(old=>({...old, notes:data.notes}))
-    //     }
-    // },[editNoteRef, setUser])
 
     // useeffect for enabling the edit modal for note
-    useEffect(()=>{
-        const modal = document.getElementById('modal') as HTMLDivElement
-        const p = modal.parentElement as any
-        if(edit_note._id){
-            editNoteRef.current = edit_note      //setting note_ref to new edit_note
-            const element = document.getElementById(edit_note._id) as HTMLDivElement
-            const {top, left, width, height} = element.getBoundingClientRect()
-            modal.style.top = top+'px'
-            modal.style.left = left+'px'
-            modal.style.width = width+'px'
-            modal.style.height = height+'px'
-            p.style.display='flex'
-            modal.style.display='flex'
-            setTimeout(()=> document.body.classList.add('edit_mode'),20)
-        }
-    },[edit_note, setUser])
+    // useEffect(()=>{
+    //     const modal = document.getElementById('modal') as HTMLDivElement
+    //     const p = modal.parentElement as any
+    //     if(edit_note._id){
+    //         const element = document.getElementById(edit_note._id) as HTMLDivElement
+    //         const {top, left, width, height} = element.getBoundingClientRect()
+    //         modal.style.top = top+'px'
+    //         modal.style.left = left+'px'
+    //         modal.style.width = width+'px'
+    //         modal.style.height = height+'px'
+    //         p.style.display='flex'
+    //         modal.style.display='flex'
+    //         setTimeout(()=> document.body.classList.add('edit_mode'),20)
+    //     }
+    // },[edit_note, setUser])
+
+    useEnableEditModal({_id:edit_note._id})
 
 
     //custom hooks for saving notes with escape key
-    const {handleUpdateNote, handleDeleteNote} = useDeleteNote()
+    const {handleUpdateNote} = useDeleteNote()
     useEventListener({eventType:'keyup', handler:()=>handleUpdateNote(edit_note), element:window})
     // saving the note when user clicks outside of the edit modal or on body(edit_modal_wrapper)
     useClickListener({eventType:'click', handler:()=>handleUpdateNote(edit_note), element:document.body})
+
 
     const handleEditNoteChange = useCallback((e:ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) =>{
         setEditNote(old=>({
@@ -118,7 +71,7 @@ const NotePage = memo(()=>{
                 <NoteInput />
             </Wrapper>
 
-            <EditNoteCtx.Provider value={{note:edit_note, setEditNote, handleEditNoteChange, handleDeleteNote, handleUpdateNote}}>
+            <EditNoteCtx.Provider value={{note:edit_note, setEditNote, handleEditNoteChange}}>
                 <NoteOutput />
                 <NoteModal mode="edit_note" />
             </EditNoteCtx.Provider>

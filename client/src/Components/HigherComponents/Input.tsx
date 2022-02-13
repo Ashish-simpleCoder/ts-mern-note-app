@@ -16,7 +16,7 @@ const Input = memo(({ placeholder, name, value, handleChange, mode}: InputPropsT
             if(name === 'search'){
                 setSearch(e.target.value)
             }else{
-                handleChange && handleChange(e)
+                handleChange && handleChange(e,)
             }
         }}
         placeholder={placeholder}

@@ -1,10 +1,18 @@
-import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import { Dispatch, FormEvent, SetStateAction, useCallback, useEffect, useState } from 'react'
 import { useUserCtx } from '../../../Context/UserContext'
 import { NoteInterface } from '../../../types'
 
 const useDeleteNote = () =>{
     const {setUser} = useUserCtx()
     const [loader, setLoader] = useState(false)
+    const [error, setError] = useState({err:''})
+
+    useEffect(()=>{
+        const clr = error && setTimeout(()=>setError({err:''}), 3000)
+        return(()=>{
+            clearInterval(clr)
+        })
+    },[error])
 
     const handleDeleteNote = async(_id:string, setEditNote?:Dispatch<SetStateAction<{title:'', content:'', _id:'', bg:[]}>>) =>{
         setLoader(true)     //displaying the loader while deleting the note
@@ -46,6 +54,23 @@ const useDeleteNote = () =>{
         }
     }
 
-    return {loader, setLoader, handleDeleteNote, handleUpdateNote}
+    const handleNoteSubmit = async(e:FormEvent<HTMLFormElement>, note:{title:string, content:string}, setNote:Dispatch<SetStateAction<{title:string, content:string}>>)=>{
+        e.preventDefault()
+        setLoader(true)
+        const {default:createNote} = await import('../../../modules/createNote')
+        const data = await createNote(note)
+        if(data?.error) setError({err:data.error})
+        if(data?.success){
+            const {default:fetchNotes} = await import("../../../modules/fetchNotes")
+            const data = await fetchNotes('/api/v1/user/notes')
+            if(data?.notes) {
+                setUser(old=>({...old, notes:data.notes}))
+                setNote({title:'', content:''})
+            }
+        }
+        setLoader(false)
+    }
+
+    return {loader, setLoader, handleDeleteNote, handleUpdateNote, handleNoteSubmit, error}
 }
 export default useDeleteNote

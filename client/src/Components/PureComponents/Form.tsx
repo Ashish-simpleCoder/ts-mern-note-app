@@ -1,14 +1,11 @@
-import { FormEvent, memo, ReactNode, useContext } from "react";
-// import { NoteState } from "../../Pages/Note/Note.input.section";
+import { FormEvent, memo, ReactNode } from "react";
 import styled, { css } from 'styled-components'
 
 
 
 const Form = memo(({children, no_bg, mode, handleSubmit}:{
-    children:ReactNode, no_bg?:boolean, mode?:string, handleSubmit?: (e: FormEvent<HTMLFormElement>) => Promise<void>
+    children:ReactNode, no_bg?:boolean, mode?:string, handleSubmit?: ((e: FormEvent<HTMLFormElement>) => Promise<void>) | undefined
 })=>{
-    // const {handleNoteSubmit} = useContext(NoteState)
-
 
     return(
         <StyledForm onSubmit={(e)=>{
