@@ -1,10 +1,11 @@
 import { FormEvent, memo, ReactNode } from "react";
-import styled, { css } from 'styled-components'
+import styled, { css, CSSProperties } from 'styled-components'
 
 
 
-const Form = memo(({children, no_bg, mode, handleSubmit}:{
+const Form = memo(({children, no_bg, mode, handleSubmit, styles}:{
     children:ReactNode, no_bg?:boolean, mode?:string, handleSubmit?: ((e: FormEvent<HTMLFormElement>) => Promise<void>) | undefined
+    styles?:CSSProperties
 })=>{
 
     return(
@@ -12,7 +13,7 @@ const Form = memo(({children, no_bg, mode, handleSubmit}:{
                 e.preventDefault()
                 handleSubmit && handleSubmit(e)
             }}
-            // handleNoteSubmit && handleNoteSubmit(e)}
+            style={styles}
             no_bg={no_bg}
             mode={mode}   //for margin-top
         >
@@ -56,6 +57,14 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string}>`
                     input{
                         background:var(--focused);
                     }
+                }
+            `
+        }
+        if(mode === 'create_note'){
+            return css`
+                height:20rem;
+                @media (min-width:700px){
+                    height:45rem;
                 }
             `
         }
