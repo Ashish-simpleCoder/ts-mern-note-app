@@ -23,7 +23,7 @@ const LoginModal = ()=>{
 
     return(
         <>
-            <Form mode='login' handleSubmit={handleSubmit}>
+            <Form mode='login' handleSubmit={handleSubmit} animate={true}>
                 <H3  text='Login'  styles={{color:'var(--secondary-clr)'}}  />
                 <FormField>
                     <LabelField text='email'/>

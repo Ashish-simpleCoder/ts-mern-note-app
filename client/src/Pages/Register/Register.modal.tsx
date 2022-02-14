@@ -22,7 +22,7 @@ const RegisterModal = memo(()=>{
 
     return(
         <>
-            <Form mode='register' handleSubmit={(e)=>handleSubmit(e, 'register')}>
+            <Form mode='register' handleSubmit={(e)=>handleSubmit(e, 'register')} animate={true}>
                 <H3  text='Register'  styles={{color:'var(--secondary-clr)'}}  />
                 <FormField>
                     <LabelField text='email'/>

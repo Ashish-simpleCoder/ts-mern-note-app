@@ -3,9 +3,10 @@ import styled, { css, CSSProperties } from 'styled-components'
 
 
 
-const Form = memo(({children, no_bg, mode, handleSubmit, styles}:{
+const Form = memo(({children, no_bg, mode, handleSubmit, styles, animate}:{
     children:ReactNode, no_bg?:boolean, mode?:string, handleSubmit?: ((e: FormEvent<HTMLFormElement>) => Promise<void>) | undefined
-    styles?:CSSProperties
+    styles?:CSSProperties,
+    animate?:boolean
 })=>{
 
     return(
@@ -16,6 +17,7 @@ const Form = memo(({children, no_bg, mode, handleSubmit, styles}:{
             style={styles}
             no_bg={no_bg}
             mode={mode}   //for margin-top
+            animate={animate}
         >
             {children}
         </StyledForm>
@@ -25,7 +27,7 @@ export default Form
 
 
 
-const StyledForm = styled.form<{no_bg?:boolean, mode?:string}>`
+const StyledForm = styled.form<{no_bg?:boolean, mode?:string, animate?:boolean}>`
     height:45rem;
     width:90%;
     display:flex;
@@ -79,8 +81,30 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string}>`
     button{
         margin-top:auto
     }
-
     input,textarea{
         background:var(--input-bg);
     }
+
+    /* animate flag */
+    ${({animate})=>{
+        if(animate){
+            return css`
+                animation:animate_form 0.4s ease-in forwards;
+            `
+        }
+    }}
+
+    @keyframes animate_form{
+        0%{
+            transform:translateX(-100%);
+            background:var(--secondary-clr);
+        }
+        50%{
+            transform:translateX(50%);
+        }
+        100%{
+            transform:translateX(0%);
+        }
+    }
+
 `
