@@ -107,7 +107,7 @@ a,button{
    }
 }
 .note{
-   animation:animate_note 0.3s;
+   animation:animate_note calc(0.2s  * var(--note-order)) ease-in forwards;
 }
 
 @keyframes animate_note{

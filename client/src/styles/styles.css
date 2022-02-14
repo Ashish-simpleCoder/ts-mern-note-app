@@ -204,8 +204,8 @@ a, button {
 }
 
 .note {
-  -webkit-animation: animate_note 0.3s;
-          animation: animate_note 0.3s;
+  -webkit-animation: animate_note calc(0.2s  * var(--note-order)) ease-in forwards;
+          animation: animate_note calc(0.2s  * var(--note-order)) ease-in forwards;
 }
 
 @-webkit-keyframes animate_note {
