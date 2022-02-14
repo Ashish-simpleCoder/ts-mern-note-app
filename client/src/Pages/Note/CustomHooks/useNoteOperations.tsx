@@ -16,11 +16,8 @@ const useNoteOperations = () => {
 
     useEffect(()=>{
         if(refetch){
-            console.log('refetchin')
             fetchNotes('/api/v1/user/notes').then(res=>{
-                if(res?.notes){
-                    setUser(old=>({...old, notes:res.notes}))
-                }
+                res?.notes && setUser(old=>({...old, notes:res.notes}))
             })
             setRefetch(false)
         }
