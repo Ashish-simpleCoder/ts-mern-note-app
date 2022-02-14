@@ -1,9 +1,9 @@
 import { memo, ReactNode } from "react";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
-const LeftRightWrapper = memo(({children}:{children:ReactNode})=>{
+const LeftRightWrapper = memo(({children, styles}:{children:ReactNode, styles?:CSSProperties})=>{
     return(
-        <StyledLeftRightWrapper >
+        <StyledLeftRightWrapper style={styles}>
             {children}
         </StyledLeftRightWrapper>
     )
@@ -16,6 +16,7 @@ const StyledLeftRightWrapper = styled.section`
     flex-direction:column;
     flex-wrap:wrap;
     min-height:100vh;
+    /* height:calc(100vh - 5rem); */
 
     @media (min-width:700px){
         max-height:60rem;

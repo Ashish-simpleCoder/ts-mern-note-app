@@ -27,5 +27,7 @@ const StyledHeader = styled.header`
     background:var(--header-bg);
     display:flex;
     align-items:center;
-    padding:1rem clamp(1rem, 2rem, 2vw);
+    /* padding:1rem clamp(1rem, 2rem, 2vw); */
+    height:5rem;
+    padding:0 clamp(1rem, 2rem, 2vw);
 `

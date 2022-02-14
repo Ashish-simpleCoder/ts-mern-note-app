@@ -5,7 +5,7 @@ import HeroRight from "./Hero.right";
 
 const HeroSection = memo(()=>{
     return(
-        <LeftRightWrapper>
+        <LeftRightWrapper styles={{height:'calc(100vh - 5rem)',minHeight:'unset'}}>
             <HeroLeft/>
             <HeroRight/>
         </LeftRightWrapper>
