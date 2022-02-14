@@ -64,9 +64,9 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string, animate?:boolean}>
         }
         if(mode === 'create_note'){
             return css`
-                height:20rem;
+                height:25rem;
                 @media (min-width:700px){
-                    height:45rem;
+                    height:50rem;
                 }
             `
         }

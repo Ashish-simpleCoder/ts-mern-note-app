@@ -19,7 +19,8 @@ const StyledTextArea = styled.textarea<{hover_bg?:boolean}>`
     width:100%;
     height:15rem;
     @media (min-width:700px){
-        height:100%;
+        /* height:100%; */
+        flex:1;
     }
     margin-bottom:2rem;
     resize:none;

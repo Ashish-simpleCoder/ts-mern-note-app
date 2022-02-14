@@ -21,13 +21,15 @@ const Header = memo(()=>{
 export default Header
 
 const StyledHeader = styled.header`
-    position:sticky;
-    top:0;
-    z-index:2;
     background:var(--header-bg);
     display:flex;
     align-items:center;
-    /* padding:1rem clamp(1rem, 2rem, 2vw); */
     height:6rem;
     padding:0 clamp(1rem, 2rem, 2vw);
+
+    @media (min-width:700px){
+        position:sticky;
+        top:0;
+        z-index:2;
+    }
 `

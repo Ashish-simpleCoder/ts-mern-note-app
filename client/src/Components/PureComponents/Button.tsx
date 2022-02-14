@@ -14,15 +14,12 @@ const Button = memo(({
     styles
 }:{
     text:string,
-    // handleClick?: (note_id?: string) => Promise<void> | void
     handleClick?: () => void
-
     _id?:string
     mode?:string,
     loader?:boolean
     styles?:CSSProperties | any
 })=>{
-    // const {handleDeleteNote} = useContext(EditNoteCtx)
 
 
     return (
@@ -48,7 +45,7 @@ export default Button
 const StyledButton = styled.button<{mode:string|undefined}>`
     border-radius:0.5rem;
     font-size:clamp(1.5rem, 1.6rem, 1.6vw);
-    height:4rem;
+    height:3.5rem;
     color:var(--btn-clr);
     transition:background 0.3s;
     position:relative;
@@ -57,6 +54,7 @@ const StyledButton = styled.button<{mode:string|undefined}>`
         switch(props.mode){
             case "hero_btn": return css`
                 padding:1rem 3rem;
+                height:unset;
                 display:flex;
                 align-items:center;    //making text vertically center
                 font-size:clamp(1.8rem, 2rem, 2vw);

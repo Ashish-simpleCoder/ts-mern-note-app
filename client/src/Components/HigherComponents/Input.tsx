@@ -39,7 +39,8 @@ type InputPropsTypes = {
 const StyledInput = styled.input<{mode?:string}>`
     font-size:clamp(1.6rem,1.7rem,1.7vw);
     border:none;
-    padding:0.5rem 1rem;
+    padding:0 1rem;
+    height:3.5rem;
     background:var(--input-bg);
     outline:none;
 
