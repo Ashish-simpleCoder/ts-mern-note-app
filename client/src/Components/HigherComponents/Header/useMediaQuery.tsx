@@ -10,9 +10,22 @@ const useMediaQuery = () =>{
     const enableResNav = useCallback(()=>{
         setShowNav(v=>!v)
     }, [])
+
+    // add event to body when it starts to resize
     useEffect(()=>{
         window.addEventListener('resize', handlerRef.current)
     }, [])
+
+    // adding event to the Overlay for closing the opened nav
+    useEffect(()=>{
+        const overlay = document.querySelector('.overlay') as HTMLDivElement
+        overlay.classList.toggle('show_overlay', show_nav && show)
+        if(show_nav && show){
+            overlay.addEventListener('click',enableResNav)
+        }
+        return () =>overlay.removeEventListener('click', enableResNav)
+    }, [show_nav, show])
+
     return {show, enableResNav, show_nav}
 }
 export default useMediaQuery

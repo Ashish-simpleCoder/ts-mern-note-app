@@ -18,6 +18,7 @@ const StyledHamburger = styled.div`
     justify-content:space-between;
     flex-direction:column;
     cursor:pointer;
+    z-index:3;
 
    .line{
       height:0.2rem;

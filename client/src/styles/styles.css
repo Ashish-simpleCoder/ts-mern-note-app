@@ -144,6 +144,16 @@ a, button {
   font-weight: 500;
 }
 
+html ::-moz-selection {
+  background: var(--secondary-clr);
+  color: #e8e8e8;
+}
+
+html ::selection {
+  background: var(--secondary-clr);
+  color: #e8e8e8;
+}
+
 @-webkit-keyframes show {
   0% {
     opacity: 0;
@@ -201,5 +211,9 @@ a, button {
   }
   100% {
   }
+}
+
+.show_overlay {
+  display: block !important;
 }
 /*# sourceMappingURL=styles.css.map */

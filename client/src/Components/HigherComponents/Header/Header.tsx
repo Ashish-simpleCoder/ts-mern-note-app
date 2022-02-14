@@ -2,6 +2,7 @@ import { memo } from "react";
 import styled from "styled-components";
 import AnchorLink from "../../PureComponents/AnchorLink";
 import Img from "../../PureComponents/Img";
+import Overlay from "../../PureComponents/Overlay";
 import Hamburger from "./Hamburger";
 import LogoContainer from "./LogoContainer";
 import Nav from "./Nav";
@@ -22,6 +23,7 @@ const Header = memo(()=>{
             </LogoContainer>
             <Nav cls={show_nav ? '' : 'hide'}/>
             { show && <Hamburger handleClick={enableResNav}/>  }
+            <Overlay/>
         </StyledHeader>
     )
 })
@@ -35,6 +37,11 @@ const StyledHeader = styled.header`
     padding:0 clamp(1rem, 2rem, 2vw);
     overflow-x:hidden;
     overflow-y:hidden;
+    a,button{
+        &:hover{
+            color:var(--secondary-clr);
+        }
+    }
 
     .hide{
         transform:translateX(120%);

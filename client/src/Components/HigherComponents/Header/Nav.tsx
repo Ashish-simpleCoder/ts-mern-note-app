@@ -66,13 +66,13 @@ const StyledNav = styled.nav`
         height:calc(100vh - 5rem);
         transition:all 0.3s ease;
         background:var(--header-bg);
-        z-index:2;
+        z-index:3;
         flex-direction:column;
         align-items:center;
-        /* justify-content:space-between; */
-    }
-    img{
-        margin-top:auto;
-        margin-bottom:1rem;
+        padding:1rem;
+
+        img{
+            margin-top:auto;
+        }
     }
 `

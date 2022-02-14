@@ -73,7 +73,12 @@ a,button{
    font-size: clamp(1.6rem, 1.7rem, 1.7vw);
    font-weight: 500;
 }
-
+html{
+   ::selection{
+      background:var(--secondary-clr);
+      color:hsl(0, 0%, 91%);
+   }
+}
 
  @keyframes show {
    0%{
@@ -107,3 +112,6 @@ a,button{
    }
 }
 
+.show_overlay{
+      display:block !important;
+}

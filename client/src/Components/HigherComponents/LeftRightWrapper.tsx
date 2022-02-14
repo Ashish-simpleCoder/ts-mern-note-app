@@ -1,25 +1,21 @@
 import { memo, ReactNode } from "react";
-import styled, { CSSProperties } from "styled-components";
+import styled, { css, CSSProperties } from "styled-components";
 
-const LeftRightWrapper = memo(({children, styles}:{children:ReactNode, styles?:CSSProperties})=>{
+const LeftRightWrapper = memo(({children, styles, before_obj}:{children:ReactNode, styles?:CSSProperties, before_obj?:boolean})=>{
     return(
-        <StyledLeftRightWrapper style={styles}>
+        <StyledLeftRightWrapper style={styles} before_obj={before_obj}>
             {children}
         </StyledLeftRightWrapper>
     )
 })
 export default LeftRightWrapper
 
-const StyledLeftRightWrapper = styled.section`
+const StyledLeftRightWrapper = styled.section<{before_obj?:boolean}>`
     display:flex;
-    /* width:100%; */
     flex-direction:column;
     flex-wrap:wrap;
-    /* min-height:100vh; */
-    /* height:calc(100vh - 5rem); */
 
     @media (min-width:700px){
-        /* max-height:60rem; */
         flex-direction:unset;
     }
 `
