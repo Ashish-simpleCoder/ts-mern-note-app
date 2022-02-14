@@ -9,6 +9,7 @@
     color:var(--prm-clr);
     line-height: 1.5;
     transition: background 0.3s;
+    letter-spacing: 0.07rem;
 }
 
 html{
@@ -70,7 +71,8 @@ a,button{
    cursor: pointer;
    background: inherit;
    font-size: clamp(1.6rem, 1.7rem, 1.7vw);
- }
+   font-weight: 500;
+}
 
 
  @keyframes show {
@@ -84,4 +86,42 @@ a,button{
    100%{
       opacity: 0;
    }
- }
+}
+
+
+// animation of loading in hero
+.hero > * {
+   animation: animateLoad calc(1.3s + (0.2s  * var(--order))) ease-in forwards;
+}
+@keyframes animateLoad {
+   0%{
+      transform: rotate(15deg) translateY(300%) scale(0.9);
+      opacity: 0;
+   }
+   70%{
+      transform: rotate(0) translateY(-50%) scale(1.1);
+   }
+   100%{
+      // transform:rotate(0) translateY(0)
+      // opacity: unset;
+   }
+}
+.note{
+   animation:animate_note 0.3s;
+}
+
+@keyframes animate_note{
+   0%{
+       transform: scale(0.8);
+       animation-timing-function: ease;
+       background:var(--secondary-clr);
+   }50%{
+       animation-timing-function: ease-in;
+       opacity: 1;
+       transform: scale(1.1);
+   }100%{
+       animation-timing-function: ease-out;
+       opacity: 1;
+       transform: scale(1);
+   }
+}

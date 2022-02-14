@@ -1,4 +1,4 @@
-import { Dispatch, memo, SetStateAction, useContext, useEffect, useState } from "react";
+import { CSSProperties, Dispatch, memo, SetStateAction, useContext, useEffect, useState } from "react";
 import styled, {css} from "styled-components";
 import { EditNoteCtx } from "../../Pages/Note/Note.page";
 import Loader from "./Loader";
@@ -10,7 +10,8 @@ const Button = memo(({
     handleClick,
     _id,
     mode,
-    loader
+    loader,
+    styles
 }:{
     text:string,
     // handleClick?: (note_id?: string) => Promise<void> | void
@@ -19,6 +20,7 @@ const Button = memo(({
     _id?:string
     mode?:string,
     loader?:boolean
+    styles?:CSSProperties | any
 })=>{
     // const {handleDeleteNote} = useContext(EditNoteCtx)
 
@@ -27,8 +29,9 @@ const Button = memo(({
         <StyledButton mode={mode && mode} onClick={(e)=>{
             e.stopPropagation();
             handleClick && handleClick()
-            // mode === 'delete_note_btn' && handleDeleteNote(_id)
-        }}>
+        }}
+            style={styles}
+        >
             {  (mode === 'login_btn' || mode === 'register_btn' || mode==='logout_btn' || mode=== 'create_note_btn' || mode === 'delete_note_btn') && (loader ? <Loader/> : text)  }
             { mode === 'hero_btn' && text }
             { mode === undefined && text}

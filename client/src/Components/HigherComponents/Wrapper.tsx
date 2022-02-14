@@ -22,7 +22,7 @@ const Wrapper = memo(({children, styles, page, mode}:{
         )
     }
     return (
-        <StyledWrapper mode={mode} style={styles}>
+        <StyledWrapper mode={mode} style={styles} className={mode}>
             {children}
         </StyledWrapper>
     )

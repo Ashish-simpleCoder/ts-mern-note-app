@@ -28,6 +28,6 @@ const StyledHeader = styled.header`
     display:flex;
     align-items:center;
     /* padding:1rem clamp(1rem, 2rem, 2vw); */
-    height:5rem;
+    height:6rem;
     padding:0 clamp(1rem, 2rem, 2vw);
 `

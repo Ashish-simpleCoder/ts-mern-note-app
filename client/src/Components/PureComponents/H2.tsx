@@ -1,9 +1,9 @@
-import { memo, ReactNode } from "react";
+import { CSSProperties, memo, ReactNode } from "react";
 import styled from "styled-components";
 
-const H2 = memo(({text, children}:{text?:string, children?:ReactNode})=>{
+const H2 = memo(({text, children, styles}:{text?:string, children?:ReactNode, styles?:CSSProperties | any})=>{
     return(
-        <StyledH2>{children}</StyledH2>
+        <StyledH2 style={styles}>{children}</StyledH2>
     )
 })
 export default H2

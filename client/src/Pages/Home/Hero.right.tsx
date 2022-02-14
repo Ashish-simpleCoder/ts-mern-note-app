@@ -10,11 +10,11 @@ const HeroRight = memo(()=>{
     const handleClick = () => history.push('/notes')
     return(
         <Wrapper mode='hero'>
-            <H2 >
+            <H2 styles={{"--order":0}}>
                 An Amazing <span className="accent">Note</span> App
             </H2>
-            <Caption text={'Create your notes on the go, that you can easily remember.'}/>
-            <Button text='Get Started'  handleClick={handleClick} mode='hero_btn'/>
+            <Caption text={'Create your notes on the go, that you can easily remember.'} styles={{"--order":1}}/>
+            <Button text='Get Started'  handleClick={handleClick} mode='hero_btn' styles={{"--order":2}}/>
         </Wrapper>
     )
 })

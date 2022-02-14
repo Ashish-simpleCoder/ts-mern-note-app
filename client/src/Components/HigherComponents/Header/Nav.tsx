@@ -35,7 +35,6 @@ const Nav = memo(()=>{
                 user._id ?
                     <>
                         <AnchorLink path='/notes' text="notes"/>
-                        {/* <button onClick={handleLogout}>logout</button> */}
                         <Button handleClick={handleLogout} text='logout' mode='logout_btn' />
                     </>
                 :
