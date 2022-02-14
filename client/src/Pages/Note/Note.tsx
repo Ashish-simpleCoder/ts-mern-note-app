@@ -60,8 +60,8 @@ const StyledNote = styled.div`
     box-shadow:0 0.3rem 0.5rem rgba(0,0,0,0.1);
     position:relative;
     border:var(--note-border);
-    /* animation:animate_note 0.4s var(--order) forwards; */
-    /* opacity:0; */
+   animation:animate_note calc(0.2s  * var(--note-order)) ease-in forwards;
+
 
     h3,p{
         font-size:clamp(1.6rem,1.7rem,1.7vw);
@@ -106,19 +106,18 @@ const StyledNote = styled.div`
     }
 
     @keyframes animate_note{
-   0%{
-       transform: scale(0.8);
-       animation-timing-function: ease;
-       background:var(--secondary-clr);
-       opacity:0;
-   }50%{
-       animation-timing-function: ease-in;
-       opacity: 1;
-       transform: scale(1.1);
-   }100%{
-       animation-timing-function: ease-out;
-       opacity: 1;
-       transform: scale(1);
-   }
+        0%{
+            transform: scale(0.8);
+            animation-timing-function: ease;
+            background:var(--secondary-clr);
+        }50%{
+            animation-timing-function: ease-in;
+            opacity: 1;
+            transform: scale(1.1);
+        }100%{
+            animation-timing-function: ease-out;
+            opacity: 1;
+            transform: scale(1);
+        }
 }
 `
