@@ -11,9 +11,8 @@ export default Caption
 const StyledCaption = styled.p`
     font-size:clamp(1.8rem, 2rem ,2vw);
     opacity:0.9;
-    /* opacity:0.8; */
     white-space:pre-line;
     word-break:break-all;
     margin-top:1rem;
-    width:max-content;
+    /* width:max-content; */
 `

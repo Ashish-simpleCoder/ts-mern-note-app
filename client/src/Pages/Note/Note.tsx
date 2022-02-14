@@ -81,9 +81,9 @@ const StyledNote = styled.div`
         opacity:0.8;
         white-space:pre-line;
         word-break:break-all;
-        /* flex:1; */
-        /* height:100%; */
-        /* border:1px solid; */
+        text-overflow:ellipsis;
+        height:100%;
+        width:100%;
     }
 
     span.random_span{

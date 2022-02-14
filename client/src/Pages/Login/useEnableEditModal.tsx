@@ -23,6 +23,7 @@ const useEnableEditModal = ({_id}:{_id:string}) => {
     }, [ref_id])
 
     useEffect(()=>{
+        console.log(_id)
         enableEditModal(ref_id.current)
     },[_id])
 
