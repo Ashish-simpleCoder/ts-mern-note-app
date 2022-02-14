@@ -73,9 +73,7 @@ const StyledButton = styled.button<{mode:string|undefined}>`
 
             case 'create_note_btn': return css`
                 background:var(--note-create-btn-bg);
-                /* bottom:1rem;
-                right:1rem; */
-                color:white;
+                color:hsl(0, 0%, 90%);
             `
             case 'logout_btn': return css`
                 height:unset;

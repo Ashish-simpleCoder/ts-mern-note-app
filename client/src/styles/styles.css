@@ -1,5 +1,5 @@
 :root {
-  --prm-clr:hsl(0, 0%, 22%);
+  --prm-clr:hsl(10, 90%, 15%);
   --secondary-clr:hsl(10, 90%, 50%);
   --border:1px solid hsl(0, 0%, 75%);
   --btn-clr:black;
@@ -32,9 +32,9 @@
   --hero-btn-clr:white;
   --note-border:1px solid rgba(255, 255, 255, 0);
   --note-title-border:1px solid hsl(0, 0%, 15%);
-  --body-bg:hsl(210, 8%, 5%);
-  --header-bg:hsl(210, 8%, 10%);
-  --input-bg:hsl(210, 8%, 8%);
+  --body-bg:hsl(210, 8%, 6%);
+  --header-bg:hsl(210, 8%, 12%);
+  --input-bg:hsl(210, 8%, 10%);
   --form-bg:hsl(210, 8%, 10%);
   --focused:hsl(0, 0%, 5%);
   --btn-hover-bg:hsl(120, 100%, 20%);
