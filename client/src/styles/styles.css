@@ -77,6 +77,10 @@ html {
   font-size: 62.5%;
 }
 
+html, #root, main {
+  height: 100%;
+}
+
 body {
   background: var(--body-bg);
 }

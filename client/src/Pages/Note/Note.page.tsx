@@ -39,7 +39,7 @@ const NotePage = memo(()=>{
 
 
     return(
-        <LeftRightWrapper>
+        <LeftRightWrapper styles={{height:'calc(100% - 5rem)', minHeight:'unset'}}>
             <Wrapper  mode='create_note_container'>
                 <NoteInput />
             </Wrapper>

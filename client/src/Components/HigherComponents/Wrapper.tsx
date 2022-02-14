@@ -43,6 +43,7 @@ const StyledWrapper = styled.section<{mode?:string}>`
                 transform-origin:center;
                 flex-direction:column;
                 text-align:center;
+                padding:2rem;
 
                 @media (min-width:700px){
                     width:50%;
@@ -91,8 +92,10 @@ const StyledWrapper = styled.section<{mode?:string}>`
 
     img{
         display:flex;
-        width:32rem;
-        height:35rem;
+        /* width:32rem; */
+        /* height:35rem; */
+        width:clamp(23rem, 28rem, 28vw);
+        height:clamp(28rem, 32rem, 32vw);
         transform:rotate(-20deg) scale(0.8);
         transform-origin:center;
     }
