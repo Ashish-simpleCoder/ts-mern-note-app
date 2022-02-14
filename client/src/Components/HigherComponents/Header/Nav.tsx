@@ -63,7 +63,7 @@ const StyledNav = styled.nav`
         right:0;
         position:fixed;
         width:50%;
-        height:calc(100vh - 5rem);
+        height:calc(100% - 5rem);
         transition:all 0.3s ease;
         background:var(--header-bg);
         z-index:3;
