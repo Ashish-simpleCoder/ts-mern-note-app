@@ -1,6 +1,5 @@
 :root{
     // font-clrs
-    // --prm-clr:hsl(0, 0%, 20%);
     --prm-clr:hsl(10, 90%, 15%);
     --secondary-clr:hsl(10, 90%, 50%);
     --border:1px solid hsl(0, 0%, 75%);
@@ -33,6 +32,7 @@
 
     // vars
     --width:35rem;
+    --header-height:6rem;
 }
 
 .dark-theme{

@@ -9,7 +9,6 @@ import Nav from "./Nav";
 import useMediaQuery from "./useMediaQuery";
 
 const Header = memo(()=>{
-
     const {show, enableResNav, show_nav} = useMediaQuery()
 
 
@@ -21,8 +20,12 @@ const Header = memo(()=>{
                     Material <span className="accent">Note</span> App
                 </AnchorLink>
             </LogoContainer>
+
             <Nav cls={show_nav ? '' : 'hide'}/>
+
             { show && <Hamburger handleClick={enableResNav}/>  }
+
+            {/* when res nav is opened then user can close it by clicking it on this overlay  */}
             <Overlay/>
         </StyledHeader>
     )
@@ -31,10 +34,10 @@ export default Header
 
 const StyledHeader = styled.header`
     background:var(--header-bg);
-    display:flex;
-    align-items:center;
-    height:6rem;
-    padding:0 clamp(1rem, 2rem, 2vw);
+    display: flex;
+    align-items: center;
+    height: var(--header-height);
+    padding: 0 clamp(1rem, 2rem, 2vw);
     overflow-x:hidden;
     overflow-y:hidden;
     a,button{

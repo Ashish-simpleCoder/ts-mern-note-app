@@ -52,23 +52,20 @@ const Nav = memo(({cls}:{cls?:string})=>{
 export default Nav
 
 const StyledNav = styled.nav`
-
-    transition:none;
     display:flex;
     gap:3rem;
     align-items:center;
 
     @media (max-width:700px){
-        top:5rem;
+        top:var(--header-height);
         right:0;
         position:fixed;
         width:50%;
-        height:calc(100% - 5rem);
+        height:calc(100% - var(--header-height));
         transition:all 0.3s ease;
         background:var(--header-bg);
         z-index:3;
         flex-direction:column;
-        align-items:center;
         padding:1rem;
 
         img{
