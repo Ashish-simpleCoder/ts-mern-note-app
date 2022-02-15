@@ -1,13 +1,7 @@
 import styled from "styled-components"
-
 type LabelProps = { text:string, focus?:string  }
 
-
-const LabelField = (props:LabelProps)=>{
-    return(
-        <StyledLabel className={props.focus && 'transform'}>{props.text}</StyledLabel>
-    )
-}
+const LabelField = (props:LabelProps)=> <StyledLabel className={props.focus && 'transform'}>{props.text}</StyledLabel>
 export default LabelField
 
 

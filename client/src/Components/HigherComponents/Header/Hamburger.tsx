@@ -1,7 +1,8 @@
 import { memo } from "react"
 import styled from "styled-components"
 
-const Hamburger = memo(({handleClick} : {handleClick:()=>void}) => {
+
+const Hamburger = memo(({handleClick} : {handleClick?:()=>void}) => {
     return(
         <StyledHamburger onClick={handleClick}>
             <div className="line l1"></div>
@@ -12,13 +13,14 @@ const Hamburger = memo(({handleClick} : {handleClick:()=>void}) => {
 })
 export default Hamburger
 
+
 const StyledHamburger = styled.div`
-    width:3rem;
-    display:flex;
-    justify-content:space-between;
-    flex-direction:column;
-    cursor:pointer;
-    z-index:3;
+   width:3rem;
+   display:flex;
+   justify-content:space-between;
+   flex-direction:column;
+   cursor:pointer;
+   z-index:3;
 
    .line{
       height:0.2rem;

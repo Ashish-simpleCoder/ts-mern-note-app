@@ -30,6 +30,5 @@ const StyledInput = styled.input`
 type InputProps = {
     name:string,
     state:string,
-    // handleChange: (e: ChangeEvent<HTMLInputElement>) => void,
     handleChanges: (e: ChangeEvent<HTMLInputElement>) => void
 }

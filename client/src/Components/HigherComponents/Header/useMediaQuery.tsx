@@ -3,13 +3,14 @@ import { useEffect, useRef, useState, useCallback } from "react"
 const useMediaQuery = () =>{
     const [show, setShow] = useState(()=>window.innerWidth < 700)
     const [show_nav, setShowNav] = useState(()=>window.innerWidth > 700)
+
+    // making the immutable function for so after cleanup events can be removed from dom
     const handlerRef = useRef(()=>{
         setShow(window.innerWidth < 700)
         setShowNav(window.innerWidth > 700)
     })
-    const enableResNav = useCallback(()=>{
-        setShowNav(v=>!v)
-    }, [])
+
+    const enableResNav = useCallback(()=>setShowNav(v=>!v), [])
 
     // add event to body when it starts to resize
     useEffect(()=>{

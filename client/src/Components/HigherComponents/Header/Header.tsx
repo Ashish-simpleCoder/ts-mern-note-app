@@ -8,9 +8,9 @@ import LogoContainer from "./LogoContainer";
 import Nav from "./Nav";
 import useMediaQuery from "./useMediaQuery";
 
+
 const Header = memo(()=>{
     const {show, enableResNav, show_nav} = useMediaQuery()
-
 
     return(
         <StyledHeader>
@@ -46,6 +46,7 @@ const StyledHeader = styled.header`
         }
     }
 
+    /* class for toggling the nav bar for mobile devices */
     .hide{
         transform:translateX(120%);
         opacity:0;

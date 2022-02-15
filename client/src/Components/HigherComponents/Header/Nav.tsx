@@ -28,6 +28,8 @@ const Nav = memo(({cls}:{cls?:string})=>{
             history.push('/')
         }
     }, [])
+
+    //giving the src according the theme
     const img_src = dark_theme ? './imgs/dark_mode.png' : './imgs/light_mode.png'
 
 
@@ -50,6 +52,7 @@ const Nav = memo(({cls}:{cls?:string})=>{
     )
 })
 export default Nav
+
 
 const StyledNav = styled.nav`
     display:flex;
