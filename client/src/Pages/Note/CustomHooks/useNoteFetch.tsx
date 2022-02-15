@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useUserCtx } from '../../../Context/UserContext'
 
 const useNoteFetch = () =>{
     const {setUser} = useUserCtx()
+    const [loader, setLoader] = useState(true)
 
     useEffect(()=>{
         (async()=>{
@@ -13,7 +14,9 @@ const useNoteFetch = () =>{
             } catch (error) {
                 console.log(error)
             }
+            setLoader(false)
         })()
     },[setUser])
+    return {loader}
 }
 export default useNoteFetch
