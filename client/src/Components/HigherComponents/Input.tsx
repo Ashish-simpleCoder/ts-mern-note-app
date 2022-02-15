@@ -4,13 +4,13 @@ import UserStates from "../../Context/UserContext";
 
 
 
-const Input = memo(({ placeholder, name, value, handleChange, mode}: InputPropsTypes)=>{
+const Input = memo(({ placeholder, name, value, handleChange, mode, type}: InputPropsTypes)=>{
     const {setSearch} = UserStates()
 
 
 
     return <StyledInput
-        type='text' name={name} value={value}
+        type={type === 'search' ? 'search' : 'text'} name={name} value={value}
         mode={mode}
         onChange={(e)=>{
             if(name === 'search'){
