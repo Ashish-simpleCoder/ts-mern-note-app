@@ -40,6 +40,8 @@ const StyledHeader = styled.header`
     padding: 0 clamp(1rem, 2rem, 2vw);
     overflow-x:hidden;
     overflow-y:hidden;
+    box-shadow:0 0.1rem 0.3rem rgba(0, 0,0, 0.1);
+
     a,button{
         &:hover{
             color:var(--secondary-clr);

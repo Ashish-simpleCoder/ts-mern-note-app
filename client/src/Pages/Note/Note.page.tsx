@@ -4,7 +4,6 @@ import Wrapper from "../../Components/HigherComponents/Wrapper";
 import { EditNoteType, NoteInterface } from "../../types";
 import useFetchUser from "../Home/hooks/useFetchUser";
 import useEnableEditModal from "../Login/useEnableEditModal";
-import useNoteFetch from "./CustomHooks/useNoteFetch";
 import NoteInput from "./Note.input.section";
 import NoteModal from "./Note.modal";
 import NoteOutput from "./Note.output.section";
@@ -19,8 +18,6 @@ export const useEditNoteCtx = () => useContext(EditNoteCtx)
 
 const NotePage = memo(()=>{
     useFetchUser({auth:true})    //first checking if the user is loggedin or not
-    useNoteFetch()     //fetching the notes of logged user
-
     const [edit_note, setEditNote] = useState<NoteInterface>({_id:'', title:'', content:'', bg:[]})
     useEnableEditModal({_id:edit_note._id})
 

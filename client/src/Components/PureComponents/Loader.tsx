@@ -1,9 +1,9 @@
 import { memo } from "react";
 import styled, { css } from "styled-components";
 
-const Loader = memo(()=>{
+const Loader = memo(({size} :{ size?:string})=>{
     return(
-        <StyledLoader>
+        <StyledLoader size={size}>
             <div className="circle c1"></div>
             <div className="circle c2"></div>
         </StyledLoader>
