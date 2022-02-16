@@ -41,7 +41,7 @@ const NoteOutput = memo(()=>{
                     loader ?
                         <Loader size='big' />
                         :
-                        user.notes &&  user.notes?.map((note, index)=><Note key={note._id} note={note}  styles={{'--note-order':index+1, background:dark_theme ? note.bg[1] : note.bg[0], display:matched(note) ? 'block' : 'none'}}/>) }
+                        user.notes?.map((note, index)=><Note key={note._id} note={note}  styles={{'--note-order':index+1, background:dark_theme ? note.bg[1] : note.bg[0], display:matched(note) ? 'block' : 'none'}}/>) }
             </Wrapper>
         </Wrapper>
     )

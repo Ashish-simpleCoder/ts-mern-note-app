@@ -109,7 +109,7 @@ const StyledNote = styled.div`
         0%{
             transform: scale(0.8);
             animation-timing-function: ease;
-            background:var(--secondary-clr);
+            /* background:var(--secondary-clr); */
         }50%{
             animation-timing-function: ease-in;
             opacity: 1;
