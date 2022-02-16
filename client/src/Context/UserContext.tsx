@@ -1,4 +1,4 @@
-import { createContext, memo, useContext, useState } from "react";
+import { createContext, memo, useContext, useEffect, useState } from "react";
 import { ThemeCtxInterface, UserCtxInterface, UserInterface } from "../types";
 
 const UserCtx = createContext<UserCtxInterface>({} as UserCtxInterface)
@@ -23,6 +23,11 @@ export const UserProvider = memo(({children})=>{
             return false
         }
     })
+
+    useEffect(()=>{
+        localStorage.setItem('dark-theme',JSON.stringify(dark_theme))
+        document.body.classList.toggle('dark-theme',dark_theme)
+    },[dark_theme])
 
     return(
         <UserCtx.Provider value={{user, setUser, search, setSearch}}>

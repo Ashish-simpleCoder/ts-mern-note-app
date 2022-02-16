@@ -12,6 +12,6 @@ const useFetchUser = ({auth = false} : {auth?:boolean}) =>{
             res?._id && setUser(v=>({...v,_id:res._id,email:res?.email}))
             auth && !res?._id && history.push('/login')
         })()
-    },[setUser])
+    },[setUser, history, auth])
 }
 export default useFetchUser

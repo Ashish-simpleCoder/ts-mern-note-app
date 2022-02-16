@@ -43,7 +43,7 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string, animate?:boolean}>
                 max-width:40rem;
                 margin-top:5rem;
                 border-radius:0.5rem;
-                box-shadow:0 0.5rem 0.5rem rgba(0,0,0,0.4);
+                box-shadow:0 0.3rem 0.3rem rgba(0,0,0,0.3);
                 padding:0 2rem 2rem 2rem;
                 >h3{
                     padding:1rem 0 2rem 0;
@@ -55,10 +55,6 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string, animate?:boolean}>
                     display:flex;
                     justify-content:space-between;
                     align-items:center;
-
-                    input{
-                        background:var(--focused);
-                    }
                 }
             `
         }
@@ -79,10 +75,7 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string, animate?:boolean}>
         }
     }}
     button{
-        margin-top:auto
-    }
-    input,textarea{
-        background:var(--input-bg);
+        margin-top:auto   //button will be at the bottom of the form
     }
 
     /* animate flag */
@@ -97,13 +90,9 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string, animate?:boolean}>
     @keyframes animate_form{
         0%{
             transform:translateX(-100%);
-            background:var(--secondary-clr);
         }
         50%{
             transform:translateX(50%);
-        }
-        100%{
-            transform:translateX(0%);
         }
     }
 

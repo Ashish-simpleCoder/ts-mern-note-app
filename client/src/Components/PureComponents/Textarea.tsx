@@ -19,7 +19,6 @@ const StyledTextArea = styled.textarea<{hover_bg?:boolean}>`
     width:100%;
     height:15rem;
     @media (min-width:700px){
-        /* height:100%; */
         flex:1;
     }
     margin-bottom:2rem;
@@ -28,7 +27,7 @@ const StyledTextArea = styled.textarea<{hover_bg?:boolean}>`
     font-size:clamp(1.6rem,1.7rem,1.7vw);
     border:none;
     padding:0.5rem 1rem;
-    background:inherit;
+    background:var(--input-bg);
     outline:var(--border);
     border-radius:0.3rem;
     ${({hover_bg})=>{

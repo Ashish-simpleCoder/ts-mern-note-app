@@ -1,13 +1,11 @@
 import { ChangeEvent, memo } from "react";
 import styled, { css } from "styled-components";
-import UserStates from "../../Context/UserContext";
+import  { useUserCtx } from "../../Context/UserContext";
 
 
 
-const Input = memo(({ placeholder, name, value, handleChange, mode, type}: InputPropsTypes)=>{
-    const {setSearch} = UserStates()
-
-
+const Input = memo(({ placeholder, name, value, handleChange, mode, type}: InputProps)=>{
+    const {setSearch} = useUserCtx()
 
     return <StyledInput
         type={type === 'search' ? 'search' : 'text'} name={name} value={value}
@@ -25,7 +23,7 @@ const Input = memo(({ placeholder, name, value, handleChange, mode, type}: Input
 export default Input
 
 
-type InputPropsTypes = {
+type InputProps = {
     type?:string
     mode?:string
     value?:string
@@ -55,7 +53,6 @@ const StyledInput = styled.input<{mode?:string}>`
                 `
             default : return css`
             &:hover{  background: var(--input-hover-bg);  }
-
             `
     }}}
     border-radius:0.3rem;

@@ -17,12 +17,17 @@ const InputField = (({props, setFocus}:{props:InputProps, setFocus?:Dispatch<Set
 })
 export default InputField
 
+
 const StyledInput = styled.input`
     border:none;
     outline:none;
-    padding:0.5rem 1rem;
-    background:var(--focused) !important;
-    font-size:clamp(1.5rem, 1.6rem, 1.6vw);
+    /* padding:0.5rem 1rem; */
+    height:4rem;
+    background:var(--login-input-bg);
+    font-size:clamp(1.6rem, 1.7rem, 1.7vw);
+    &:hover{
+        background:var(--input-hover-bg) !important;
+    }
 `
 
 

@@ -22,22 +22,24 @@ const NoteModal = memo(({children, mode}:{
 
     const handleNoteChange = useCallback((e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         handleChange(e, setEditNote)
-    }, [])
+    }, [handleChange, setEditNote])
 
 
 
     if(mode === 'edit_note'){
       return (
         <Wrapper mode={mode}>
+
             <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0]}} >
-                <Input   name='title' value={edit_note.title} handleChange={handleNoteChange} mode="edit_note"/>
-                <Textarea   name='content' value={edit_note.content} handleChange={handleNoteChange}/>
+                <Input  name='title' value={edit_note.title} handleChange={handleNoteChange} mode="edit_note"/>
+                <Textarea  name='content' value={edit_note.content} handleChange={handleNoteChange} styles={{background:'inherit'}}/>
                 <div className="btns">
                     <Button text='save' loader={loader}  handleClick={()=>handleUpdateNote(edit_note)} />
                     <Button text='delete' loader={loader} handleClick={()=>handleDeleteNote(edit_note._id)}  />
                 </div>
-                {children}
+                {children}       {/* if any childens are send then they will be also rendered.*/}
             </StyledEditModal>
+
         </Wrapper>
       )
     }
@@ -52,7 +54,7 @@ const StyledEditModal = styled.div`
     width:100%;
     max-width:60%;
     border-radius:0.5rem;
-    transition:all 0.3s ease;
+    transition:all 0.3s linear;
     background:var(--modal-bg);
     position:fixed;
     overflow:hidden;

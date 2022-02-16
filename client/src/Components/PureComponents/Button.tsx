@@ -1,6 +1,6 @@
-import { CSSProperties, Dispatch, memo, SetStateAction, useContext, useEffect, useState } from "react";
+import { CSSProperties, memo } from "react";
 import styled, {css} from "styled-components";
-import { EditNoteCtx } from "../../Pages/Note/Note.page";
+// import { EditNoteCtx } from "../../Pages/Note/Note.page";
 import Loader from "./Loader";
 
 
@@ -46,7 +46,7 @@ const StyledButton = styled.button<{mode:string|undefined}>`
     border-radius:0.5rem;
     font-size:clamp(1.5rem, 1.6rem, 1.6vw);
     height:3.5rem;
-    color:var(--btn-clr);
+    /* color:var(--btn-clr); */
     transition:background 0.3s;
     position:relative;
 

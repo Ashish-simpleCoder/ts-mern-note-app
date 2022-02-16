@@ -32,7 +32,7 @@ const NotePage = memo(()=>{
     const {handleChange} = useHandleChange()
     const handleNoteChange = useCallback((e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         handleChange(e, setEditNote)
-    }, [])
+    }, [handleChange])
 
 
     return(
