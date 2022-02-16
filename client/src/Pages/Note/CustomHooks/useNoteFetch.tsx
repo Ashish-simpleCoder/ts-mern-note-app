@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react'
 import { useUserCtx } from '../../../Context/UserContext'
-import fetchNotes from '../../../modules/fetchNotes'
 
 const useNoteFetch = () =>{
     const {setUser} = useUserCtx()
     const [loader, setLoader] = useState(true)
 
     useEffect(()=>{
-        fetchNotes('/api/v1/user/notes').then((data)=>{
-            if(data?.notes) setUser(old=>({...old, notes:data.notes}))
-        }).catch(err=>console.log(err)).finally(()=>setLoader(false))
+        (async()=>{
+            try {
+                const data = await (await import('../../../modules/fetchNotes')).default('/api/v1/user/notes')
+                if(data?.notes) setUser(old=>({...old, notes:data.notes}))
+            } catch (error) {
+                console.log(error)
+            }
+            setLoader(false)
+        })()
     },[setUser])
     return {loader}
 }
