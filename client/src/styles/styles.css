@@ -24,6 +24,7 @@
   --input-hover-bg:hsl(10, 100%, 96%);
   --width:35rem;
   --header-height:6rem;
+  --weight: 600;
 }
 
 .dark-theme {
@@ -75,6 +76,7 @@
   -webkit-transition: background 0.3s;
   transition: background 0.3s;
   letter-spacing: 0.07rem;
+  font-weight: var(--weight) !important;
 }
 
 html {
@@ -82,7 +84,7 @@ html {
 }
 
 html, #root, main {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {

@@ -36,13 +36,13 @@ const NoteOutput = memo(()=>{
                 }
 
             {/* displaying the notes in container */}
-            <Wrapper mode='notes_container' styles={{minHeight:'calc(100vh - 2 * var(--header-height))'}}>
+           {user.notes?.length !== 0 && <Wrapper mode='notes_container' styles={{minHeight:'calc(100vh - 2 * var(--header-height))'}}>
                 {
                     loader ?
                         <Loader size='big' />
                         :
                         user.notes?.map((note, index)=><Note key={note._id} note={note}  styles={{'--note-order':index+1, background:dark_theme ? note.bg[1] : note.bg[0], display:matched(note) ? 'block' : 'none'}}/>) }
-            </Wrapper>
+            </Wrapper>}
         </Wrapper>
     )
 })
