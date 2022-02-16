@@ -13,7 +13,7 @@ const Button = memo(({
     loader,
     styles
 }:{
-    text:string,
+    text?:string,
     handleClick?: () => void
     _id?:string
     mode?:string,
@@ -65,10 +65,24 @@ const StyledButton = styled.button<{mode:string|undefined}>`
             `
 
             case 'delete_note_btn': return css`
-                position:absolute;
+                width:3rem;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                &::before{
+                    content:'';
+                    position:absolute;
+                    background-image:url("./imgs/trash.png");
+                    background-repeat:no-repeat;
+                    width:100%;
+                    height:100%;
+                    display:flex;
+                    z-index:1;
+                }
+                /* position:absolute;
                 bottom:1rem;
                 right:1rem;
-                color:red;
+                color:red; */
             `
 
             case 'create_note_btn': return css`

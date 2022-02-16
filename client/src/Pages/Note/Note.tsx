@@ -1,20 +1,21 @@
-import { CSSProperties, memo, useContext, useEffect, useState } from "react";
+import { CSSProperties, memo, MouseEvent, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import OverlayMenu from "../../Components/HigherComponents/OverlayMenu";
 import Button from "../../Components/PureComponents/Button";
 import H3 from "../../Components/PureComponents/H3";
 import RandomSpan from "../../Components/PureComponents/RandomSpan";
 import { NoteInterface } from "../../types";
-import { EditNoteCtx } from "./Note.page";
+import { EditNoteCtx, useEditNoteCtx } from "./Note.page";
 import Clr from "../../Components/Svg/Clr";
 import ActionLink from "../../Components/PureComponents/ActionLink";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import ColorList from "../../Components/HigherComponents/ColorList";
 import useNoteOperations from "./CustomHooks/useNoteOperations";
+import useEnableMenu from "./CustomHooks/useEnableMenu";
 
 
 const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | any})=>{
-    const {setEditNote, note:edit_note} = useContext(EditNoteCtx)
+    const {setEditNote, note:edit_note, menu, setMenuDetails} = useEditNoteCtx()
     const {loader, handleDeleteNote} = useNoteOperations()
     const [opacity, setOpacity] = useState(1)
 
@@ -30,7 +31,8 @@ const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | a
 
 
     return(
-        <StyledNote id={note._id} style={{...styles, opacity, animation:!opacity && '' }}
+        <StyledNote id={note._id}
+            style={{...styles, opacity, animation:!opacity && '' }}
             className="note"
         >
             <Wrapper>
@@ -42,18 +44,10 @@ const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | a
                 <p onClick={handleClick}>{note.content}</p>
             </Wrapper>
 
-            <Button  text='d' mode='delete_note_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
-            {/* <OverlayMenu> */}
-                {/* <ActionLink tooltip_text="change color of note"> */}
-                    {/* <a href="#/notes"><Clr/></a> */}
-                    {/* <summary><Clr/></summary> */}
-                    {/* <details> */}
-                    {/* <ColorList note={note} /> */}
-                    {/* </details> */}
-                {/* </ActionLink> */}
-                {/* <ActionLink><Clr/></ActionLink>
-                <ActionLink><Clr/></ActionLink> */}
-            {/* </OverlayMenu> */}
+            <OverlayMenu>
+                <ActionLink handleClick={(e:MouseEvent<HTMLDivElement | MouseEvent>)=>{setMenuDetails && setMenuDetails(e, note)}}><Clr/></ActionLink>
+                <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
+            </OverlayMenu>
         </StyledNote>
     )
 })
@@ -69,9 +63,10 @@ const StyledNote = styled.div`
     box-shadow:0 0.3rem 0.5rem rgba(0,0,0,0.1);
     position:relative;
     border:var(--note-border);
-   animation:animate_note calc(0.4s  * var(--note-order)) ease-in;
+    animation:animate_note calc(0.4s  * var(--note-order)) ease-in;
 
 
+    /* title and content */
     h3,p{
         font-size:clamp(1.6rem,1.7rem,1.7vw);
         padding:0.5rem;
@@ -91,6 +86,7 @@ const StyledNote = styled.div`
         width:100%;
     }
 
+    /* random span at the left top of the note */
     span.random_span{
         position:absolute;
         top:0;left:0;
@@ -100,17 +96,24 @@ const StyledNote = styled.div`
         transform:translate(-50%, -50%);
     }
 
-    div.overlay_menu{
-        height:4rem;
-        width:100%;
-        display:flex;
-        opacity:0;
-        pointer-events:none;
+    @media (max-width:700px){
+        .overlay-menu{
+            display:none;
+        }
     }
-    &:hover, &:focus, &:focus-within{
-        div.overlay_menu{
-            opacity:1;
-            pointer-events:all;
+    @media (min-width:700px){
+        div.overlay-menu {
+            height:4rem;
+            width:100%;
+            display:flex;
+            opacity:0;
+            pointer-events:none;
+        }
+        &:hover{
+            div.overlay-menu{
+                opacity:1;
+                pointer-events:all;
+            }
         }
     }
 

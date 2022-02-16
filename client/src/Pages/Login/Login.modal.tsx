@@ -29,13 +29,16 @@ const LoginModal = ()=>{
                     <LabelField text='email'/>
                     <InputField props={EmailProps}/>
                 </FormField>
+
                 <FormField>
                     <LabelField text='password'/>
                     <InputField props={PasswordProps}/>
                 </FormField>
+
                 { errors.email &&  <ErrorDisplayer  error={errors.email}/> }
                 { errors.password &&  <ErrorDisplayer  error={errors.password}/> }
                 { errors.err &&  <ErrorDisplayer  error={errors.err}/> }
+
                 <Button  text='submit'  mode='login_btn' loader={loader} />
             </Form>
         </>

@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import UserStates from "../../../Context/UserContext"
 import useHandleChange from "../../Note/CustomHooks/useHandleChange"
 
+
 const useRegister = () => {
     const [state, setState] = useState({email:'', password:""})
     const [errors, setErrors] = useState<{email?:string, password?:string, err?:string}>({email:'', password:'', err:""})

@@ -1,10 +1,4 @@
 import LoginModal from "./Login.modal";
 
-const LoginPage = ()=>{
-    return(
-        <>
-        <LoginModal />
-        </>
-    )
-}
+const LoginPage = ()=> <LoginModal />
 export default LoginPage

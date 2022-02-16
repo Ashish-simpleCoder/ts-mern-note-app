@@ -1,10 +1,4 @@
 import RegisterModal from "./Register.modal"
 
-const RegisterPage = () =>{
-    return(
-        <>
-            <RegisterModal />
-        </>
-    )
-}
+const RegisterPage = () => <RegisterModal />
 export default RegisterPage

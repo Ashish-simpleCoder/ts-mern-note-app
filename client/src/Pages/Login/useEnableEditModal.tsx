@@ -23,6 +23,7 @@ const useEnableEditModal = ({_id}:{_id:string}) => {
     }, [ref_id])
 
     useEffect(()=>{
+        //when the id changes then if it has value then enable editModal
         enableEditModal(ref_id.current)
     },[_id])
 

@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 const OverlayMenu = ({children}:{children:ReactNode})=> {
     return(
-        <StyledMenu className="overlay_menu">
+        <StyledMenu className="overlay-menu">
             {children}
         </StyledMenu>
     )

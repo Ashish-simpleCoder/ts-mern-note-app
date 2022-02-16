@@ -2,10 +2,10 @@ import { Children, cloneElement, useEffect, useState } from "react"
 import styled from "styled-components"
 import Caption from "./Caption"
 
-const ActionLink = ({children, tooltip_text}:{children:JSX.Element | JSX.Element[], tooltip_text?:string}) =>{
+const ActionLink = ({children, tooltip_text, handleClick}:{children:JSX.Element | JSX.Element[], tooltip_text?:string, handleClick?:any}) =>{
 
     return(
-        <StyledLink>
+        <StyledLink onClick={handleClick}>
             {children}
             {/* { tooltip_text && <Caption text={tooltip_text} styles={{background:'var(--tooltip-bg)', padding:'0.5rem', borderRadius:'0.3rem'}}/>  } */}
         </StyledLink>
@@ -14,7 +14,7 @@ const ActionLink = ({children, tooltip_text}:{children:JSX.Element | JSX.Element
 export default ActionLink
 
 
-const StyledLink = styled.details<{tooltip_text?:string}>`
+const StyledLink = styled.div<{tooltip_text?:string}>`
     position:relative;
     overflow:none;
     cursor: pointer;
