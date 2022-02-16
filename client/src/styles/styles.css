@@ -39,7 +39,7 @@
   --header-bg:linear-gradient(140deg , hsl(210, 8%, 12%), hsl(210, 8%, 5%));
   --input-bg:hsl(210, 8%, 5%);
   --login-input-bg:hsl(0, 0%, 5%);
-  --form-bg:hsl(210, 8%, 10%);
+  --form-bg:hsl(200, 10%, 15%);
   --focused:hsl(0, 0%, 5%);
   --btn-hover-bg:hsl(120, 100%, 20%);
   --edit-modal-bg:rgba(0,0,0, 0.5);

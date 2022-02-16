@@ -89,6 +89,7 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string, animate?:boolean}>
 
     @keyframes animate_form{
         0%{
+            opacity:0;
             transform:translateX(-100%);
         }
         50%{

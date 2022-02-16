@@ -1,4 +1,4 @@
-import { CSSProperties, memo, useContext } from "react";
+import { CSSProperties, memo, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import OverlayMenu from "../../Components/HigherComponents/OverlayMenu";
 import Button from "../../Components/PureComponents/Button";
@@ -10,18 +10,27 @@ import Clr from "../../Components/Svg/Clr";
 import ActionLink from "../../Components/PureComponents/ActionLink";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import ColorList from "../../Components/HigherComponents/ColorList";
-import useDeleteNote from "./CustomHooks/useNoteOperations";
+import useNoteOperations from "./CustomHooks/useNoteOperations";
 
 
 const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | any})=>{
-    const {setEditNote} = useContext(EditNoteCtx)
-    const {loader, handleDeleteNote} = useDeleteNote()
+    const {setEditNote, note:edit_note} = useContext(EditNoteCtx)
+    const {loader, handleDeleteNote} = useNoteOperations()
+    const [opacity, setOpacity] = useState(1)
 
-    const handleClick = () => setEditNote(note)
+    const handleClick = () => {
+        setEditNote(note)
+        setOpacity(0)
+    }
+    // when the edit_modal closed then show the note again
+    useEffect(()=>{
+        !edit_note._id && setOpacity(1)
+    }, [edit_note])
+
 
 
     return(
-        <StyledNote id={note._id} style={styles}
+        <StyledNote id={note._id} style={{...styles, opacity, animation:!opacity && '' }}
             className="note"
         >
             <Wrapper>
@@ -60,7 +69,7 @@ const StyledNote = styled.div`
     box-shadow:0 0.3rem 0.5rem rgba(0,0,0,0.1);
     position:relative;
     border:var(--note-border);
-   animation:animate_note calc(0.4s  * var(--note-order)) ease-in forwards;
+   animation:animate_note calc(0.4s  * var(--note-order)) ease-in;
 
 
     h3,p{
@@ -115,9 +124,9 @@ const StyledNote = styled.div`
             opacity: 1;
             transform: scale(1.1);
         }100%{
-            animation-timing-function: ease-out;
+            /* animation-timing-function: ease-out;
             opacity: 1;
-            transform: scale(1);
+            transform: scale(1); */
         }
 }
 `
