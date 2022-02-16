@@ -60,7 +60,7 @@ const StyledNote = styled.div`
     box-shadow:0 0.3rem 0.5rem rgba(0,0,0,0.1);
     position:relative;
     border:var(--note-border);
-   animation:animate_note calc(0.2s  * var(--note-order)) ease-in forwards;
+   animation:animate_note calc(0.4s  * var(--note-order)) ease-in forwards;
 
 
     h3,p{
@@ -109,7 +109,7 @@ const StyledNote = styled.div`
         0%{
             transform: scale(0.8);
             animation-timing-function: ease;
-            background:var(--secondary-clr);
+            /* background:var(--secondary-clr); */
         }50%{
             animation-timing-function: ease-in;
             opacity: 1;
