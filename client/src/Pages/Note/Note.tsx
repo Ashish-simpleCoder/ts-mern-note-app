@@ -1,28 +1,26 @@
-import { CSSProperties, memo, MouseEvent, useContext, useEffect, useState } from "react";
+import { CSSProperties, memo, MouseEvent, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import OverlayMenu from "../../Components/HigherComponents/OverlayMenu";
 import Button from "../../Components/PureComponents/Button";
 import H3 from "../../Components/PureComponents/H3";
 import RandomSpan from "../../Components/PureComponents/RandomSpan";
 import { NoteInterface } from "../../types";
-import { EditNoteCtx, useEditNoteCtx } from "./Note.page";
+import {  useEditNoteCtx } from "./Note.page";
 import Clr from "../../Components/Svg/Clr";
 import ActionLink from "../../Components/PureComponents/ActionLink";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
-import ColorList from "../../Components/HigherComponents/ColorList";
 import useNoteOperations from "./CustomHooks/useNoteOperations";
-import useEnableMenu from "./CustomHooks/useEnableMenu";
 
 
 const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | any})=>{
-    const {setEditNote, note:edit_note, menu, setMenuDetails} = useEditNoteCtx()
+    const {setEditNote, note:edit_note,  setMenuDetails} = useEditNoteCtx()
     const {loader, handleDeleteNote} = useNoteOperations()
     const [opacity, setOpacity] = useState(1)
 
-    const handleClick = () => {
+    const handleClick = useCallback(() => {
         setEditNote(note)
         setOpacity(0)
-    }
+    }, [setEditNote, note])
     // when the edit_modal closed then show the note again
     useEffect(()=>{
         !edit_note._id && setOpacity(1)
