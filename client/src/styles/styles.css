@@ -7,8 +7,8 @@
   --transform-label-clr:hsl(10, 90%, 50%);
   --note-border:1px solid rgba(0,0, 0, 0.1);
   --note-title-border:1px solid hsl(0, 0%, 85%);
-  --body-bg:hsl(0, 0%, 95%);
-  --header-bg:hsl(0, 0%, 100%);
+  --body-bg:linear-gradient(140deg, hsl(0, 0%, 90%), hsl(0, 0%, 100%));
+  --header-bg:linear-gradient(140deg , hsl(0, 0%, 100%), hsl(0, 0%, 90%));
   --input-bg:hsl(0, 0%, 100%);
   --login-input-bg:hsl(0, 0%, 95%);
   --form-bg:white;
@@ -34,8 +34,8 @@
   --hero-btn-clr:white;
   --note-border:1px solid rgba(255, 255, 255, 0);
   --note-title-border:1px solid hsl(0, 0%, 15%);
-  --body-bg:hsl(210, 8%, 8%);
-  --header-bg:hsl(210, 8%, 12%);
+  --body-bg:linear-gradient(140deg, hsl(210, 8%, 8%), hsl(210, 8%, 12%));
+  --header-bg:linear-gradient(140deg , hsl(210, 8%, 12%), hsl(210, 8%, 5%));
   --input-bg:hsl(210, 8%, 5%);
   --login-input-bg:hsl(0, 0%, 5%);
   --form-bg:hsl(210, 8%, 10%);

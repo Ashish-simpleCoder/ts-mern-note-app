@@ -14,6 +14,6 @@ const useEventListener = ({eventType, handler, element}:{eventType:any, handler:
         return () => {
             element?.removeEventListener(eventType, eventListener)
         }
-    }, [eventType])
+    }, [eventType, element])
 }
 export default useEventListener
