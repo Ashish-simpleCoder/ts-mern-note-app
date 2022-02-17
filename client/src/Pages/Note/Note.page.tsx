@@ -13,13 +13,8 @@ import useHandleChange from "./CustomHooks/useHandleChange";
 import useNoteOperations from "./CustomHooks/useNoteOperations";
 import useEnableMenu from "./CustomHooks/useEnableMenu";
 import ColorList from "../../Components/HigherComponents/ColorList";
-// import OverlayMenu from "../../Components/HigherComponents/OverlayMenu";
-// import ActionLink from "../../Components/PureComponents/ActionLink";
-// import Button from "../../Components/PureComponents/Button";
-// import Clr from "../../Components/Svg/Clr";
 
-
-export const EditNoteCtx = createContext({} as EditNoteType)
+const EditNoteCtx = createContext({} as EditNoteType)
 export const useEditNoteCtx = () => useContext(EditNoteCtx)
 
 
@@ -44,7 +39,6 @@ const NotePage = memo(()=>{
 
     const {menu, setMenuDetails, setMenu} = useEnableMenu({element: document.querySelector('.overlay') as HTMLDivElement, handler:()=>setMenu(v=>({...v,enable:false})), eventType:'click'})
 
-    // const {handleDeleteNote, loader} = useNoteOperations()
 
     return(
         <LeftRightWrapper styles={{height:'calc(100% - 5rem)', minHeight:'unset'}}>

@@ -1,4 +1,4 @@
-import { memo} from 'react'
+import { memo } from 'react'
 import Input from '../../Components/HigherComponents/Input'
 import SectionHeader from '../../Components/HigherComponents/Section.header'
 import Wrapper from '../../Components/HigherComponents/Wrapper'
@@ -19,6 +19,7 @@ const NoteOutput = memo(()=>{
     const {dark_theme} = useThemeStates()
     const search_key = search?.trim().toLowerCase()
     const matched = (note : NoteInterface) => note.title.trim().toLowerCase().includes(search_key)  || note.content.trim().toLowerCase().includes(search_key)
+
 
     return(
         <Wrapper mode='notes_container_wrapper'>
