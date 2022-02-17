@@ -15,7 +15,7 @@ import useNoteOperations from "./CustomHooks/useNoteOperations";
 const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | any})=>{
     const {setEditNote, note:edit_note,  setMenuDetails} = useEditNoteCtx()
     const {loader, handleDeleteNote} = useNoteOperations()
-    const [opacity, setOpacity] = useState(1)
+    const [opacity, setOpacity] = useState(1)      //opacity for each note. when edit-modal is opened then set it to 0
 
     const handleClick = useCallback(() => {
         setEditNote(note)
