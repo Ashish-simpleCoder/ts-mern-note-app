@@ -47,5 +47,14 @@ interface EditNoteType{
             top: string;
             left: string;
     }},
+    setMenu?:React.Dispatch<React.SetStateAction<{
+        enable: boolean;
+        item: NoteInterface;
+        position: {
+            top: string;
+            left: string;
+        };
+    }>>
+
     setMenuDetails?:(e: MouseEvent<HTMLDivElement, MouseEvent>, item: NoteInterface) => void
 }

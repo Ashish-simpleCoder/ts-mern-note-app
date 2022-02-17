@@ -52,7 +52,7 @@ const NotePage = memo(()=>{
                 <NoteInput />
             </Wrapper>
 
-            <EditNoteCtx.Provider value={{note:edit_note, setEditNote, handleNoteChange, menu, setMenuDetails}}>
+            <EditNoteCtx.Provider value={{note:edit_note, setEditNote, handleNoteChange, menu, setMenuDetails, setMenu}}>
                 <NoteOutput />
                 <NoteModal mode="edit_note" >
                     {/* <OverlayMenu>
