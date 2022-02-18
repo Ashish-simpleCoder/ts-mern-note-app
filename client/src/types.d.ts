@@ -40,21 +40,16 @@ interface EditNoteType{
     note:NoteInterface,
     setEditNote:Dispatch<SetStateAction<NoteInterface>>,
     handleNoteChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-    menu?:{
-        enable: boolean;
-        item:NoteInterface;
-        position: {
-            top: string;
-            left: string;
-    }},
-    setMenu?:React.Dispatch<React.SetStateAction<{
-        enable: boolean;
-        item: NoteInterface;
-        position: {
-            top: string;
-            left: string;
-        };
-    }>>
-
+    menu?:MenuPosition,
+    setMenu?:React.Dispatch<React.SetStateAction<MenuPosition>>
     setMenuDetails?:(e: MouseEvent<HTMLDivElement, MouseEvent>, item: NoteInterface) => void
+}
+
+type MenuPosition = {
+    enable: boolean;
+    item:NoteInterface;
+    position: {
+        top: string;
+        left: string;
+    }
 }

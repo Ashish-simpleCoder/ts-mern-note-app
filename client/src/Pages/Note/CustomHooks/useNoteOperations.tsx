@@ -1,13 +1,20 @@
-import { Dispatch, FormEvent, SetStateAction, useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useCallback, useEffect, useState } from 'react'
 import { useUserCtx } from '../../../Context/UserContext'
 import fetchNotes from '../../../modules/fetchNotes'
 import { NoteInterface } from '../../../types'
+import useHandleChange from './useHandleChange'
 
 const useNoteOperations = () => {
+    const [note, setNote] = useState({title:'', content:''})
     const {setUser} = useUserCtx()
     const [loader, setLoader] = useState(false)
     const [error, setError] = useState({err:''})
     const [refetch, setRefetch] = useState(false)
+
+    const {handleChange} = useHandleChange()
+    const handleNoteChange = useCallback((e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
+        handleChange(e, setNote)
+    }, [handleChange])
 
 
     useEffect(()=>{
@@ -17,7 +24,7 @@ const useNoteOperations = () => {
             })
             setRefetch(false)
         }
-    }, [refetch])
+    }, [refetch, setUser])
 
     useEffect(()=>{
         let clear:any
@@ -64,7 +71,7 @@ const useNoteOperations = () => {
     }, [])
 
     // creating note
-    const handleNoteSubmit = useCallback(async(e:FormEvent<HTMLFormElement>, note:{title:string, content:string}, setNote:Dispatch<SetStateAction<{title:string, content:string}>>)=>{
+    const handleNoteSubmit = useCallback(async(e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         setLoader(true)
         const {default:createNote} = await import('../../../modules/createNote')
@@ -75,8 +82,8 @@ const useNoteOperations = () => {
             setNote({title:'', content:''})
         }
         setLoader(false)
-    },[])
+    },[note])
 
-    return {loader, setLoader, handleDeleteNote, handleUpdateNote, handleNoteSubmit, error}
+    return {loader, setLoader, handleDeleteNote, handleUpdateNote, handleNoteSubmit, error, handleNoteChange, note}
 }
 export default useNoteOperations

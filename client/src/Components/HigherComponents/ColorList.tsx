@@ -23,7 +23,6 @@ const ColorList = memo(({ styles }:{ styles?:CSSProperties})=>{
       setUser(v=>({...v, notes:data.notes}))    //setting the updated notes from the server to the client
       setEditNote((v) => ({...v, bg:clr[Object.keys(clr)[0]]}))     //setting the updated color to the edit modal as well on live
       setMenu && setMenu(v=>({...v, item:{...v.item, bg:clr[Object.keys(clr)[0]]}}))       //also updating the menu state
-
    }, [menu, setUser, setEditNote, setMenu])
 
 

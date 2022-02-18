@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react"
+import { useEditNoteCtx } from "./Note.page"
 
 const useClickListener = ({eventType, handler, element = window}:{eventType:any, handler:any, element?:any}) =>{
     const handleRef = useRef(handler)
+    const {note:edit_note} = useEditNoteCtx()
 
     useEffect(()=>{
         handleRef.current = handler
