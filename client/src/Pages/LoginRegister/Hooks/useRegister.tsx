@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
-import UserStates from "../../../Context/UserContext"
+import { useUserCtx } from "../../../Context/UserContext"
 import useHandleChange from "../../Note/CustomHooks/useHandleChange"
 
 
@@ -10,12 +10,13 @@ const useRegister = () => {
     const [loader, setLoader] = useState(false)
     const history = useHistory()
     const {handleChange} = useHandleChange()
-    const {setUser} = UserStates()
+    const {setUser} = useUserCtx()
 
     const handleChanges = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
         handleChange(e, setState)
     },[])
 
+    // helper function
     const loginUser = useCallback(async(email:string, password:string) =>{
         try{
             const res = await fetch('/api/v1/user/login',{
@@ -31,6 +32,7 @@ const useRegister = () => {
         }
     }, [])
 
+    // helper function
     const registerUser = useCallback(async(email:string, password:string)=>{
         try{
             const res = await fetch('/api/v1/user',{
@@ -45,6 +47,7 @@ const useRegister = () => {
         }
     },[])
 
+    // main function for login and registering the user
     const handleSubmit = useCallback(async(e:FormEvent<HTMLFormElement>, mode:string = 'login')=>{
         e.preventDefault()
         setLoader(true)
@@ -66,9 +69,12 @@ const useRegister = () => {
     },[state, history, registerUser])
 
     useEffect(()=>{
-        const clr = errors &&  setTimeout(()=>setErrors({email:'', password:'', err:''}), 3000)
+        let clear:any;
+        if(errors.email || errors.err || errors.password){
+            clear = setTimeout(()=>setErrors({email:'', password:'', err:''}), 3000)
+        }
         return(()=>{
-            clearInterval(clr)
+            clearInterval(clear)
         })
     },[errors])      //resetting the errors or removig or cleanin
 

@@ -9,10 +9,6 @@ const useNoteOperations = () => {
     const [error, setError] = useState({err:''})
     const [refetch, setRefetch] = useState(false)
 
-    // console.log('note operations')
-    // useEffect(()=>{
-    //     console.log('note operations')
-    // }, [])
 
     useEffect(()=>{
         if(refetch){
@@ -23,22 +19,22 @@ const useNoteOperations = () => {
         }
     }, [refetch])
 
-    // useEffect(()=>{
-    //     if(error.err){
-    //         setTimeout(()=>setError({err:''}), 3000)
-    //     }
-    //     // const clr = error.err && setTimeout(()=>setError({err:''}), 3000)
-    //     // return(()=>{
-    //     //     clearInterval(clr)
-    //     // })
-    // },[error])
+    useEffect(()=>{
+        let clear:any
+        if(error.err){
+           clear =  setTimeout(()=>setError({err:''}), 3000)
+        }
+        return(()=>{
+            clearInterval(clear)
+        })
+    },[error])
 
+    // deleting note
     const handleDeleteNote = useCallback(async(_id:string, setEditNote?:Dispatch<SetStateAction<{title:'', content:'', _id:'', bg:[]}>>) =>{
         setLoader(true)     //displaying the loader while deleting the note
         const {default: deleteNote} = await import('../../../modules/deleteNote')
         const data = await deleteNote(`/api/v1/user/notes/${_id}`)
         if(data?.success){
-            // setLoader(false)
             setRefetch(true)
         }
 
@@ -52,7 +48,7 @@ const useNoteOperations = () => {
         },310)
     }, [])
 
-
+    // updating note
     const handleUpdateNote = useCallback(async(note:NoteInterface, setEditNote?:Dispatch<SetStateAction<NoteInterface>>)=>{
         const modal = document.getElementById('modal') as HTMLDivElement
         const p = modal.parentElement as any
@@ -67,6 +63,7 @@ const useNoteOperations = () => {
         data?.success && setRefetch(true)
     }, [])
 
+    // creating note
     const handleNoteSubmit = useCallback(async(e:FormEvent<HTMLFormElement>, note:{title:string, content:string}, setNote:Dispatch<SetStateAction<{title:string, content:string}>>)=>{
         e.preventDefault()
         setLoader(true)
