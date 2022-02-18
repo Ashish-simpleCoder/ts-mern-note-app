@@ -1,4 +1,4 @@
-import UserStates, { ThemeCtx, useThemeStates } from "../../Context/UserContext"
+import { useThemeStates } from "../../Context/UserContext"
 
 const Clr = () =>{
     const {dark_theme} = useThemeStates()
@@ -13,7 +13,6 @@ const Clr = () =>{
                 <circle cx="17.5" cy="11.5" r="1.5"/>
             </svg>
         </div>
-
     )
 }
 export default Clr

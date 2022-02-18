@@ -28,12 +28,8 @@ const useNoteOperations = () => {
 
     useEffect(()=>{
         let clear:any
-        if(error.err){
-           clear =  setTimeout(()=>setError({err:''}), 3000)
-        }
-        return(()=>{
-            clearInterval(clear)
-        })
+        error.err && (clear =  setTimeout(()=>setError({err:''}), 3000))
+        return(()=>clearInterval(clear))
     },[error])
 
     // deleting note

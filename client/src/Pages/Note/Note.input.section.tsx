@@ -12,7 +12,7 @@ const NoteInput = memo(()=>{
 
 
     return(
-        <Form no_bg={true} handleSubmit={(e)=>handleNoteSubmit(e)} mode='create_note'>
+        <Form no_bg={true} handleSubmit={handleNoteSubmit} mode='create_note'>
             <Input type='title' placeholder='note title...' name='title' value={note.title} handleChange={handleNoteChange} mode='note_title'/>
 
             <Textarea name='content'  value={note.content} handleChange={handleNoteChange} placeholder="type your notes...."   hover_bg={true}/>

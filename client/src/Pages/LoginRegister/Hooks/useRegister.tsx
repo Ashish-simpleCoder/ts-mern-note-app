@@ -6,7 +6,7 @@ import useHandleChange from "../../Note/CustomHooks/useHandleChange"
 
 const useRegister = () => {
     const [state, setState] = useState({email:'', password:""})
-    const [errors, setErrors] = useState<{email?:string, password?:string, err?:string}>({email:'', password:'', err:""})
+    const [errors, setErrors] = useState<Errors>({} as Errors)
     const [loader, setLoader] = useState(false)
     const history = useHistory()
     const {handleChange} = useHandleChange()
@@ -89,3 +89,9 @@ const useRegister = () => {
     return {handleSubmit, loader, errors, state, setState, handleChanges, EmailProps, PasswordProps}
 }
 export default useRegister
+
+
+
+type Errors = {
+    email?:string, password?:string, err?:string
+}

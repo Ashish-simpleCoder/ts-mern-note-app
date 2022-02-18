@@ -4,14 +4,12 @@ import { ThemeCtxInterface, UserCtxInterface, UserInterface } from "../types";
 const UserCtx = createContext<UserCtxInterface>({} as UserCtxInterface)
 export const useUserCtx = () => useContext(UserCtx)
 
-
 export const ThemeCtx = createContext<ThemeCtxInterface>({} as ThemeCtxInterface)
 export const useThemeStates = () => useContext(ThemeCtx)
 
 
-
 export const UserProvider = memo(({children})=>{
-    const [user, setUser] = useState<UserInterface>({_id:'',notes:[], email:''})
+    const [user, setUser] = useState<UserInterface>({} as UserInterface)
 
     const [search, setSearch] = useState('')
 
@@ -37,6 +35,3 @@ export const UserProvider = memo(({children})=>{
         </UserCtx.Provider>
     )
 })
-
-const UserStates = () => useContext(UserCtx)
-export default UserStates

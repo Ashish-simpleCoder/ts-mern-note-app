@@ -2,12 +2,12 @@ import { MouseEvent, useCallback, useEffect, useState, useRef, KeyboardEvent } f
 import { NoteInterface } from '../../../types'
 
 
-const useEnableMenu = ({element, element2=window, handler, eventType, eventType2 = 'keyup'}:{element:any, element2?:any, handler:any, eventType:string, eventType2?:string}) =>{
+const useEnableMenu = ({element, element2=window, handler, eventType, eventType2 = 'keyup'} : HookProps) =>{
 
-    const [menu, setMenu] = useState<{enable:boolean, item:NoteInterface, position:{top:string, left:string}}>({enable:false, item:{
-        title:'',content:'',bg:[],_id:''
-    },
-     position:{ top : '', left: '' }
+    const [menu, setMenu] = useState<MenuState>({
+        enable:false,
+        item:{ title:'',content:'',bg:[],_id:'' },
+        position:{ top : '', left: '' }
     })
 
 
@@ -50,3 +50,11 @@ const useEnableMenu = ({element, element2=window, handler, eventType, eventType2
     return {setMenu, menu, setMenuDetails}
 }
 export default useEnableMenu
+
+
+type HookProps = {
+    element:any, element2?:any, handler:any, eventType:string, eventType2?:string
+}
+type MenuState = {
+    enable:boolean, item:NoteInterface, position:{top:string, left:string}
+}

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import Button from "../../Components/PureComponents/Button";
@@ -7,7 +7,7 @@ import H2 from "../../Components/PureComponents/H2";
 
 const HeroRight = memo(()=>{
     const history = useHistory()
-    const handleClick = () => history.push('/notes')
+    const handleClick = useCallback(() => history.push('/notes'),[])
     return(
         <Wrapper mode='hero'>
             <H2 styles={{"--order":0}}>

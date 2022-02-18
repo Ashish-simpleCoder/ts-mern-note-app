@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, MouseEvent, ReactNode, useCallback, useContext } from "react";
+import {  memo, MouseEvent, ReactNode, useContext } from "react";
 import styled from "styled-components";
 import Input from "../../Components/HigherComponents/Input";
 import OverlayMenu from "../../Components/HigherComponents/OverlayMenu";
@@ -8,27 +8,19 @@ import Button from "../../Components/PureComponents/Button";
 import Textarea from "../../Components/PureComponents/Textarea";
 import Clr from "../../Components/Svg/Clr";
 import { ThemeCtx } from "../../Context/UserContext";
-import useHandleChange from "./CustomHooks/useHandleChange";
-import useDeleteNote from "./CustomHooks/useNoteOperations";
+import useNoteOperations from "./CustomHooks/useNoteOperations";
 import { useEditNoteCtx } from "./Note.page";
 
 
 
-const NoteModal = memo(({children, mode}:{
+const NoteModal = memo(({ mode }:{
     children?:ReactNode
     mode:string
 })=>{
-    const {note:edit_note , setEditNote} = useEditNoteCtx()
+    const {note:edit_note, handleNoteChange} = useEditNoteCtx()
     const {dark_theme} = useContext(ThemeCtx)
-    const {loader, handleDeleteNote, handleUpdateNote} = useDeleteNote()
-    const {handleChange} = useHandleChange()
-
-    const handleNoteChange = useCallback((e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
-        handleChange(e, setEditNote)
-    }, [handleChange, setEditNote])
-
+    const {loader, handleDeleteNote} = useNoteOperations()
     const {setMenuDetails} = useEditNoteCtx()
-
 
 
     if(mode === 'edit_note'){
@@ -38,11 +30,6 @@ const NoteModal = memo(({children, mode}:{
             <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0]}} >
                 <Input  name='title' value={edit_note.title} handleChange={handleNoteChange} mode="edit_note"/>
                 <Textarea  name='content' value={edit_note.content} handleChange={handleNoteChange} styles={{background:'inherit'}}/>
-                {/* <div className="btns">
-                    <Button text='save' loader={loader}  handleClick={()=>handleUpdateNote(edit_note)} />
-                    <Button text='delete' loader={loader} handleClick={()=>handleDeleteNote(edit_note._id)}  />
-                </div> */}
-                {children}       {/* if any childens are send then they will be also rendered.*/}
                 <OverlayMenu>
                         <ActionLink handleClick={(e:MouseEvent<HTMLDivElement , MouseEvent>)=>{setMenuDetails && setMenuDetails(e, edit_note)}}><Clr/></ActionLink>
                         <Button   mode='delete_note_btn' handleClick={()=>handleDeleteNote(edit_note._id)} loader={loader}/>

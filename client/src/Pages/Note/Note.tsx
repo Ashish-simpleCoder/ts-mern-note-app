@@ -21,11 +21,11 @@ const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | a
         setEditNote(note)
         setOpacity(0)
     }, [setEditNote, note])
+
     // when the edit_modal closed then show the note again
     useEffect(()=>{
         !edit_note._id && setOpacity(1)
     }, [edit_note])
-
 
 
     return(
