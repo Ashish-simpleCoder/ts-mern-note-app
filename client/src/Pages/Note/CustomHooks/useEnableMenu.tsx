@@ -45,7 +45,7 @@ const useEnableMenu = ({element, element2=window, handler, eventType, eventType2
             element?.removeEventListener(eventType, eventListener, false)
             element2?.removeEventListener(eventType2, eventListener2, false)
         }
-    }, [eventType])
+    }, [eventType, menu.enable])
 
     return {setMenu, menu, setMenuDetails}
 }

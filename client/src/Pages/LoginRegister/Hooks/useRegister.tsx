@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useUserCtx } from "../../../Context/UserContext"
 import useHandleChange from "../../Note/CustomHooks/useHandleChange"
@@ -15,6 +15,7 @@ const useRegister = () => {
     const handleChanges = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
         handleChange(e, setState)
     },[])
+
 
     // helper function
     const loginUser = useCallback(async(email:string, password:string) =>{
@@ -78,6 +79,13 @@ const useRegister = () => {
         })
     },[errors])      //resetting the errors or removig or cleanin
 
-    return {handleSubmit, loader, errors, state, setState, handleChanges}
+    const EmailProps = useMemo(()=>({
+        state:state.email, handleChanges, name:'email'
+    }),[state.email, handleChanges])
+    const PasswordProps = useMemo(()=>({
+        state:state.password, handleChanges, name:'password'
+    }),[state.password, handleChanges])
+
+    return {handleSubmit, loader, errors, state, setState, handleChanges, EmailProps, PasswordProps}
 }
 export default useRegister
