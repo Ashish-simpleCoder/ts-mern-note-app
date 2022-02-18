@@ -28,6 +28,7 @@ const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | a
     }, [edit_note])
 
 
+
     return(
         <StyledNote id={note._id}
             style={{...styles, opacity, animation:!opacity && '' }}

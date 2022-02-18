@@ -14,6 +14,7 @@ import useNoteOperations from "./CustomHooks/useNoteOperations";
 import useEnableMenu from "./CustomHooks/useEnableMenu";
 import ColorList from "../../Components/HigherComponents/ColorList";
 
+
 const EditNoteCtx = createContext({} as EditNoteType)
 export const useEditNoteCtx = () => useContext(EditNoteCtx)
 

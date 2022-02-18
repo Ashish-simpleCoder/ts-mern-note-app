@@ -10,6 +10,7 @@ import Dummy from './Dummy'
 import Note from './Note'
 import useNoteFetch from "./CustomHooks/useNoteFetch";
 import Loader from '../../Components/PureComponents/Loader'
+import { useCallback } from 'react'
 
 
 
@@ -18,7 +19,7 @@ const NoteOutput = memo(()=>{
     const {user, search} = useUserCtx()
     const {dark_theme} = useThemeStates()
     const search_key = search?.trim().toLowerCase()
-    const matched = (note : NoteInterface) => note.title.trim().toLowerCase().includes(search_key)  || note.content.trim().toLowerCase().includes(search_key)
+    const matched = useCallback((note : NoteInterface) => note.title.trim().toLowerCase().includes(search_key)  || note.content.trim().toLowerCase().includes(search_key),[search_key])
 
 
     return(
