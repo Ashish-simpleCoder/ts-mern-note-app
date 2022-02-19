@@ -45,7 +45,7 @@ const StyledFormField = styled.div`
     }
 
     >img{
-        height:2.5rem;
+        height:2rem;
         position:absolute;
         top:50%;
         left: 0.5rem;
@@ -54,6 +54,9 @@ const StyledFormField = styled.div`
 
     >input{
         width:100%;
-        padding:1rem 0.5rem 1rem 4rem;
+        padding:1rem 5rem 1rem 4rem;
+    }
+    input[type="password"]{
+        padding-right:5rem;
     }
 `

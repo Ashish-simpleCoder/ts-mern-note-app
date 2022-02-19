@@ -14,7 +14,7 @@ const useRegister = () => {
 
     const handleChanges = useCallback((e:ChangeEvent<HTMLInputElement>) =>{
         handleChange(e, setState)
-    },[])
+    },[handleChange])
 
 
     // helper function
@@ -67,7 +67,7 @@ const useRegister = () => {
         }
         setLoader(false)
         data?.errors && setErrors(data.errors)
-    },[state, history, registerUser])
+    },[state, history, registerUser, loginUser, setUser])
 
     useEffect(()=>{
         let clear:any;
@@ -80,10 +80,11 @@ const useRegister = () => {
     },[errors])      //resetting the errors or removig or cleanin
 
     const EmailProps = useMemo(()=>({
-        state:state.email, handleChanges, name:'email'
+        state:state.email, handleChanges, name:'email',
+         type:'text'
     }),[state.email, handleChanges])
     const PasswordProps = useMemo(()=>({
-        state:state.password, handleChanges, name:'password'
+        state:state.password, handleChanges, name:'password', type:'password'
     }),[state.password, handleChanges])
 
     return {handleSubmit, loader, errors, state, setState, handleChanges, EmailProps, PasswordProps}
