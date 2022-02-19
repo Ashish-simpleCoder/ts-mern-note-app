@@ -2,7 +2,7 @@ import { memo } from "react";
 import styled from "styled-components";
 import AnchorLink from "../../PureComponents/AnchorLink";
 import Img from "../../PureComponents/Img";
-import Overlay from "../../PureComponents/Overlay";
+// import Overlay from "../../PureComponents/Overlay";
 import Hamburger from "./Hamburger";
 import LogoContainer from "./LogoContainer";
 import Nav from "./Nav";
@@ -10,7 +10,7 @@ import useMediaQuery from "./useMediaQuery";
 
 
 const Header = memo(()=>{
-    const {show, enableResNav, show_nav} = useMediaQuery()
+    const {show, enableResNav, show_nav, Overlay} = useMediaQuery()
 
     return(
         <StyledHeader>
@@ -22,11 +22,9 @@ const Header = memo(()=>{
             </LogoContainer>
 
             <Nav cls={show_nav ? '' : 'hide'}/>
-
             { show && <Hamburger handleClick={enableResNav}/>  }
-
             {/* when res nav is opened then user can close it by clicking it on this overlay  */}
-            <Overlay/>
+            <Overlay />
         </StyledHeader>
     )
 })

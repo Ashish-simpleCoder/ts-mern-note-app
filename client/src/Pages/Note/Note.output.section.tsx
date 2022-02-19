@@ -8,7 +8,7 @@ import { useThemeStates, useUserCtx } from '../../Context/UserContext'
 import { NoteInterface } from '../../types'
 import Dummy from './Dummy'
 import Note from './Note'
-import useNoteFetch from "./CustomHooks/useNoteFetch";
+import useNoteFetch from "./NotesHooks/useNoteFetch";
 import Loader from '../../Components/PureComponents/Loader'
 import { useCallback } from 'react'
 

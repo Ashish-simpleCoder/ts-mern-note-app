@@ -39,7 +39,7 @@ const Nav = memo(({cls}:{cls?:string})=>{
                         <AnchorLink text='register' path='/register'/>
                     </>
             }
-            <Img src={img_src} alt="dark and light mode" title='switch color themes' handleClick={setDarkTheme} cls='invert' styles={{cursor:'pointer',userSelect:'none'}}/>
+            <Img src={img_src} alt="toggle theme" title='switch color themes' handleClick={setDarkTheme} cls='invert' styles={{cursor:'pointer',userSelect:'none'}}/>
         </StyledNav>
     )
 })

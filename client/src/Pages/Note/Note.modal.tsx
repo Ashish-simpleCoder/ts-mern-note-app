@@ -8,7 +8,7 @@ import Button from "../../Components/PureComponents/Button";
 import Textarea from "../../Components/PureComponents/Textarea";
 import Clr from "../../Components/Svg/Clr";
 import { ThemeCtx } from "../../Context/UserContext";
-import useNoteOperations from "./CustomHooks/useNoteOperations";
+import useNoteOperations from "./NotesHooks/useNoteOperations";
 import { useEditNoteCtx } from "./Note.page";
 
 

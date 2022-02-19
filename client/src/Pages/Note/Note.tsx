@@ -9,7 +9,7 @@ import {  useEditNoteCtx } from "./Note.page";
 import Clr from "../../Components/Svg/Clr";
 import ActionLink from "../../Components/PureComponents/ActionLink";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
-import useNoteOperations from "./CustomHooks/useNoteOperations";
+import useNoteOperations from "./NotesHooks/useNoteOperations";
 
 
 const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | any})=>{

@@ -159,63 +159,9 @@ html ::selection {
   color: #e8e8e8;
 }
 
-@-webkit-keyframes show {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-    z-index: 10;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes show {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-    z-index: 10;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 .hero > * {
   -webkit-animation: animateLoad calc(1.3s + (0.2s  * var(--order))) ease-in forwards;
           animation: animateLoad calc(1.3s + (0.2s  * var(--order))) ease-in forwards;
-}
-
-@-webkit-keyframes animateLoad {
-  0% {
-    -webkit-transform: rotate(15deg) translateY(300%) scale(0.9);
-            transform: rotate(15deg) translateY(300%) scale(0.9);
-    opacity: 0;
-  }
-  70% {
-    -webkit-transform: rotate(0) translateY(-50%) scale(1.1);
-            transform: rotate(0) translateY(-50%) scale(1.1);
-  }
-  100% {
-  }
-}
-
-@keyframes animateLoad {
-  0% {
-    -webkit-transform: rotate(15deg) translateY(300%) scale(0.9);
-            transform: rotate(15deg) translateY(300%) scale(0.9);
-    opacity: 0;
-  }
-  70% {
-    -webkit-transform: rotate(0) translateY(-50%) scale(1.1);
-            transform: rotate(0) translateY(-50%) scale(1.1);
-  }
-  100% {
-  }
 }
 
 .show_overlay {

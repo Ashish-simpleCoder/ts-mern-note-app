@@ -4,7 +4,7 @@ import Button from "../../Components/PureComponents/Button"
 import ErrorDisplayer from "../../Components/PureComponents/Error"
 import Form from "../../Components/PureComponents/Form"
 import Textarea from "../../Components/PureComponents/Textarea"
-import useNoteOperations from "./CustomHooks/useNoteOperations"
+import useNoteOperations from "./NotesHooks/useNoteOperations"
 
 
 

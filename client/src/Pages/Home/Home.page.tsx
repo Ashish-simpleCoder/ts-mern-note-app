@@ -1,6 +1,6 @@
 import { memo } from "react";
 import HeroSection from "./Hero.section";
-import useFetchUser from "./hooks/useFetchUser";
+import useFetchUser from "../../Hooks/useFetchUser";
 
 
 const HomePage = memo(()=>{

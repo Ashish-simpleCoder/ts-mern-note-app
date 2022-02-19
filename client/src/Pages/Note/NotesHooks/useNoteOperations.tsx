@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useCallback, useEffec
 import { useUserCtx } from '../../../Context/UserContext'
 import fetchNotes from '../../../modules/fetchNotes'
 import { NoteInterface } from '../../../types'
-import useHandleChange from './useHandleChange'
+import useHandleChange from '../../../Hooks/useHandleChange'
 
 const useNoteOperations = () => {
     const [note, setNote] = useState({title:'', content:''})
@@ -49,6 +49,7 @@ const useNoteOperations = () => {
             modal.style.display='none'
             setEditNote && setEditNote({title:'', content:'', _id:'',bg:[]})
         },310)
+        setLoader(false)
     }, [])
 
     // updating note
@@ -69,6 +70,7 @@ const useNoteOperations = () => {
     // creating note
     const handleNoteSubmit = useCallback(async(e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
+        e.stopPropagation()
         setLoader(true)
         const {default:createNote} = await import('../../../modules/createNote')
         const data = await createNote(note)

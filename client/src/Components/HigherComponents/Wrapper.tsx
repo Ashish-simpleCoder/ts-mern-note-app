@@ -44,7 +44,17 @@ const StyledWrapper = styled.section<{mode?:string}>`
                 flex-direction:column;
                 text-align:center;
                 padding:2rem;
-
+                /* animation the every children in hero section */
+                @keyframes animateLoad {
+                    0%{
+                        transform: rotate(15deg) translateY(300%) scale(0.9);
+                        opacity: 0;
+                    }
+                    70%{
+                        transform: rotate(0) translateY(-50%) scale(1.1);
+                    }
+                    100%{ }
+                }
                 @media (min-width:700px){
                     width:50%;
                 }

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from "react"
+import Overlay from "../../PureComponents/Overlay"
 
 const useMediaQuery = () =>{
-    const [show, setShow] = useState(()=>window.innerWidth < 700)
-    const [show_nav, setShowNav] = useState(()=>window.innerWidth > 700)
+    const [show, setShow] = useState(()=>window.innerWidth < 700) //for hamburger
+    const [show_nav, setShowNav] = useState(()=>window.innerWidth > 700) //for showing the desktop nav
 
     // making the immutable function for so after cleanup events can be removed from dom
     const handlerRef = useRef(()=>{
@@ -15,6 +16,7 @@ const useMediaQuery = () =>{
     // add event to body when it starts to resize
     useEffect(()=>{
         window.addEventListener('resize', handlerRef.current)
+        return () => window.removeEventListener('resize', handlerRef.current)
     }, [])
 
     // adding event to the Overlay for closing the opened nav
@@ -27,6 +29,6 @@ const useMediaQuery = () =>{
         return () =>overlay.removeEventListener('click', enableResNav)
     }, [show_nav, show])
 
-    return {show, enableResNav, show_nav}
+    return {show, enableResNav, show_nav, Overlay}
 }
 export default useMediaQuery

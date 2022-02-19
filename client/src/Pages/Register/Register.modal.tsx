@@ -6,7 +6,7 @@ import Button from "../../Components/PureComponents/Button";
 import ErrorDisplayer from "../../Components/PureComponents/Error";
 import Form from "../../Components/PureComponents/Form";
 import H3 from "../../Components/PureComponents/H3";
-import useRegister from "../LoginRegister/Hooks/useRegister";
+import useRegister from "../../Hooks/useRegister";
 
 
 const RegisterModal = memo(()=>{

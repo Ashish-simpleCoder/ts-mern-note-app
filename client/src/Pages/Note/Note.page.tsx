@@ -2,16 +2,16 @@ import { ChangeEvent, createContext, memo, useCallback, useContext, useState } f
 import LeftRightWrapper from "../../Components/HigherComponents/LeftRightWrapper";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import { EditNoteType, NoteInterface } from "../../types";
-import useFetchUser from "../Home/hooks/useFetchUser";
-import useEnableEditModal from "../Login/useEnableEditModal";
+import useFetchUser from "../../Hooks/useFetchUser";
+import useEnableEditModal from "../../Hooks/useEnableEditModal";
 import NoteInput from "./Note.input.section";
 import NoteModal from "./Note.modal";
 import NoteOutput from "./Note.output.section";
 import useClickListener from "./useClickListener";
 import useEventListener from "./useEvent";
-import useHandleChange from "./CustomHooks/useHandleChange";
-import useNoteOperations from "./CustomHooks/useNoteOperations";
-import useEnableMenu from "./CustomHooks/useEnableMenu";
+import useHandleChange from "../../Hooks/useHandleChange";
+import useNoteOperations from "./NotesHooks/useNoteOperations";
+import useEnableMenu from "./NotesHooks/useEnableNoteMenu";
 import ColorList from "../../Components/HigherComponents/ColorList";
 
 

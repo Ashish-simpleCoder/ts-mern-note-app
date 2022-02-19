@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo, useState } from "react"
 import { useHistory } from "react-router-dom"
-import { useUserCtx } from "../../../Context/UserContext"
-import useHandleChange from "../../Note/CustomHooks/useHandleChange"
+import { useUserCtx } from "../Context/UserContext"
+import useHandleChange from "./useHandleChange"
 
 
 const useRegister = () => {

@@ -2,7 +2,6 @@ import { memo } from "react";
 import styled from "styled-components";
 
 
-
 const LogoContainer = memo(({children})=>{
     return(
         <StyledLogoContainer>
@@ -22,6 +21,6 @@ const StyledLogoContainer = styled.div`
         width:3rem;
         height:3.5rem;
         transform:rotate(-10deg);
-        margin-inline-end:2rem;
+        margin-inline-end:1rem;
     }
 `
