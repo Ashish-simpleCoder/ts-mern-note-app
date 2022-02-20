@@ -11,6 +11,8 @@ import Note from './Note'
 import useNoteFetch from "./NotesHooks/useNoteFetch";
 import Loader from '../../Components/PureComponents/Loader'
 import { useCallback } from 'react'
+import useNoteClickEvents from './NotesHooks/useNoteClickEvents'
+// import { useEditNoteCtx } from './Note.page'
 
 
 
@@ -20,6 +22,12 @@ const NoteOutput = memo(()=>{
     const {dark_theme} = useThemeStates()
     const search_key = search?.trim().toLowerCase()
     const matched = useCallback((note : NoteInterface) => note.title.trim().toLowerCase().includes(search_key)  || note.content.trim().toLowerCase().includes(search_key),[search_key])
+
+
+    // using event delegation for clicking event for each note
+    // if we add events in every note then it will take more resource
+    // so add events to the parent element of the each note
+    useNoteClickEvents()
 
 
     return(

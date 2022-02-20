@@ -3,13 +3,14 @@ import styled, { css, CSSProperties } from "styled-components";
 
 
 
-const Wrapper = memo(({children, styles, page, mode}:{
+const Wrapper = memo(({children, styles, page, mode, cls}:{
     children:ReactNode, styles?:CSSProperties, page?:string
-    mode?:string
+    mode?:string,
+    cls?:string
 })=>{
     if(mode === 'edit_note'){
         return (
-            <StyledEditModalWrapper className='edit_modal_wrapper'>
+            <StyledEditModalWrapper className={'edit_modal_wrapper '}>
                 {children}
             </StyledEditModalWrapper>
         )
@@ -22,7 +23,7 @@ const Wrapper = memo(({children, styles, page, mode}:{
         )
     }
     return (
-        <StyledWrapper mode={mode} style={styles} className={mode}>
+        <StyledWrapper mode={mode} style={styles} className={(mode && mode)+" "+cls}>
             {children}
         </StyledWrapper>
     )

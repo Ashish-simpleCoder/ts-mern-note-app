@@ -1,18 +1,19 @@
-import { ChangeEvent, createContext, memo, useCallback, useContext, useState } from "react";
-import LeftRightWrapper from "../../Components/HigherComponents/LeftRightWrapper";
-import Wrapper from "../../Components/HigherComponents/Wrapper";
-import { EditNoteType, NoteInterface } from "../../types";
-import useFetchUser from "../../Hooks/useFetchUser";
-import useEnableEditModal from "../../Hooks/useEnableEditModal";
-import NoteInput from "./Note.input.section";
-import NoteModal from "./Note.modal";
-import NoteOutput from "./Note.output.section";
-import useClickListener from "./useClickListener";
-import useEventListener from "./useEvent";
-import useHandleChange from "../../Hooks/useHandleChange";
-import useNoteOperations from "./NotesHooks/useNoteOperations";
-import useEnableMenu from "./NotesHooks/useEnableNoteMenu";
-import ColorList from "../../Components/HigherComponents/ColorList";
+import { ChangeEvent, createContext, memo, useCallback, useContext, useState } from "react"
+import LeftRightWrapper from "../../Components/HigherComponents/LeftRightWrapper"
+import Wrapper from "../../Components/HigherComponents/Wrapper"
+import { EditNoteType, NoteInterface } from "../../types"
+import useFetchUser from "../../Hooks/useFetchUser"
+import useEnableEditModal from "../../Hooks/useEnableEditModal"
+import NoteInput from "./Note.input.section"
+import NoteModal from "./Note.modal"
+import NoteOutput from "./Note.output.section"
+import useClickListener from "./useClickListener"
+import useEventListener from "./useEvent"
+import useHandleChange from "../../Hooks/useHandleChange"
+import useNoteOperations from "./NotesHooks/useNoteOperations"
+import useEnableMenu from "./NotesHooks/useEnableNoteMenu"
+import ColorList from "../../Components/HigherComponents/ColorList"
+
 
 
 const EditNoteCtx = createContext({} as EditNoteType)

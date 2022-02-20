@@ -27,8 +27,8 @@ const NoteModal = memo(({ mode }:{
       return (
         <Wrapper mode={mode}>
 
-            <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0]}} >
-                <Input  name='title' value={edit_note.title} handleChange={handleNoteChange} mode="edit_note"/>
+            <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0], border:'var(--border)'}} >
+                <Input  name='title' value={edit_note.title} handleChange={handleNoteChange} mode="edit_note" />
                 <Textarea  name='content' value={edit_note.content} handleChange={handleNoteChange} styles={{background:'inherit'}}/>
                 <OverlayMenu>
                         <ActionLink handleClick={(e:MouseEvent<HTMLDivElement , MouseEvent>)=>{setMenuDetails && setMenuDetails(e, edit_note)}}><Clr/></ActionLink>
@@ -56,25 +56,32 @@ const StyledEditModal = styled.div`
     overflow:hidden;
     box-shadow:0 0.3rem 1rem rgba(0, 0, 0, 0.4);
     flex-direction:column;
+    border:var(--border);
+
+    input{
+        border-bottom:var(--border);
+    }
 
     textarea{
         flex:1;
+        border:none;
+        outline:none;
     }
 
     input,textarea{
         margin-top:0;
-        border:none !important;
-        outline:none;
-        border-radius:0;
-        font-size:clamp(1.6rem,1.7rem, 1.7vw);
+        /* border:none !important; */
+        /* outline:none; */
+        /* border-radius:0; */
+        /* font-size:clamp(1.6rem,1.7rem, 1.7vw); */
         /* background:white; */
         &:focus{
             background:inherit;
         }
     }
     input{
-        text-align:center ;
-        font-weight:500;
+        text-align:center;
+        /* font-weight:500; */
     }
 
     .btns{

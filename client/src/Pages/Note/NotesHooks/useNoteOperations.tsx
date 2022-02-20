@@ -60,6 +60,8 @@ const useNoteOperations = () => {
         setTimeout(()=>{
             p.style.display='none'
             modal.style.display='none'
+            const div_element = document.getElementById(note._id) as  HTMLDivElement
+            div_element.style.opacity = '1' //making the note appear again after updatiing
             setEditNote && setEditNote({title:'', content:'', _id:'',bg:[]})
         },310)
         const {default:updateNotes} = await import('../../../modules/updateNote')

@@ -1,4 +1,4 @@
-import { CSSProperties, memo, MouseEvent, useCallback, useEffect, useState } from "react";
+import { CSSProperties, memo, MouseEvent } from "react";
 import styled from "styled-components";
 import OverlayMenu from "../../Components/HigherComponents/OverlayMenu";
 import Button from "../../Components/PureComponents/Button";
@@ -13,34 +13,36 @@ import useNoteOperations from "./NotesHooks/useNoteOperations";
 
 
 const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | any})=>{
-    const {setEditNote, note:edit_note,  setMenuDetails} = useEditNoteCtx()
+    const {setMenuDetails} = useEditNoteCtx()
     const {loader, handleDeleteNote} = useNoteOperations()
-    const [opacity, setOpacity] = useState(1)      //opacity for each note. when edit-modal is opened then set it to 0
+    // const [opacity, setOpacity] = useState(1)      //opacity for each note. when edit-modal is opened then set it to 0
 
-    const handleClick = useCallback(() => {
-        setEditNote(note)
-        setOpacity(0)
-    }, [setEditNote, note])
+    // const handleClick = useCallback(() => {
+    //     setEditNote(note)
+    //     setOpacity(0)
+    // }, [setEditNote, note])
 
     // when the edit_modal closed then show the note again
-    useEffect(()=>{
-        !edit_note._id && setOpacity(1)
-    }, [edit_note])
+    // useEffect(()=>{
+    //     !edit_note._id && setOpacity(1)
+    // }, [edit_note])
 
 
 
     return(
         <StyledNote id={note._id}
-            style={{...styles, opacity, animation:!opacity && '' }}
+            style={{...styles }}
             className="note"
         >
-            <Wrapper styles={{padding:'0.5rem',borderBottom:'var(--border)'}}>
+            <Wrapper styles={{padding:'0.5rem',borderBottom:'var(--border)'}} >
                 <RandomSpan cls='random_span'/>
-                <H3 text={note.title} styles={{width:'100%'}} handleClick={handleClick}/>
+                {/* <H3 text={note.title} styles={{width:'100%'}} handleClick={handleClick} cls='note-title'/> */}
+                <H3 text={note.title} styles={{width:'100%'}} cls='note-title'/>
             </Wrapper>
 
-            <Wrapper styles={{overflow:'hidden',flex:'1', padding:'0.5rem'}}>
-                <p onClick={handleClick}>{note.content}</p>
+            <Wrapper styles={{overflow:'hidden',flex:'1', padding:'0.5rem'}} cls='note-content'>
+                {/* <p onClick={handleClick} className='note-content'>{note.content}</p> */}
+                <p className='note-content'>{note.content}</p>
             </Wrapper>
 
             <OverlayMenu>
