@@ -18,12 +18,12 @@ const useEnableEditModal = ({_id}:{_id:string}) => {
             p.style.display='flex'
             modal.style.display='flex'
             setTimeout(()=> document.body.classList.add('edit_mode'),10)
-    }, [ref_id])
+    }, [])
 
     useEffect(()=>{
         //when the id changes then if it has value then enable editModal
         _id && enableEditModal(ref_id.current)
-    },[_id])
+    },[_id, enableEditModal])
 
     return {enableEditModal}
 }
