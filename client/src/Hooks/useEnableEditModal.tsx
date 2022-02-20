@@ -7,7 +7,6 @@ const useEnableEditModal = ({_id}:{_id:string}) => {
     }, [_id])
 
     const enableEditModal = useCallback((_id:string) =>{
-        if(_id){
             const modal = document.getElementById('modal') as HTMLDivElement
             const p = modal.parentElement as any
             const element = document.getElementById(_id) as HTMLDivElement
@@ -18,13 +17,12 @@ const useEnableEditModal = ({_id}:{_id:string}) => {
             modal.style.height = height+'px'
             p.style.display='flex'
             modal.style.display='flex'
-            setTimeout(()=> document.body.classList.add('edit_mode'),20)
-        }
+            setTimeout(()=> document.body.classList.add('edit_mode'),10)
     }, [ref_id])
 
     useEffect(()=>{
         //when the id changes then if it has value then enable editModal
-        enableEditModal(ref_id.current)
+        _id && enableEditModal(ref_id.current)
     },[_id])
 
     return {enableEditModal}

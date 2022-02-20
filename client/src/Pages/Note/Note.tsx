@@ -34,12 +34,12 @@ const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | a
             style={{...styles, opacity, animation:!opacity && '' }}
             className="note"
         >
-            <Wrapper>
+            <Wrapper styles={{padding:'0.5rem',borderBottom:'var(--border)'}}>
                 <RandomSpan cls='random_span'/>
                 <H3 text={note.title} styles={{width:'100%'}} handleClick={handleClick}/>
             </Wrapper>
 
-            <Wrapper styles={{overflow:'hidden',height:'60%'}}>
+            <Wrapper styles={{overflow:'hidden',flex:'1', padding:'0.5rem'}}>
                 <p onClick={handleClick}>{note.content}</p>
             </Wrapper>
 
@@ -63,15 +63,17 @@ const StyledNote = styled.div`
     position:relative;
     border:var(--note-border);
     animation:animate_note calc(0.4s  * var(--note-order)) ease-in;
+    display:flex;
+    flex-direction:column;
 
 
     /* title and content */
     h3,p{
         font-size:clamp(1.6rem,1.7rem,1.7vw);
-        padding:0.5rem;
+        /* padding:0.5rem; */
     }
     h3{
-        border-bottom:var(--border);
+        /* border-bottom:var(--border); */
         font-weight:400;
         text-align:center;
         width:100%;
@@ -80,8 +82,6 @@ const StyledNote = styled.div`
         opacity:0.8;
         white-space:pre-line;
         word-break:break-all;
-        text-overflow:ellipsis;
-        height:100%;
         width:100%;
     }
 

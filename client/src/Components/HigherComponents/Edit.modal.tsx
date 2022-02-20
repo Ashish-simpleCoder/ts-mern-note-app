@@ -20,9 +20,13 @@ export default EditModal
 const StyledEditModal = styled.form<{mode?:string}>`
     display:flex;
     width:100%;
+    transition:all 0.3s ease;
     ${(props)=>{
         switch(props.mode){
             case 'edit_note': return css`
+            textarea, input{
+                width:100% !important;
+            }
                 flex-direction:column;
                 top:0;
                 inset:0;
