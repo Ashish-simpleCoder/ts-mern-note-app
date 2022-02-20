@@ -18,7 +18,7 @@ const useNoteClickEvents = () => {
             const note = user.notes?.filter(each_note=> each_note._id === id)       //getting the exact note from user.note and setting it the edit.modal for editing
             note && setEditNote(note[0])
         }
-    }, [user.notes])
+    }, [user.notes, setEditNote])
 
 
     useEffect(()=>{
@@ -27,7 +27,7 @@ const useNoteClickEvents = () => {
             clearTimeout(timer)
             document.body.removeEventListener('click', listenClickEnv, false)
         }
-    }, [user.notes])
+    }, [user.notes, listenClickEnv])
     return {listenClickEnv}
 }
 export default useNoteClickEvents
