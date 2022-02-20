@@ -21,6 +21,7 @@ const StyledEditModal = styled.form<{mode?:string}>`
     display:flex;
     width:100%;
     transition:all 0.3s ease;
+    border:var(--border);
     ${(props)=>{
         switch(props.mode){
             case 'edit_note': return css`
