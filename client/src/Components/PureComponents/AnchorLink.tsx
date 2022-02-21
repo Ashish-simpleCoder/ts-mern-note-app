@@ -1,8 +1,10 @@
 import { memo, ReactNode } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { CSSProperties } from "styled-components";
 
-const AnchorLink = memo(({text, path, styles, children}:{text?:string, path:string, styles?:CSSProperties, children?:ReactNode})=>{
+type AnchorProps = {text?:string, path:string, styles?:CSSProperties, children?:ReactNode}
+
+const AnchorLink = memo(({text, path, styles, children} : AnchorProps)=>{
     return <NavLink to={path} style={styles} activeClassName="active_link">
         {text && text}
         {children && children}

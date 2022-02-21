@@ -14,12 +14,12 @@ const NoteInput = memo(()=>{
 
     return(
         <Form no_bg={true} handleSubmit={handleNoteSubmit} mode='create_note'>
-            <Input type='title' placeholder='note title...' name='title' value={note.title} handleChange={handleNoteChange} mode='note_title'/>
+            <Input  type='title' name='title' value={note.title} handleChange={handleNoteChange} placeholder='note title...' mode='note_title'/>
 
-            <Textarea name='content'  value={note.content} handleChange={handleNoteChange} placeholder="type your notes...."   hover_bg={true}/>
+            <Textarea  name='content' value={note.content} handleChange={handleNoteChange} placeholder="type your notes...."  hover_bg={true}/>
 
             { error.err &&  <ErrorDisplayer error={error.err}/>}
-            <Button text='create a new note' mode='create_note_btn' loader={loader}/>
+            <Button text='create note' mode='create_note_btn' loader={loader}/>
         </Form>
     )
 })

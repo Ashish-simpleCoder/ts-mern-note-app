@@ -11,44 +11,55 @@ import ActionLink from "../../Components/PureComponents/ActionLink";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import useNoteOperations from "./NotesHooks/useNoteOperations";
 
+export type NoteProps = {
+    note:NoteInterface,
+    styles?: CSSProperties | any,
+    mode?: | 'note.page' | 'recycle.page'
+}
 
-const Note = memo(({note, styles}:{note:NoteInterface, styles?:CSSProperties | any})=>{
+const Note = memo(({note, styles, mode = 'note.page'}:NoteProps)=>{
     const {setMenuDetails} = useEditNoteCtx()
     const {loader, handleDeleteNote} = useNoteOperations()
-    // const [opacity, setOpacity] = useState(1)      //opacity for each note. when edit-modal is opened then set it to 0
-
-    // const handleClick = useCallback(() => {
-    //     setEditNote(note)
-    //     setOpacity(0)
-    // }, [setEditNote, note])
-
-    // when the edit_modal closed then show the note again
-    // useEffect(()=>{
-    //     !edit_note._id && setOpacity(1)
-    // }, [edit_note])
-
 
 
     return(
-        <StyledNote id={note._id}
-            style={{...styles }}
-            className="note"
-        >
+        <StyledNote id={note._id} style={{...styles }} className="note">
+
             <Wrapper styles={{padding:'0.5rem',borderBottom:'var(--border)'}} >
                 <RandomSpan cls='random_span'/>
-                {/* <H3 text={note.title} styles={{width:'100%'}} handleClick={handleClick} cls='note-title'/> */}
                 <H3 text={note.title} styles={{width:'100%'}} cls='note-title'/>
             </Wrapper>
 
-            <Wrapper styles={{overflow:'hidden',flex:'1', padding:'0.5rem'}} cls='note-content'>
-                {/* <p onClick={handleClick} className='note-content'>{note.content}</p> */}
+            <Wrapper styles={{overflow:'hidden',flex:'1', padding:'0.5rem'}}>
                 <p className='note-content'>{note.content}</p>
             </Wrapper>
 
-            <OverlayMenu>
-                <ActionLink handleClick={(e:MouseEvent<HTMLDivElement | MouseEvent>)=>{setMenuDetails && setMenuDetails(e, note)}}><Clr/></ActionLink>
+            {/* if want to reuse then define note and recycle pages behaviour  */}
+            {
+                mode === 'note.page'
+                    &&
+                <OverlayMenu>
+                    <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, note)}}>
+                        <Clr/>
+                    </ActionLink>
+                    <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
+                </OverlayMenu>
+            }
+            {
+                mode === 'recycle.page'
+                    &&
+                <>
+                    <Button  mode='restore_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
+                    <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
+                </>
+            }
+
+            {/* <OverlayMenu>
+                <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, note)}}>
+                    <Clr/>
+                </ActionLink>
                 <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
-            </OverlayMenu>
+            </OverlayMenu> */}
         </StyledNote>
     )
 })

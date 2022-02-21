@@ -1,25 +1,28 @@
 import { CSSProperties, memo } from "react";
 import styled, {css} from "styled-components";
-// import { EditNoteCtx } from "../../Pages/Note/Note.page";
 import Loader from "./Loader";
 
 
+type BtnProps = {
+    text?:string,
+    handleClick?: () => void
+    // _id?:string
+    mode?:
+        | 'login_btn' | 'register_btn' | 'logout_btn'
+        | 'create_note_btn' | 'delete_note_btn' | 'restore_btn'
+        | 'hero_btn',
+    loader?:boolean
+    styles?:CSSProperties | any
+}
 
 const Button = memo(({
     text,
     handleClick,
-    _id,
+    // _id,
     mode,
     loader,
     styles
-}:{
-    text?:string,
-    handleClick?: () => void
-    _id?:string
-    mode?:string,
-    loader?:boolean
-    styles?:CSSProperties | any
-})=>{
+}: BtnProps)=>{
 
 
     return (

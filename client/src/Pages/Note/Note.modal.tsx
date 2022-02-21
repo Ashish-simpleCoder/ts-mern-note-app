@@ -11,12 +11,12 @@ import { ThemeCtx } from "../../Context/UserContext";
 import useNoteOperations from "./NotesHooks/useNoteOperations";
 import { useEditNoteCtx } from "./Note.page";
 
+type NoteModalProps = {
+    children?: ReactNode,
+    mode?: | 'edit_note'
+}
 
-
-const NoteModal = memo(({ mode }:{
-    children?:ReactNode
-    mode:string
-})=>{
+const NoteModal = memo(({ mode } : NoteModalProps)=>{
     const {note:edit_note, handleNoteChange} = useEditNoteCtx()
     const {dark_theme} = useContext(ThemeCtx)
     const {loader, handleDeleteNote} = useNoteOperations()
@@ -31,8 +31,8 @@ const NoteModal = memo(({ mode }:{
                 <Input  name='title' value={edit_note.title} handleChange={handleNoteChange} mode="edit_note" />
                 <Textarea  name='content' value={edit_note.content} handleChange={handleNoteChange} styles={{background:'inherit'}}/>
                 <OverlayMenu>
-                        <ActionLink handleClick={(e:MouseEvent<HTMLDivElement , MouseEvent>)=>{setMenuDetails && setMenuDetails(e, edit_note)}}><Clr/></ActionLink>
-                        <Button   mode='delete_note_btn' handleClick={()=>handleDeleteNote(edit_note._id)} loader={loader}/>
+                        <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, edit_note)}}><Clr/></ActionLink>
+                        <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote(edit_note._id)} loader={loader}/>
                     </OverlayMenu>
             </StyledEditModal>
 
@@ -70,18 +70,12 @@ const StyledEditModal = styled.div`
 
     input,textarea{
         margin-top:0;
-        /* border:none !important; */
-        /* outline:none; */
-        /* border-radius:0; */
-        /* font-size:clamp(1.6rem,1.7rem, 1.7vw); */
-        /* background:white; */
         &:focus{
             background:inherit;
         }
     }
     input{
         text-align:center;
-        /* font-weight:500; */
     }
 
     .btns{

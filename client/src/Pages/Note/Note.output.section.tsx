@@ -12,7 +12,6 @@ import useNoteFetch from "./NotesHooks/useNoteFetch";
 import Loader from '../../Components/PureComponents/Loader'
 import { useCallback } from 'react'
 import useNoteClickEvents from './NotesHooks/useNoteClickEvents'
-// import { useEditNoteCtx } from './Note.page'
 
 
 
@@ -34,7 +33,7 @@ const NoteOutput = memo(()=>{
         <Wrapper mode='notes_container_wrapper'>
             {/* for searching notes */}
             {
-                user.notes?.length !== 0  ? (<SectionHeader>
+                user.notes?.length !== 0 ? (<SectionHeader>
                                                 <H3 text='Your notes'/>
                                                 <Input type='search' name='search' placeholder='search your notes...'/>
                                             </SectionHeader>)
