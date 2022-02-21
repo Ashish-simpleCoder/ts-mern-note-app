@@ -5,9 +5,10 @@ import Button from "../../Components/PureComponents/Button";
 import Caption from "../../Components/PureComponents/Caption";
 import H2 from "../../Components/PureComponents/H2";
 
+
 const HeroRight = memo(()=>{
     const history = useHistory()
-    const handleClick = useCallback(() => history.push('/notes'),[])
+    const handleClick = useCallback(() => history.push('/notes'),[history])
     return(
         <Wrapper mode='hero'>
             <H2 styles={{"--order":0}}>

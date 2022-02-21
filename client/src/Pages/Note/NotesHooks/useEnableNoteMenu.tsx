@@ -15,7 +15,7 @@ const useEnableMenu = ({element, element2=window, handler, eventType, eventType2
         const {top, left} = e.currentTarget.getBoundingClientRect()
         setMenu(({enable:true, position:{top:top+20+'px', left:left+20+'px'}, item}))
         element.classList.add('show_overlay')
-    },[])
+    },[element])
 
     const handleRef = useRef(handler)
     useEffect(()=>{
@@ -45,7 +45,7 @@ const useEnableMenu = ({element, element2=window, handler, eventType, eventType2
             element?.removeEventListener(eventType, eventListener, false)
             element2?.removeEventListener(eventType2, eventListener2, false)
         }
-    }, [eventType, menu.enable])
+    }, [eventType, menu.enable, element, element2, eventType2])
 
     return {setMenu, menu, setMenuDetails}
 }

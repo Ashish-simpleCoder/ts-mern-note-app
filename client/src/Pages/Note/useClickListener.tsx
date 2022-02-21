@@ -18,7 +18,7 @@ const useClickListener = ({eventType, handler, element = window}: ClickHookProps
         return () => {
             element?.removeEventListener(eventType, eventListener, false)
         }
-    }, [eventType])
+    }, [eventType, element])
 }
 export default useClickListener
 

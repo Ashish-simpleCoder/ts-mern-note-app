@@ -1,13 +1,10 @@
-import { Children, cloneElement, useEffect, useState } from "react"
 import styled from "styled-components"
-import Caption from "./Caption"
 
-const ActionLink = ({children, tooltip_text, handleClick}:{children:JSX.Element | JSX.Element[], tooltip_text?:string, handleClick?:any}) =>{
 
+const ActionLink = ({children, handleClick}:{children:JSX.Element | JSX.Element[], handleClick?:any}) =>{
     return(
         <StyledLink onClick={handleClick}>
             {children}
-            {/* { tooltip_text && <Caption text={tooltip_text} styles={{background:'var(--tooltip-bg)', padding:'0.5rem', borderRadius:'0.3rem'}}/>  } */}
         </StyledLink>
     )
 }
@@ -20,7 +17,6 @@ const StyledLink = styled.div<{tooltip_text?:string}>`
     cursor: pointer;
 
     >p{
-        /* display:none; */
         position:absolute;
         top:100%;
         pointer-events:none;
