@@ -72,6 +72,21 @@ exports.deleteOneNote = (0, asyncWrapper_1.default)((req, res, next) => __awaite
     if (!user)
         return next({ status: 400, error: 'unauthorised user' });
     const note_id = req.params.note_id;
+    if (req.body.RESTORE) {
+        console.log('restore');
+        const { matchedCount } = yield user_schema_1.default.updateOne({ _id: payload._id, 'notes._id': note_id }, { $set: { 'notes.$.delete': false } });
+        if (matchedCount)
+            return res.send({ success: true });
+        if (!matchedCount)
+            return next({ status: 404, error: 'no note found with this id' });
+    }
+    if (req.body.MOVE_TO_BIN) {
+        const { matchedCount } = yield user_schema_1.default.updateOne({ _id: payload._id, 'notes._id': note_id }, { $set: { 'notes.$.delete': true } });
+        if (matchedCount)
+            return res.send({ success: true });
+        if (!matchedCount)
+            return next({ status: 404, error: 'no note found with this id' });
+    }
     const { matchedCount } = yield user_schema_1.default.updateOne({ _id: payload._id, 'notes._id': note_id }, { $pull: { 'notes': { '_id': note_id } } });
     if (matchedCount)
         return res.send({ success: true });
