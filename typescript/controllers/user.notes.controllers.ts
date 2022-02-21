@@ -58,6 +58,18 @@ export const deleteOneNote = asyncWrapper(async(req:Request, res:Response, next:
     const user:UserType = await USER_MODEL.findById(payload._id)
     if(!user) return next({status:400,error:'unauthorised user'})
     const note_id = req.params.note_id
+
+    if(req.body.RESTORE){
+        console.log('restore')
+        const {matchedCount} = await USER_MODEL.updateOne({_id:payload._id,'notes._id':note_id},{$set:{'notes.$.delete':false}})
+        if(matchedCount) return res.send({success:true})
+        if(!matchedCount) return next({status:404, error:'no note found with this id'})
+    }
+    if(req.body.MOVE_TO_BIN){
+        const {matchedCount} = await USER_MODEL.updateOne({_id:payload._id,'notes._id':note_id},{$set:{'notes.$.delete':true}})
+        if(matchedCount) return res.send({success:true})
+        if(!matchedCount) return next({status:404, error:'no note found with this id'})
+    }
     const {matchedCount} = await USER_MODEL.updateOne({_id:payload._id,'notes._id':note_id},{$pull:{'notes':{'_id':note_id}}})
     if(matchedCount) return res.send({success:true})
     if(!matchedCount) return next({status:404, error:'no note found with this id'})

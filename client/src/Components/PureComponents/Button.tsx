@@ -32,7 +32,7 @@ const Button = memo(({
         }}
             style={styles}
         >
-            {  (mode === 'login_btn' || mode === 'register_btn' || mode==='logout_btn' || mode=== 'create_note_btn' || mode === 'delete_note_btn') && (loader ? <Loader/> : text)  }
+            {  (mode === 'login_btn' || mode === 'register_btn' || mode==='logout_btn' || mode=== 'create_note_btn' || mode === 'delete_note_btn' || mode === 'restore_btn') && (loader ? <Loader/> : text)  }
             { mode === 'hero_btn' && text }
             { mode === undefined && text}
         </StyledButton>
@@ -82,10 +82,6 @@ const StyledButton = styled.button<{mode:string|undefined}>`
                     display:flex;
                     z-index:1;
                 }
-                /* position:absolute;
-                bottom:1rem;
-                right:1rem;
-                color:red; */
             `
 
             case 'create_note_btn': return css`

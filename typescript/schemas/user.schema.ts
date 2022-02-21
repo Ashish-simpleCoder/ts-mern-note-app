@@ -18,6 +18,7 @@ const USER_SCHEMA = new Schema({
         {
             title:{type:String},
             content:{type:String},
+            delete:{type:Boolean, default:false},
             bg:{
                 type:{},
                 // default: [ '#fff', '#1a1a1a' ],

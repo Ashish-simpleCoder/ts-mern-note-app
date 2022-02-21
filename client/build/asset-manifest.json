@@ -1,29 +1,31 @@
 {
   "files": {
     "main.css": "/static/css/main.c9299c59.css",
-    "main.js": "/static/js/main.471e64a9.js",
+    "main.js": "/static/js/main.d807a072.js",
     "homepage.js": "/static/js/homepage.eb70cbd1.chunk.js",
     "loginpage.js": "/static/js/loginpage.8c59ed1b.chunk.js",
     "registerpage.js": "/static/js/registerpage.14eb25f1.chunk.js",
-    "notepage.js": "/static/js/notepage.4a68a24d.chunk.js",
+    "notepage.js": "/static/js/notepage.47579834.chunk.js",
+    "binpage.js": "/static/js/binpage.e00ba015.chunk.js",
     "notefoundpage.js": "/static/js/notefoundpage.392e759f.chunk.js",
     "static/js/769.55aafa0c.chunk.js": "/static/js/769.55aafa0c.chunk.js",
-    "static/js/385.491ddaa2.chunk.js": "/static/js/385.491ddaa2.chunk.js",
+    "static/js/385.c7df1a13.chunk.js": "/static/js/385.c7df1a13.chunk.js",
     "static/js/279.99d1bddd.chunk.js": "/static/js/279.99d1bddd.chunk.js",
     "index.html": "/index.html",
     "main.c9299c59.css.map": "/static/css/main.c9299c59.css.map",
-    "main.471e64a9.js.map": "/static/js/main.471e64a9.js.map",
+    "main.d807a072.js.map": "/static/js/main.d807a072.js.map",
     "homepage.eb70cbd1.chunk.js.map": "/static/js/homepage.eb70cbd1.chunk.js.map",
     "loginpage.8c59ed1b.chunk.js.map": "/static/js/loginpage.8c59ed1b.chunk.js.map",
     "registerpage.14eb25f1.chunk.js.map": "/static/js/registerpage.14eb25f1.chunk.js.map",
-    "notepage.4a68a24d.chunk.js.map": "/static/js/notepage.4a68a24d.chunk.js.map",
+    "notepage.47579834.chunk.js.map": "/static/js/notepage.47579834.chunk.js.map",
+    "binpage.e00ba015.chunk.js.map": "/static/js/binpage.e00ba015.chunk.js.map",
     "notefoundpage.392e759f.chunk.js.map": "/static/js/notefoundpage.392e759f.chunk.js.map",
     "769.55aafa0c.chunk.js.map": "/static/js/769.55aafa0c.chunk.js.map",
-    "385.491ddaa2.chunk.js.map": "/static/js/385.491ddaa2.chunk.js.map",
+    "385.c7df1a13.chunk.js.map": "/static/js/385.c7df1a13.chunk.js.map",
     "279.99d1bddd.chunk.js.map": "/static/js/279.99d1bddd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c9299c59.css",
-    "static/js/main.471e64a9.js"
+    "static/js/main.d807a072.js"
   ]
 }

@@ -32,7 +32,8 @@ interface NoteInterface{
     title:string,
     content:string,
     _id:string,
-    bg:Record<string>[]
+    bg:Record<string>[],
+    delete?:Boolean
 }
 
 

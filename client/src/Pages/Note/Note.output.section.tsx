@@ -45,12 +45,22 @@ const NoteOutput = memo(()=>{
                 }
 
             {/* displaying the notes in container */}
-           {user.notes?.length !== 0 && <Wrapper mode='notes_container' styles={{minHeight:'calc(100vh - 2 * var(--header-height))'}}>
+           {
+                user.notes?.length !== 0
+                    &&
+                <Wrapper mode='notes_container' styles={{minHeight:'calc(100vh - 2 * var(--header-height))'}}>
                 {
-                    loader ?
-                        <Loader size='big' />
+                    loader
+                        ?
+                    <Loader size='big' />
                         :
-                        user.notes?.map((note, index)=><Note key={note._id} note={note}  styles={{'--note-order':index+1, background:dark_theme ? note.bg[1] : note.bg[0], display:matched(note) ? 'flex' : 'none'}}/>) }
+                    user.notes?.map((note, index)=>{
+                        if(!note.delete){
+                            return <Note key={note._id} note={note}  styles={{'--note-order':index+1, background:dark_theme ? note.bg[1] : note.bg[0], display:matched(note) ? 'flex' : 'none'}}/>
+                        }
+                        return null
+                    })
+                }
             </Wrapper>}
         </Wrapper>
     )

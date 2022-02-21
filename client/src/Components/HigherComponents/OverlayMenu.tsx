@@ -1,9 +1,9 @@
 import { ReactNode } from "react"
 import styled from "styled-components"
 
-const OverlayMenu = ({children}:{children:ReactNode})=> {
+const OverlayMenu = ({children, cls}:{children:ReactNode, cls?:string})=> {
     return(
-        <StyledMenu className="overlay-menu">
+        <StyledMenu className={"overlay-menu "+cls}>
             {children}
         </StyledMenu>
     )

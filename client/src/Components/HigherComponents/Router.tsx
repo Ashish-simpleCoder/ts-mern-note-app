@@ -8,6 +8,7 @@ const HomePage = lazy(()=>import('../../Pages/Home/Home.page' /* webpackChunkNam
 const LoginPage = lazy(()=>import('../../Pages/Login/Login.page' /* webpackChunkName: 'loginpage' */))
 const RegisterPage = lazy(()=>import('../../Pages/Register/Register.page' /* webpackChunkName: 'registerpage' */))
 const NotePage = lazy(()=>import('../../Pages/Note/Note.page' /* webpackChunkName: 'notepage' */))
+const BinPage = lazy(()=>import('../../Pages/Bin/Bin.page' /* webpackChunkName: 'binpage' */))
 const NotFoundPage = lazy(()=>import('../../Pages/NotFound/NotFound.page' /* webpackChunkName: 'notefoundpage' */))
 
 
@@ -23,6 +24,7 @@ const CustomRouter = memo(()=>{
                 <Route path='/login' exact><Suspense fallback={<H1 heading="loading...." />}><LoginPage/></Suspense></Route>
                 <Route path='/register' exact><Suspense fallback={<H1 heading="loading...." />}><RegisterPage/></Suspense></Route>
                 <Route path='/notes' exact><Suspense fallback={<H1 heading="loading...." />}><NotePage/></Suspense></Route>
+                <Route path='/bin' exact><Suspense fallback={<H1 heading="loading...." />}><BinPage/></Suspense></Route>
                 <Route path='*' exact><Suspense fallback={<H1 heading="loading...." />}><NotFoundPage/></Suspense></Route>
             </Switch>
             </main>

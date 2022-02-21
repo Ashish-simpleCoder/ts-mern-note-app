@@ -4,6 +4,7 @@ import fetchNotes from '../../../modules/fetchNotes'
 import { NoteInterface } from '../../../types'
 import useHandleChange from '../../../Hooks/useHandleChange'
 
+
 const useNoteOperations = () => {
     const [note, setNote] = useState({title:'', content:''})
     const {setUser} = useUserCtx()
@@ -33,22 +34,31 @@ const useNoteOperations = () => {
     },[error])
 
     // deleting note
-    const handleDeleteNote = useCallback(async(_id:string, setEditNote?:Dispatch<SetStateAction<{title:'', content:'', _id:'', bg:[]}>>) =>{
+    type DeleteProps = {
+        _id:string,
+        setEditNote?:Dispatch<SetStateAction<{title:'', content:'', _id:'', bg:[]}>>,
+        MOVE_TO_BIN?:boolean,
+        RESTORE?:boolean
+    }
+    const handleDeleteNote = useCallback(async({_id, setEditNote, MOVE_TO_BIN = true, RESTORE=false} : DeleteProps) =>{
         setLoader(true)     //displaying the loader while deleting the note
         const {default: deleteNote} = await import('../../../modules/deleteNote')
-        const data = await deleteNote(`/api/v1/user/notes/${_id}`)
+        const data = await deleteNote(`/api/v1/user/notes/${_id}`, MOVE_TO_BIN, RESTORE)
         if(data?.success){
             setRefetch(true)
         }
+        // if note is in note page then disable the modal
+        if(setEditNote || MOVE_TO_BIN){
+            const modal = document.getElementById('modal') as HTMLDivElement
+            const p = modal.parentElement as any
+            document.body.classList.remove('edit_mode')
+            setTimeout(()=>{
+                p.style.display='none'
+                modal.style.display='none'
+                setEditNote && setEditNote({title:'', content:'', _id:'',bg:[]})
+            },310)
+        }
 
-        const modal = document.getElementById('modal') as HTMLDivElement
-        const p = modal.parentElement as any
-        document.body.classList.remove('edit_mode')
-        setTimeout(()=>{
-            p.style.display='none'
-            modal.style.display='none'
-            setEditNote && setEditNote({title:'', content:'', _id:'',bg:[]})
-        },310)
         setLoader(false)
     }, [])
 
@@ -61,7 +71,10 @@ const useNoteOperations = () => {
             p.style.display='none'
             modal.style.display='none'
             const div_element = document.getElementById(note._id) as  HTMLDivElement
-            div_element.style.opacity = '1' //making the note appear again after updatiing
+            // console.log(div_element, note._id)
+            if(div_element){
+                div_element.style.opacity = '1' //making the note appear again after updatiing
+            }
             setEditNote && setEditNote({title:'', content:'', _id:'',bg:[]})
         },310)
         const {default:updateNotes} = await import('../../../modules/updateNote')

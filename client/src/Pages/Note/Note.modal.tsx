@@ -32,7 +32,7 @@ const NoteModal = memo(({ mode } : NoteModalProps)=>{
                 <Textarea  name='content' value={edit_note.content} handleChange={handleNoteChange} styles={{background:'inherit'}}/>
                 <OverlayMenu>
                         <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, edit_note)}}><Clr/></ActionLink>
-                        <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote(edit_note._id)} loader={loader}/>
+                        <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote({_id : edit_note._id})} loader={loader}/>
                     </OverlayMenu>
             </StyledEditModal>
 

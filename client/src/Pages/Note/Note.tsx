@@ -42,16 +42,16 @@ const Note = memo(({note, styles, mode = 'note.page'}:NoteProps)=>{
                     <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, note)}}>
                         <Clr/>
                     </ActionLink>
-                    <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
+                    <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote({_id:note._id})} loader={loader}/>
                 </OverlayMenu>
             }
             {
                 mode === 'recycle.page'
                     &&
-                <>
-                    <Button  mode='restore_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
-                    <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
-                </>
+                <OverlayMenu cls='bin-menu'>
+                    <Button  mode='restore_btn' handleClick={()=>handleDeleteNote({_id : note._id, MOVE_TO_BIN:false, RESTORE:true})} loader={loader} text={'restore'}/>
+                    <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote({_id:note._id, MOVE_TO_BIN:false})} loader={loader}/>
+                </OverlayMenu>
             }
 
             {/* <OverlayMenu>
@@ -112,6 +112,11 @@ const StyledNote = styled.div`
         .overlay-menu{
             display:none;
         }
+    }
+
+    /* making the permanent delete and restore btn visible in bin page for every note */
+    .bin-menu{
+        display:flex;
     }
     @media (min-width:700px){
         div.overlay-menu {
