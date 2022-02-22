@@ -70,8 +70,8 @@ const useNoteOperations = () => {
         setTimeout(()=>{
             p.style.display='none'
             modal.style.display='none'
+            if(!note._id) return       //if edit_note is setted then it means user is pressing the esc key without edit_mode enabled
             const div_element = document.getElementById(note._id) as  HTMLDivElement
-            // console.log(div_element, note._id)
             if(div_element){
                 div_element.style.opacity = '1' //making the note appear again after updatiing
             }

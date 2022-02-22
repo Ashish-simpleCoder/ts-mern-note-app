@@ -54,9 +54,10 @@ const NoteOutput = memo(()=>{
                     <If condition={!loader}>
                     {
                         user.notes?.map((note, i)=>{
-                            return <If condition={!note.delete} key={i}>
-                                <Note key={note._id} note={note}  styles={{'--note-order':i+1, background:dark_theme ? note.bg[1] : note.bg[0], display:matched(note) ? 'flex' : 'none'}}/>
-                            </If>
+                            if(!note.delete){
+                                return <Note key={note._id} note={note}  styles={{'--note-order':i+1, background:dark_theme ? note.bg[1] : note.bg[0], display:matched(note) ? 'flex' : 'none'}}/>
+                            }
+                           return null
                         })
                     }
                     </If>
