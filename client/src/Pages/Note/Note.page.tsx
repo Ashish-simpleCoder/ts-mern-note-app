@@ -13,6 +13,7 @@ import useHandleChange from "../../Hooks/useHandleChange"
 import useNoteOperations from "./NotesHooks/useNoteOperations"
 import useEnableMenu from "./NotesHooks/useEnableNoteMenu"
 import ColorList from "../../Components/HigherComponents/ColorList"
+import If from "../../UtilComponents/If"
 
 const EditNoteCtx = createContext({} as EditNoteType)
 export const useEditNoteCtx = () => useContext(EditNoteCtx)
@@ -48,10 +49,14 @@ const NotePage = memo(()=>{
 
             <EditNoteCtx.Provider value={{note:edit_note, setEditNote, handleNoteChange, menu, setMenuDetails, setMenu}}>
                 <NoteOutput />
-                <NoteModal mode="edit_note" >
-                    { menu.enable && <ColorList styles={menu.position} /> }
+                <NoteModal mode="edit_note">
+                    <If condition={menu.enable}>
+                        <ColorList styles={menu.position} />
+                    </If>
                 </NoteModal>
-                { menu.enable && <ColorList styles={menu.position} /> }
+                <If condition={menu.enable}>
+                    <ColorList styles={menu.position} />
+                </If>
             </EditNoteCtx.Provider>
         </LeftRightWrapper>
     )

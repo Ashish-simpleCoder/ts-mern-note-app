@@ -1,5 +1,5 @@
-import { ChangeEvent } from "react"
-import styled, { css, CSSProperties } from "styled-components"
+import { ChangeEvent, CSSProperties } from "react"
+import styled, { css } from "styled-components"
 
 const Textarea = ({value, handleChange, placeholder, name, styles, hover_bg}:TextareaProps)=>{
     return(

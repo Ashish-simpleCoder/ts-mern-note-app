@@ -12,6 +12,7 @@ import useNoteFetch from "./NotesHooks/useNoteFetch";
 import Loader from '../../Components/PureComponents/Loader'
 import { useCallback } from 'react'
 import useNoteClickEvents from './NotesHooks/useNoteClickEvents'
+import If from '../../UtilComponents/If'
 
 
 
@@ -31,37 +32,36 @@ const NoteOutput = memo(()=>{
 
     return(
         <Wrapper mode='notes_container_wrapper'>
-            {/* for searching notes */}
-            {
-                user.notes?.length !== 0 ? (<SectionHeader>
-                                                <H3 text='Your notes'/>
-                                                <Input type='search' name='search' placeholder='search your notes...'/>
-                                            </SectionHeader>)
-                                        :
-                                        <Dummy>
-                                            <H3 text="Haven't created any notes?" />
-                                            <Caption text="Then let's get started. "/>
-                                        </Dummy>
-                }
+            <If condition={user.notes?.length !== 0}>
+                <SectionHeader>
+                    <H3 text='Your notes'/>
+                    <Input type='search' name='search' placeholder='search your notes...'/>
+                </SectionHeader>
+            </If>
+            <If condition={ user.notes?.length === 0 }>
+                <Dummy>
+                    <H3 text="Haven't created any notes?" />
+                    <Caption text="Then let's get started. "/>
+                </Dummy>
+            </If>
 
             {/* displaying the notes in container */}
-           {
-                user.notes?.length !== 0
-                    &&
+            <If condition={ user.notes?.length !== 0 }>
                 <Wrapper mode='notes_container' styles={{minHeight:'calc(100vh - 2 * var(--header-height))'}}>
-                {
-                    loader
-                        ?
-                    <Loader size='big' />
-                        :
-                    user.notes?.map((note, index)=>{
-                        if(!note.delete){
-                            return <Note key={note._id} note={note}  styles={{'--note-order':index+1, background:dark_theme ? note.bg[1] : note.bg[0], display:matched(note) ? 'flex' : 'none'}}/>
-                        }
-                        return null
-                    })
-                }
-            </Wrapper>}
+                    <If condition={loader}>
+                        <Loader size='big'/>
+                    </If>
+                    <If condition={!loader}>
+                    {
+                        user.notes?.map((note, i)=>{
+                            return <If condition={!note.delete} key={i}>
+                                <Note key={note._id} note={note}  styles={{'--note-order':i+1, background:dark_theme ? note.bg[1] : note.bg[0], display:matched(note) ? 'flex' : 'none'}}/>
+                            </If>
+                        })
+                    }
+                    </If>
+                </Wrapper>
+            </If>
         </Wrapper>
     )
 })

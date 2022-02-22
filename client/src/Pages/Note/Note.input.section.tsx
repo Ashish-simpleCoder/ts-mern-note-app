@@ -4,6 +4,7 @@ import Button from "../../Components/PureComponents/Button"
 import ErrorDisplayer from "../../Components/PureComponents/Error"
 import Form from "../../Components/PureComponents/Form"
 import Textarea from "../../Components/PureComponents/Textarea"
+import If from "../../UtilComponents/If"
 import useNoteOperations from "./NotesHooks/useNoteOperations"
 
 
@@ -18,7 +19,10 @@ const NoteInput = memo(()=>{
 
             <Textarea  name='content' value={note.content} handleChange={handleNoteChange} placeholder="type your notes...."  hover_bg={true}/>
 
-            { error.err &&  <ErrorDisplayer error={error.err}/>}
+            {/* { error.err &&  <ErrorDisplayer error={error.err}/>} */}
+            <If condition={!!error.err}>
+                <ErrorDisplayer error={error.err}/>
+            </If>
             <Button text='create note' mode='create_note_btn' loader={loader}/>
         </Form>
     )

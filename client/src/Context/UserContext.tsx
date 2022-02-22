@@ -10,7 +10,6 @@ export const useThemeStates = () => useContext(ThemeCtx)
 
 export const UserProvider = memo(({children})=>{
     const [user, setUser] = useState<UserInterface>({} as UserInterface)
-
     const [search, setSearch] = useState('')
 
     const [dark_theme, setDarkTheme] = useState(()=>{

@@ -25,15 +25,17 @@ const NoteModal = memo(({ mode } : NoteModalProps)=>{
 
     if(mode === 'edit_note'){
       return (
-        <Wrapper mode={mode}>
+        <Wrapper mode={mode} cls='edit_modal_wrapper'>
 
             <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0], border:'var(--border)'}} >
+
                 <Input  name='title' value={edit_note.title} handleChange={handleNoteChange} mode="edit_note" />
                 <Textarea  name='content' value={edit_note.content} handleChange={handleNoteChange} styles={{background:'inherit'}}/>
+
                 <OverlayMenu>
-                        <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, edit_note)}}><Clr/></ActionLink>
-                        <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote({_id : edit_note._id})} loader={loader}/>
-                    </OverlayMenu>
+                    <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, edit_note)}}><Clr/></ActionLink>
+                    <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote({_id : edit_note._id})} loader={loader}/>
+                </OverlayMenu>
             </StyledEditModal>
 
         </Wrapper>
@@ -50,13 +52,13 @@ const StyledEditModal = styled.div`
     width:100%;
     max-width:60%;
     border-radius:0.5rem;
-    transition:all 0.3s linear;
     background:var(--modal-bg);
     position:fixed;
     overflow:hidden;
     box-shadow:0 0.3rem 1rem rgba(0, 0, 0, 0.4);
     flex-direction:column;
     border:var(--border);
+    transition:all 0.2s linear;
 
     input{
         border-bottom:var(--border);

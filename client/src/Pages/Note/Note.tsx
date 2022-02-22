@@ -10,6 +10,7 @@ import Clr from "../../Components/Svg/Clr";
 import ActionLink from "../../Components/PureComponents/ActionLink";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import useNoteOperations from "./NotesHooks/useNoteOperations";
+import If from "../../UtilComponents/If";
 
 export type NoteProps = {
     note:NoteInterface,
@@ -25,41 +26,28 @@ const Note = memo(({note, styles, mode = 'note.page'}:NoteProps)=>{
     return(
         <StyledNote id={note._id} style={{...styles }} className="note">
 
-            <Wrapper styles={{padding:'0.5rem',borderBottom:'var(--border)'}} >
+            <Wrapper styles={{padding:'0.5rem 1rem',borderBottom:'var(--border)'}} >
                 <RandomSpan cls='random_span'/>
                 <H3 text={note.title} styles={{width:'100%'}} cls='note-title'/>
             </Wrapper>
 
-            <Wrapper styles={{overflow:'hidden',flex:'1', padding:'0.5rem'}}>
+            <Wrapper styles={{overflow:'hidden',flex:'1', padding:'0.5rem 1rem'}}>
                 <p className='note-content'>{note.content}</p>
             </Wrapper>
 
             {/* if want to reuse then define note and recycle pages behaviour  */}
-            {
-                mode === 'note.page'
-                    &&
-                <OverlayMenu>
+            <OverlayMenu>
+                <If condition={mode === 'note.page'}>
                     <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, note)}}>
                         <Clr/>
                     </ActionLink>
                     <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote({_id:note._id})} loader={loader}/>
-                </OverlayMenu>
-            }
-            {
-                mode === 'recycle.page'
-                    &&
-                <OverlayMenu cls='bin-menu'>
+                 </If>
+                 <If condition={mode === 'recycle.page'}>
                     <Button  mode='restore_btn' handleClick={()=>handleDeleteNote({_id : note._id, MOVE_TO_BIN:false, RESTORE:true})} loader={loader} text={'restore'}/>
-                    <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote({_id:note._id, MOVE_TO_BIN:false})} loader={loader}/>
-                </OverlayMenu>
-            }
-
-            {/* <OverlayMenu>
-                <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, note)}}>
-                    <Clr/>
-                </ActionLink>
-                <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote(note._id)} loader={loader}/>
-            </OverlayMenu> */}
+                    <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote({_id:note._id, MOVE_TO_BIN:false, RESTORE:false})} loader={loader}/>
+                 </If>
+            </OverlayMenu>
         </StyledNote>
     )
 })
@@ -68,28 +56,27 @@ export default Note
 
 
 const StyledNote = styled.div`
+    position:relative;
     width:100%;
     max-width:40rem;
     height:20rem;
-    border-radius:1rem;
+
     box-shadow:0 0.3rem 0.5rem rgba(0,0,0,0.1);
-    position:relative;
+
+    border-radius:1rem;
     border:var(--note-border);
-    animation:animate_note calc(0.4s  * var(--note-order)) ease-in;
+
     display:flex;
     flex-direction:column;
+    animation:animate_note calc(0.4s  * var(--note-order)) ease-in;
 
 
     /* title and content */
     h3,p{
         font-size:clamp(1.6rem,1.7rem,1.7vw);
-        /* padding:0.5rem; */
     }
     h3{
-        /* border-bottom:var(--border); */
-        font-weight:400;
         text-align:center;
-        width:100%;
     }
     p{
         opacity:0.8;

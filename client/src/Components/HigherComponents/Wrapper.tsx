@@ -1,5 +1,6 @@
-import { memo, ReactNode } from "react";
-import styled, { css, CSSProperties } from "styled-components";
+import { memo, ReactNode, CSSProperties } from "react";
+import styled, { css } from "styled-components";
+import If from "../../UtilComponents/If";
 
 type ModeTypes =
     | 'edit_note' | 'note_output' | 'hero'
@@ -13,17 +14,10 @@ type WrapperProps = {
     cls?:string
 }
 
-const Wrapper = memo(({children, styles, mode, cls} : WrapperProps)=>{
-    if(mode === 'edit_note'){
-        return (
-            <StyledWrapper mode='edit_note' className={'edit_modal_wrapper '}>
-                {children}
-            </StyledWrapper>
-        )
-    }
 
+const Wrapper = memo(({children, styles, mode, cls} : WrapperProps)=>{
     return (
-        <StyledWrapper mode={mode} style={styles} className={(mode && mode)+" "+cls}>
+        <StyledWrapper mode={mode} style={styles} className={(mode ? mode : '')+" "+(cls ? cls : '')}>
             {children}
         </StyledWrapper>
     )
