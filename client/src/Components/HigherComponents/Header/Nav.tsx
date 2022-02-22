@@ -1,5 +1,4 @@
-import { memo, useCallback} from "react";
-import {  useHistory } from "react-router-dom";
+import { memo, useMemo } from "react";
 import styled from "styled-components";
 import  { useThemeStates, useUserCtx } from "../../../Context/UserContext";
 import useRegister from "../../../Hooks/useRegister";
@@ -10,14 +9,12 @@ import Img from "../../PureComponents/Img";
 
 
 const Nav = memo(({cls}:{cls?:string})=>{
-    const {user, setUser} = useUserCtx()
-    const history = useHistory()
+    const {user } = useUserCtx()
     const {dark_theme, setDarkTheme} = useThemeStates()
     const {handleLogout} = useRegister()
 
-
     //giving the src according the theme
-    const img_src = dark_theme ? './imgs/dark_mode.png' : './imgs/light_mode.png'
+    const img_src = useMemo(()=>dark_theme ? './imgs/dark_mode.png' : './imgs/light_mode.png', [dark_theme])
 
 
     return(
