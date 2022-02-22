@@ -69,6 +69,15 @@ const useRegister = () => {
         data?.errors && setErrors(data.errors)
     },[state, history, registerUser, loginUser, setUser])
 
+    const handleLogout = useCallback(async() =>{
+        const res = await fetch('/api/v1/user/logout')
+        const data:{success:boolean} = await res.json()
+        if(data.success){
+            setUser(v=>({...v,_id:'',email:''}))
+            history.push('/')
+        }
+    }, [history, setUser])
+
     useEffect(()=>{
         let clear:any;
         if(errors.email || errors.err || errors.password){
@@ -87,7 +96,7 @@ const useRegister = () => {
         state:state.password, handleChanges, name:'password', type:'password'
     }),[state.password, handleChanges])
 
-    return {handleSubmit, loader, errors, state, setState, handleChanges, EmailProps, PasswordProps}
+    return {handleSubmit, handleLogout, loader, errors, state, setState, handleChanges, EmailProps, PasswordProps}
 }
 export default useRegister
 
