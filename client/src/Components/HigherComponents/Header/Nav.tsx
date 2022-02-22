@@ -30,7 +30,7 @@ const Nav = memo(({cls}:{cls?:string})=>{
             {
                 user._id ?
                     <>
-                        <AnchorLink path='/notes' text="notes"/>
+                        <AnchorLink path='/notes' text="notes" />
                         <AnchorLink path='/bin' text="bin"/>
                         <Button handleClick={handleLogout} text='logout' mode='logout_btn' />
                     </>

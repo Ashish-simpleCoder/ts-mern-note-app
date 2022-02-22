@@ -1,6 +1,5 @@
 import { memo, ReactNode, CSSProperties } from "react";
 import styled, { css } from "styled-components";
-import If from "../../UtilComponents/If";
 
 type ModeTypes =
     | 'edit_note' | 'note_output' | 'hero'

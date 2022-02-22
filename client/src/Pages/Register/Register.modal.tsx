@@ -1,4 +1,5 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import FormField from "../../Components/HigherComponents/FormFields/FormField";
 import InputField from "../../Components/HigherComponents/FormFields/InputField";
 import LabelField from "../../Components/HigherComponents/FormFields/LabelField";
@@ -6,11 +7,18 @@ import Button from "../../Components/PureComponents/Button";
 import ErrorDisplayer from "../../Components/PureComponents/Error";
 import Form from "../../Components/PureComponents/Form";
 import H3 from "../../Components/PureComponents/H3";
+import { useUserCtx } from "../../Context/UserContext";
 import useRegister from "../../Hooks/useRegister";
 
 
 const RegisterModal = memo(()=>{
     const {handleSubmit, loader, errors, EmailProps, PasswordProps} = useRegister()
+
+    // if user is already logged in then go back
+    const history = useHistory()
+    const {user} = useUserCtx()
+    useEffect(() => {user._id && history.push('/')} , [history, user._id])
+
 
     return(
         <Form mode='register' handleSubmit={(e)=>handleSubmit(e, 'register')} animate={true}>

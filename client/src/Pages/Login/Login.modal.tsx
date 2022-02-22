@@ -6,10 +6,18 @@ import ErrorDisplayer from "../../Components/PureComponents/Error"
 import Form from "../../Components/PureComponents/Form"
 import H3 from "../../Components/PureComponents/H3"
 import useRegister from "../../Hooks/useRegister"
+import { useUserCtx } from "../../Context/UserContext"
+import { useHistory } from "react-router-dom"
+import { useEffect } from "react"
 
 
 const LoginModal = ()=>{
     const {handleSubmit, loader, errors, EmailProps, PasswordProps} = useRegister()
+
+    // if user is already logged in then go back
+    const history = useHistory()
+    const {user} = useUserCtx()
+    useEffect(() => {user._id && history.push('/')} , [history, user._id])
 
     return(
         <Form mode='login' handleSubmit={handleSubmit} animate={true}>
