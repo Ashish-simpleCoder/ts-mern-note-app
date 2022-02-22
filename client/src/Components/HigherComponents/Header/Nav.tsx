@@ -2,6 +2,7 @@ import { memo, useCallback} from "react";
 import {  useHistory } from "react-router-dom";
 import styled from "styled-components";
 import  { useThemeStates, useUserCtx } from "../../../Context/UserContext";
+import If from "../../../UtilComponents/If";
 import AnchorLink from "../../PureComponents/AnchorLink";
 import Button from "../../PureComponents/Button";
 import Img from "../../PureComponents/Img";
@@ -27,19 +28,17 @@ const Nav = memo(({cls}:{cls?:string})=>{
 
     return(
         <StyledNav className={cls}>
-            {
-                user._id ?
-                    <>
-                        <AnchorLink path='/notes' text="notes" />
-                        <AnchorLink path='/bin' text="bin"/>
-                        <Button handleClick={handleLogout} text='logout' mode='logout_btn' />
-                    </>
-                :
-                    <>
-                        <AnchorLink text='login' path='/login'/>
-                        <AnchorLink text='register' path='/register'/>
-                    </>
-            }
+            {/* is user is logged in */}
+            <If condition={!!user._id}>
+                <AnchorLink path='/notes' text="notes" />
+                <AnchorLink path='/bin' text="bin"/>
+                <Button handleClick={handleLogout} text='logout' mode='logout_btn' />
+            </If>
+            {/* is user is not logged in */}
+            <If condition={!user._id}>
+                <AnchorLink text='login' path='/login'/>
+                <AnchorLink text='register' path='/register'/>
+            </If>
             <Img src={img_src} alt="toggle theme" title='switch color themes' handleClick={setDarkTheme} cls='invert' styles={{cursor:'pointer',userSelect:'none'}}/>
         </StyledNav>
     )
