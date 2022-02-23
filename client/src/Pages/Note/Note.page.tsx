@@ -27,7 +27,12 @@ const NotePage = memo(()=>{
 
     //custom hooks for saving notes with escape key
     const {handleUpdateNote} = useNoteOperations()
-    useEventListener({eventType:'keyup', handler:()=>handleUpdateNote(edit_note, setEditNote), element:window})
+    useEventListener({eventType:'keyup', handler:()=>{
+        const overlay = document.querySelector('.overlay') as HTMLDivElement
+        if(!overlay.classList.contains('show_overlay')){
+            handleUpdateNote(edit_note, setEditNote)
+        }
+    }, element:window})
     // saving the note when user clicks outside of the edit modal or on body(edit_modal_wrapper)
     useClickListener({eventType:'click', handler:()=>handleUpdateNote(edit_note, setEditNote), element:document.body})
 
