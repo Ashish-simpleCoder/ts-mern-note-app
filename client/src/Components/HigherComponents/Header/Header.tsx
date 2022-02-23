@@ -2,7 +2,6 @@ import { memo } from "react";
 import styled from "styled-components";
 import AnchorLink from "../../PureComponents/AnchorLink";
 import Img from "../../PureComponents/Img";
-// import Overlay from "../../PureComponents/Overlay";
 import Hamburger from "./Hamburger";
 import LogoContainer from "./LogoContainer";
 import Nav from "./Nav";
@@ -10,21 +9,21 @@ import useMediaQuery from "./useMediaQuery";
 
 
 const Header = memo(()=>{
-    const {show, enableResNav, show_nav, Overlay} = useMediaQuery()
+    const {isHamVisible, isDeskNavVisible, enableResNav , Overlay} = useMediaQuery()
 
     return(
         <StyledHeader>
             <LogoContainer>
                 <Img src='./imgs/note.png' alt='note'/>
-                <AnchorLink  path="/" styles={{fontWeight:'500', fontSize:'2rem'}}>
+                <AnchorLink  path="/" styles={{ fontSize:'2rem'}}>
                     Material <span className="accent">Note</span> App
                 </AnchorLink>
             </LogoContainer>
 
-            <Nav cls={show_nav ? '' : 'hide'}/>
-            { show && <Hamburger handleClick={enableResNav}/>  }
+            <Nav cls={isDeskNavVisible ? '' : 'hide'}/>
+            { isHamVisible && <Hamburger handleClick={enableResNav}/>  }
             {/* when res nav is opened then user can close it by clicking it on this overlay  */}
-            <Overlay />
+            <Overlay cls={'nav_overlay'} />
         </StyledHeader>
     )
 })

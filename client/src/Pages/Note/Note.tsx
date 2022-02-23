@@ -19,7 +19,7 @@ export type NoteProps = {
 }
 
 const Note = memo(({note, styles, mode = 'note.page'}:NoteProps)=>{
-    const {setMenuDetails} = useEditNoteCtx()
+    const {setNoteClrMenuPosition} = useEditNoteCtx()
     const {loader, handleDeleteNote} = useNoteOperations()
 
 
@@ -38,7 +38,7 @@ const Note = memo(({note, styles, mode = 'note.page'}:NoteProps)=>{
             {/* if want to reuse then define note and recycle pages behaviour  */}
             <OverlayMenu>
                 <If condition={mode === 'note.page'}>
-                    <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, note)}}>
+                    <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setNoteClrMenuPosition!(e, note)}}>
                         <Clr/>
                     </ActionLink>
                     <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote({_id:note._id})} loader={loader}/>

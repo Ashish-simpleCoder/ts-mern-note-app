@@ -42,8 +42,8 @@ interface EditNoteType{
     setEditNote:Dispatch<SetStateAction<NoteInterface>>,
     handleNoteChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
     menu?:MenuPosition,
-    setMenu?:React.Dispatch<React.SetStateAction<MenuPosition>>
-    setMenuDetails?:(e: MouseEvent<HTMLDivElement, MouseEvent>, item: NoteInterface) => void
+    setNoteClrMenu?:React.Dispatch<React.SetStateAction<MenuPosition>>
+    setNoteClrMenuPosition?:(e: MouseEvent<HTMLDivElement, MouseEvent>, item: NoteInterface) => void
 }
 
 type MenuPosition = {

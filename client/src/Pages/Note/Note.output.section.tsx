@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import Input from '../../Components/HigherComponents/Input'
+import Input from '../../Components/HigherComponents/Form/Input'
 import SectionHeader from '../../Components/HigherComponents/Section.header'
 import Wrapper from '../../Components/HigherComponents/Wrapper'
 import Caption from '../../Components/PureComponents/Caption'

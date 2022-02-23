@@ -4,17 +4,17 @@ import { NoteInterface } from '../../../types'
 
 const useEnableMenu = ({element, element2=window, handler, eventType, eventType2 = 'keyup'} : HookProps) =>{
 
-    const [menu, setMenu] = useState<MenuState>({
+    const [menu, setNoteClrMenu] = useState<MenuState>({
         enable:false,
         item:{ title:'',content:'',bg:[],_id:'' },
         position:{ top : '', left: '' }
     })
 
 
-    const setMenuDetails = useCallback((e:MouseEvent<HTMLDivElement, MouseEvent>, item:NoteInterface)=>{
+    const setNoteClrMenuPosition = useCallback((e:MouseEvent<HTMLDivElement, MouseEvent>, item:NoteInterface)=>{
         const {top, left} = e.currentTarget.getBoundingClientRect()
-        setMenu(({enable:true, position:{top:top+20+'px', left:left+20+'px'}, item}))
-        element.classList.add('show_overlay')
+        setNoteClrMenu(({enable:true, position:{top:top+20+'px', left:left+20+'px'}, item}))
+        element.classList.add('show_note_menu_overlay')
     },[element])
 
     const handleRef = useRef(handler)
@@ -27,13 +27,13 @@ const useEnableMenu = ({element, element2=window, handler, eventType, eventType2
         const eventListener = (e:any) => {
                 if(e.target.classList.contains('overlay')){
                     handleRef.current()
-                    element.classList.remove('show_overlay')
+                    element.classList.remove('show_note_menu_overlay')
                 }
         }
         const eventListener2 = (e:KeyboardEvent) => {
                 if(e.key === 'Escape'){
                     handleRef.current()
-                    element.classList.remove('show_overlay')
+                    element.classList.remove('show_note_menu_overlay')
                 }
         }
         // menu.enable && addEventListener()  old code
@@ -47,7 +47,9 @@ const useEnableMenu = ({element, element2=window, handler, eventType, eventType2
         }
     }, [eventType, menu.enable, element, element2, eventType2])
 
-    return {setMenu, menu, setMenuDetails}
+
+
+    return {setNoteClrMenu, menu, setNoteClrMenuPosition}
 }
 export default useEnableMenu
 

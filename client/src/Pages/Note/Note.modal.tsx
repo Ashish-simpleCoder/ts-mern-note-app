@@ -1,11 +1,11 @@
 import {  memo, MouseEvent, ReactNode, useContext } from "react";
 import styled from "styled-components";
-import Input from "../../Components/HigherComponents/Input";
+import Input from "../../Components/HigherComponents/Form/Input";
 import OverlayMenu from "../../Components/HigherComponents/OverlayMenu";
 import Wrapper from "../../Components/HigherComponents/Wrapper";
 import ActionLink from "../../Components/PureComponents/ActionLink";
 import Button from "../../Components/PureComponents/Button";
-import Textarea from "../../Components/PureComponents/Textarea";
+import Textarea from "../../Components/HigherComponents/Form/Textarea";
 import Clr from "../../Components/Svg/Clr";
 import { ThemeCtx } from "../../Context/UserContext";
 import useNoteOperations from "./NotesHooks/useNoteOperations";
@@ -20,7 +20,7 @@ const NoteModal = memo(({ mode } : NoteModalProps)=>{
     const {note:edit_note, handleNoteChange} = useEditNoteCtx()
     const {dark_theme} = useContext(ThemeCtx)
     const {loader, handleDeleteNote} = useNoteOperations()
-    const {setMenuDetails} = useEditNoteCtx()
+    const {setNoteClrMenuPosition} = useEditNoteCtx()
 
 
     if(mode === 'edit_note'){
@@ -33,7 +33,7 @@ const NoteModal = memo(({ mode } : NoteModalProps)=>{
                 <Textarea  name='content' value={edit_note.content} handleChange={handleNoteChange} styles={{background:'inherit'}}/>
 
                 <OverlayMenu>
-                    <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setMenuDetails!(e, edit_note)}}><Clr/></ActionLink>
+                    <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setNoteClrMenuPosition!(e, edit_note)}}><Clr/></ActionLink>
                     <Button  mode='delete_note_btn' handleClick={()=>handleDeleteNote({_id : edit_note._id})} loader={loader}/>
                 </OverlayMenu>
             </StyledEditModal>

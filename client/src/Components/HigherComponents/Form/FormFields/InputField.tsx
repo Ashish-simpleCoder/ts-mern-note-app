@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, memo, SetStateAction, useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import Img from '../../PureComponents/Img'
+import Img from '../../../PureComponents/Img'
 
 
 type FieldProps =  {props:InputProps, setFocus?:Dispatch<SetStateAction<boolean>>, focus?:boolean}

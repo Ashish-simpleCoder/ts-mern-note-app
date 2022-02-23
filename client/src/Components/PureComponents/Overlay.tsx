@@ -1,7 +1,11 @@
 import { memo } from "react"
 import styled from "styled-components"
 
-const Overlay = memo(() => <StyledOverlay className="overlay"></StyledOverlay>)
+const Overlay = memo(({cls} : {cls?:string}) => {
+    return(
+        <StyledOverlay className={(cls ? cls : '')+" overlay"}></StyledOverlay>
+    )
+})
 export default Overlay
 
 const StyledOverlay = styled.div`

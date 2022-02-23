@@ -162,7 +162,12 @@ html ::selection {
           animation: animateLoad calc(1.3s + (0.2s  * var(--order))) ease-in forwards;
 }
 
-.show_overlay {
+.show_nav_overlay {
+  display: block !important;
+}
+
+.show_note_menu_overlay {
+  background: rgba(0, 0, 0, 0.1) !important;
   display: block !important;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -1,9 +1,9 @@
 import { memo } from "react"
-import Input from "../../Components/HigherComponents/Input"
+import Input from "../../Components/HigherComponents/Form/Input"
 import Button from "../../Components/PureComponents/Button"
 import ErrorDisplayer from "../../Components/PureComponents/Error"
-import Form from "../../Components/PureComponents/Form"
-import Textarea from "../../Components/PureComponents/Textarea"
+import Form from "../../Components/HigherComponents/Form/Form"
+import Textarea from "../../Components/HigherComponents/Form/Textarea"
 import If from "../../UtilComponents/If"
 import useNoteOperations from "./NotesHooks/useNoteOperations"
 

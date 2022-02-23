@@ -1,4 +1,4 @@
-import { ChangeEvent, createContext, memo, useCallback, useContext, useState } from "react"
+import { ChangeEvent, createContext, memo, useCallback, useContext, useState, useMemo } from "react"
 import LeftRightWrapper from "../../Components/HigherComponents/LeftRightWrapper"
 import Wrapper from "../../Components/HigherComponents/Wrapper"
 import { EditNoteType, NoteInterface } from "../../types"
@@ -28,11 +28,9 @@ const NotePage = memo(()=>{
     //custom hooks for saving notes with escape key
     const {handleUpdateNote} = useNoteOperations()
     useEventListener({eventType:'keyup', handler:()=>{
-        const overlay = document.querySelector('.overlay') as HTMLDivElement
-        if(!overlay.classList.contains('show_overlay')){
-            handleUpdateNote(edit_note, setEditNote)
-        }
+        (edit_note._id) && handleUpdateNote(edit_note, setEditNote)
     }, element:window})
+
     // saving the note when user clicks outside of the edit modal or on body(edit_modal_wrapper)
     useClickListener({eventType:'click', handler:()=>handleUpdateNote(edit_note, setEditNote), element:document.body})
 
@@ -43,7 +41,12 @@ const NotePage = memo(()=>{
     }, [handleChange])
 
 
-    const {menu, setMenuDetails, setMenu} = useEnableMenu({element: document.querySelector('.overlay') as HTMLDivElement, handler:()=>setMenu(v=>({...v,enable:false})), eventType:'click'})
+    const {menu, setNoteClrMenuPosition, setNoteClrMenu} = useEnableMenu({element: document.querySelector('.overlay') as HTMLDivElement, handler:()=>setNoteClrMenu(v=>({...v,enable:false})), eventType:'click'})
+
+
+    const EditNoteCtxProps = useMemo(() =>( {
+        note:edit_note, setEditNote, handleNoteChange, menu, setNoteClrMenuPosition, setNoteClrMenu
+    }), [edit_note, setEditNote, setNoteClrMenuPosition, menu, setNoteClrMenu, handleNoteChange])
 
 
     return(
@@ -52,7 +55,7 @@ const NotePage = memo(()=>{
                 <NoteInput />
             </Wrapper>
 
-            <EditNoteCtx.Provider value={{note:edit_note, setEditNote, handleNoteChange, menu, setMenuDetails, setMenu}}>
+            <EditNoteCtx.Provider value={EditNoteCtxProps}>
                 <NoteOutput />
                 <NoteModal mode="edit_note">
                     <If condition={menu.enable}>
