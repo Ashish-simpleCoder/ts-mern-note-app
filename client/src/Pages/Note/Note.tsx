@@ -36,7 +36,7 @@ const Note = memo(({note, styles, mode = 'note.page'}:NoteProps)=>{
             </Wrapper>
 
             {/* if want to reuse then define note and recycle pages behaviour  */}
-            <OverlayMenu>
+            <OverlayMenu cls={mode === 'recycle.page' ? 'bin-note-menu' : ''}>
                 <If condition={mode === 'note.page'}>
                     <ActionLink handleClick={(e:MouseEvent<HTMLDivElement>)=>{setNoteClrMenuPosition!(e, note)}}>
                         <Clr/>
@@ -71,6 +71,9 @@ const StyledNote = styled.div`
     animation:animate_note calc(0.4s  * var(--note-order)) ease-in;
 
 
+    --note-menu-opacity:0;
+
+
     /* title and content */
     h3,p{
         font-size:clamp(1.6rem,1.7rem,1.7vw);
@@ -99,23 +102,29 @@ const StyledNote = styled.div`
         .overlay-menu{
             display:none;
         }
+        /* for bin page */
+        .bin-note-menu{
+            display:flex;
+        }
     }
 
     /* making the permanent delete and restore btn visible in bin page for every note */
-    .bin-menu{
-        display:flex;
+    .bin-note-menu{
+        --note-menu-opacity:1;
     }
     @media (min-width:700px){
+        --note-menu-opacity:0;
+
         div.overlay-menu {
             height:4rem;
             width:100%;
             display:flex;
-            opacity:0;
+            opacity:var(--note-menu-opacity);
             pointer-events:none;
         }
         &:hover{
+            --note-menu-opacity:1;
             div.overlay-menu{
-                opacity:1;
                 pointer-events:all;
             }
         }
@@ -125,15 +134,10 @@ const StyledNote = styled.div`
         0%{
             transform: scale(0.8);
             animation-timing-function: ease;
-            /* background:var(--secondary-clr); */
         }50%{
             animation-timing-function: ease-in;
             opacity: 1;
             transform: scale(1.1);
-        }100%{
-            /* animation-timing-function: ease-out;
-            opacity: 1;
-            transform: scale(1); */
-        }
+        }100%{  }
 }
 `
