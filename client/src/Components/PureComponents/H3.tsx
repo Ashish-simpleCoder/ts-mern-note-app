@@ -10,5 +10,4 @@ export default H3
 
 const StyledH3 = styled.h3<{styles?:CSSProperties}>`
     font-size:2.2rem;
-    font-weight:500;
 `

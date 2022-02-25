@@ -6,7 +6,6 @@ import Loader from "./Loader";
 type BtnProps = {
     text?:string,
     handleClick?: () => void
-    // _id?:string
     mode?:
         | 'login_btn' | 'register_btn' | 'logout_btn'
         | 'create_note_btn' | 'delete_note_btn' | 'restore_btn'
@@ -18,7 +17,6 @@ type BtnProps = {
 const Button = memo(({
     text,
     handleClick,
-    // _id,
     mode,
     loader,
     styles
@@ -27,14 +25,14 @@ const Button = memo(({
 
     return (
         <StyledButton mode={mode && mode} onClick={(e)=>{
-            e.stopPropagation();
+            e.stopPropagation()
             handleClick && handleClick()
         }}
             style={styles}
         >
             {  (mode === 'login_btn' || mode === 'register_btn' || mode==='logout_btn' || mode=== 'create_note_btn' || mode === 'delete_note_btn' || mode === 'restore_btn') && (loader ? <Loader/> : text)  }
             { mode === 'hero_btn' && text }
-            { mode === undefined && text}
+            { mode === undefined && text }
         </StyledButton>
     )
 })

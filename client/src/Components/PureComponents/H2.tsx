@@ -11,5 +11,4 @@ export default H2
 
 const StyledH2 = styled.h2`
     font-size:clamp(3.5rem,4rem, 4vw);
-    /* font-weight:500; */
 `
