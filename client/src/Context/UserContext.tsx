@@ -17,7 +17,7 @@ export const UserProvider = memo(({children})=>{
             const x:any = localStorage.getItem('dark-theme')
             return JSON.parse(x)
         }else{
-            return false
+            return true
         }
     })
 

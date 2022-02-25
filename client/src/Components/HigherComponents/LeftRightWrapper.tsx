@@ -1,5 +1,5 @@
 import { memo, ReactNode } from "react";
-import styled, { css, CSSProperties } from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
 const LeftRightWrapper = memo(({children, styles, before_obj}:{children:ReactNode, styles?:CSSProperties, before_obj?:boolean})=>{
     return(

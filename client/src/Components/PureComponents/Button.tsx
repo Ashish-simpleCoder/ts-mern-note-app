@@ -58,7 +58,7 @@ const StyledButton = styled.button<{mode:string|undefined}>`
                 height:unset;
                 display:flex;
                 align-items:center;    //making text vertically center
-                font-size:clamp(1.8rem, 2rem, 2vw);
+                /* font-size:clamp(1.8rem, 2rem, 2vw); */
                 margin-top:5rem;
                 background:var(--secondary-clr);
                 color:var(--hero-btn-clr);

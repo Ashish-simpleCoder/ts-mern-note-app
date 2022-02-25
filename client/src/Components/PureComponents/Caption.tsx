@@ -9,10 +9,9 @@ const Caption = memo(({text, styles}:{text?:string, styles?:CSSProperties | any}
 export default Caption
 
 const StyledCaption = styled.p`
-    font-size:clamp(1.8rem, 2rem ,2vw);
-    opacity:0.9;
+    font-size:clamp(1.4rem, 1.5rem ,1.5vw);
+    opacity:0.8;
     white-space:pre-line;
     word-break:break-all;
     margin-top:1rem;
-    /* width:max-content; */
 `

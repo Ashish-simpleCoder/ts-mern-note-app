@@ -39,9 +39,10 @@ const StyledFormField = styled.div`
         transition:all 0.25s;
     }
     .transform{
-        color:var(--transform-label-clr);
-        transform:translate(1rem, -230%);
-        font-size:clamp(1.4rem, 1.5rem, 1.5vw);
+        /* color:var(--transform-label-clr); */
+        color:var(--secondary-clr);
+        transform:translate(1rem, -210%);
+        /* font-size:clamp(1.4rem, 1.5rem, 1.5vw); */
     }
 
     >img{
