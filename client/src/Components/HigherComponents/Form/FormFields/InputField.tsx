@@ -51,12 +51,10 @@ const StyledInput = styled.input`
     font-size:clamp(1.6rem, 1.7rem, 1.7vw);
     border-radius:0.5rem;
 
-    /* &:hover{
-        background:var(--input-hover-bg) !important;
-    } */
+
     &:focus{
         background:var(--input-hover-bg) !important;
-        outline:var(--secondary-clr);
+        outline:var(--focuse-outline);
     }
 `
 

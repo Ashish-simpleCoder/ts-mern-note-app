@@ -21,7 +21,9 @@ html, #root, main{
 }
 
 body{
-    background:var(--body-bg);
+   background:var(--body-bg);
+   max-width: 220rem;
+   margin:auto;
 }
 
 .accent{

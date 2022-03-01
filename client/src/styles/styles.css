@@ -5,6 +5,7 @@
   --btn-clr:black;
   --hero-btn-clr:white;
   --transform-label-clr:hsl(10, 90%, 50%);
+  --focuse-outline:1px solid hsl(10, 93%, 45%);
   --green:green;
   --note-border:1px solid rgba(0,0, 0, 0.1);
   --note-title-border:1px solid hsl(0, 0%, 85%);
@@ -34,6 +35,7 @@
   --border:1px solid hsl(0, 0%, 15%);
   --btn-clr:white;
   --hero-btn-clr:white;
+  --focuse-outline:1px solid hsl(10, 93%, 24%);
   --note-border:1px solid rgba(255, 255, 255, 0);
   --note-title-border:1px solid hsl(0, 0%, 15%);
   --body-bg:linear-gradient(140deg, hsl(210, 8%, 8%), hsl(210, 8%, 12%));
@@ -61,11 +63,6 @@
           filter: invert(0.3);
 }
 
-.dark-theme .note {
-  -webkit-box-shadow: 0 0.4rem 0.4rem rgba(54, 54, 54, 0.1);
-          box-shadow: 0 0.4rem 0.4rem rgba(54, 54, 54, 0.1);
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -90,6 +87,8 @@ html, #root, main {
 
 body {
   background: var(--body-bg);
+  max-width: 220rem;
+  margin: auto;
 }
 
 .accent {

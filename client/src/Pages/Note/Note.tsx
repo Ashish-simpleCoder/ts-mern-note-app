@@ -61,15 +61,15 @@ const StyledNote = styled.div`
     max-width:40rem;
     height:20rem;
 
-    box-shadow:0 0.3rem 0.5rem rgba(0,0,0,0.1);
+    box-shadow:0 0.2rem 0.2rem rgba(0,0,0,0.2);
 
-    border-radius:1rem;
+    /* border-radius:1rem; */
+    border-radius:0 0.5rem 0.5rem 0.5rem;
     border:var(--note-border);
 
     display:flex;
     flex-direction:column;
-    animation:animate_note calc(0.4s  * var(--note-order)) ease-in;
-
+    animation:animate_note calc(0.25s  * var(--note-order)) ease-in;
 
     --note-menu-opacity:0;
 

@@ -29,14 +29,18 @@ const StyledTextArea = styled.textarea<{hover_bg?:boolean}>`
     padding:0.5rem 1rem;
     background:var(--input-bg);
     border-radius:0.5rem;
-    &:focus{
+    /* &:focus{
         background:var(--input-hover-bg) !important;
-        outline:1px solid var(--secondary-clr);
-    }
+        outline: var(--focuse-outline);
+    } */
     ${({hover_bg})=>{
         if(hover_bg){
             return css`
-                &:hover{  background: var(--input-hover-bg);  }
+                /* &:hover{  background: var(--input-hover-bg);  } */
+                &:focus{
+        background:var(--input-hover-bg) !important;
+        outline: var(--focuse-outline);
+    }
             `
         }
     }}
