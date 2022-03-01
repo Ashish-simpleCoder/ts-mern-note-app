@@ -1,5 +1,5 @@
 import { memo, useCallback } from "react"
-import { useThemeStates } from "../../Context/UserContext"
+import { useThemeStates } from "../../Context/ThemeContext"
 
 
 const ColorBox = ({clr, handleClick}:{clr:any, handleClick: (e: any, color:string, clr:any) => Promise<void>})=>{

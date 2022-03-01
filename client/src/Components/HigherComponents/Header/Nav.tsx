@@ -1,6 +1,7 @@
 import { memo, useMemo } from "react";
 import styled from "styled-components";
-import  { useThemeStates, useUserCtx } from "../../../Context/UserContext";
+import { useThemeStates } from "../../../Context/ThemeContext";
+import  { useUserCtx } from "../../../Context/UserContext";
 import useRegister from "../../../Hooks/useRegister";
 import If from "../../../UtilComponents/If";
 import AnchorLink from "../../PureComponents/AnchorLink";

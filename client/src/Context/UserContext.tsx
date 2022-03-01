@@ -1,36 +1,20 @@
-import { createContext, memo, useContext, useEffect, useState } from "react";
-import { ThemeCtxInterface, UserCtxInterface, UserInterface } from "../types";
+import { createContext, memo, useContext, useMemo, useState } from "react";
+import { UserCtxInterface, UserInterface } from "../types";
+import { ThemeProvider } from "./ThemeContext";
 
 const UserCtx = createContext<UserCtxInterface>({} as UserCtxInterface)
 export const useUserCtx = () => useContext(UserCtx)
-
-export const ThemeCtx = createContext<ThemeCtxInterface>({} as ThemeCtxInterface)
-export const useThemeStates = () => useContext(ThemeCtx)
 
 
 export const UserProvider = memo(({children})=>{
     const [user, setUser] = useState<UserInterface>({} as UserInterface)
     const [search, setSearch] = useState('')
-
-    const [dark_theme, setDarkTheme] = useState(()=>{
-        if(localStorage.getItem('dark-theme')){
-            const x:any = localStorage.getItem('dark-theme')
-            return JSON.parse(x)
-        }else{
-            return true
-        }
-    })
-
-    useEffect(()=>{
-        localStorage.setItem('dark-theme',JSON.stringify(dark_theme))
-        document.body.classList.toggle('dark-theme',dark_theme)
-    },[dark_theme])
-
+    const user_props = useMemo(()=>({user, setUser, search, setSearch}), [user, setUser, search, setSearch])
     return(
-        <UserCtx.Provider value={{user, setUser, search, setSearch}}>
-            <ThemeCtx.Provider value={{dark_theme, setDarkTheme}}>
-            {children}
-            </ThemeCtx.Provider>
+        <UserCtx.Provider value={user_props}>
+            <ThemeProvider>
+                {children}
+            </ThemeProvider>
         </UserCtx.Provider>
     )
 })

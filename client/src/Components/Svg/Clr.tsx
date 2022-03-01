@@ -1,4 +1,4 @@
-import { useThemeStates } from "../../Context/UserContext"
+import { useThemeStates } from "../../Context/ThemeContext"
 
 const Clr = () =>{
     const {dark_theme} = useThemeStates()

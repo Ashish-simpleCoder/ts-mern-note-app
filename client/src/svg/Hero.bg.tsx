@@ -1,6 +1,6 @@
 import { memo } from "react"
 import styled from "styled-components"
-import { useThemeStates } from "../Context/UserContext"
+import { useThemeStates } from "../Context/ThemeContext"
 
 const HeroBg = () =>{
     const {dark_theme} = useThemeStates()

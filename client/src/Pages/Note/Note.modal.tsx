@@ -7,9 +7,9 @@ import ActionLink from "../../Components/PureComponents/ActionLink";
 import Button from "../../Components/PureComponents/Button";
 import Textarea from "../../Components/HigherComponents/Form/Textarea";
 import Clr from "../../Components/Svg/Clr";
-import { ThemeCtx } from "../../Context/UserContext";
 import useNoteOperations from "./NotesHooks/useNoteOperations";
 import { useEditNoteCtx } from "./Note.page";
+import { useThemeStates } from "../../Context/ThemeContext";
 
 type NoteModalProps = {
     children?: ReactNode,
@@ -18,7 +18,7 @@ type NoteModalProps = {
 
 const NoteModal = memo(({ mode } : NoteModalProps)=>{
     const {note:edit_note, handleNoteChange} = useEditNoteCtx()
-    const {dark_theme} = useContext(ThemeCtx)
+    const {dark_theme} = useThemeStates()
     const {loader, handleDeleteNote} = useNoteOperations()
     const {setNoteClrMenuPosition} = useEditNoteCtx()
 

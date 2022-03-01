@@ -4,7 +4,7 @@ import SectionHeader from '../../Components/HigherComponents/Section.header'
 import Wrapper from '../../Components/HigherComponents/Wrapper'
 import Caption from '../../Components/PureComponents/Caption'
 import H3 from '../../Components/PureComponents/H3'
-import { useThemeStates, useUserCtx } from '../../Context/UserContext'
+import { useUserCtx } from '../../Context/UserContext'
 import { NoteInterface } from '../../types'
 import Dummy from './Dummy'
 import Note from './Note'
@@ -13,6 +13,7 @@ import Loader from '../../Components/PureComponents/Loader'
 import { useCallback } from 'react'
 import useNoteClickEvents from './NotesHooks/useNoteClickEvents'
 import If from '../../UtilComponents/If'
+import { useThemeStates } from '../../Context/ThemeContext'
 
 
 
