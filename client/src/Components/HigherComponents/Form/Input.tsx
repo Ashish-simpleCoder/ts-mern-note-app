@@ -41,6 +41,12 @@ const StyledInput = styled.input<{mode?:string}>`
     height:3.5rem;
     background:var(--input-bg);
     outline:none;
+    border-radius:0.5rem;
+
+    &:focus{
+        background:var(--input-hover-bg) !important;
+        outline:1px solid var(--secondary-clr);
+    }
 
     ${({mode})=>{
         switch (mode){
@@ -55,7 +61,5 @@ const StyledInput = styled.input<{mode?:string}>`
             &:hover{  background: var(--input-hover-bg);  }
             `
     }}}
-    border-radius:0.3rem;
-    outline:var(--border);
 `
 

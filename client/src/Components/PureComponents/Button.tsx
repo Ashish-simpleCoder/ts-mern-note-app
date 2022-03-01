@@ -47,9 +47,13 @@ const StyledButton = styled.button<{mode:string|undefined}>`
     border-radius:0.5rem;
     font-size:clamp(1.5rem, 1.6rem, 1.6vw);
     height:3.5rem;
-    /* color:var(--btn-clr); */
     transition:background 0.3s;
     position:relative;
+
+    &:focus{
+        /* background:var(--input-hover-bg) !important; */
+        outline:1px solid var(--secondary-clr);
+    }
 
     ${(props)=>{
         switch(props.mode){
@@ -58,11 +62,11 @@ const StyledButton = styled.button<{mode:string|undefined}>`
                 height:unset;
                 display:flex;
                 align-items:center;    //making text vertically center
-                /* font-size:clamp(1.8rem, 2rem, 2vw); */
                 margin-top:5rem;
                 background:var(--secondary-clr);
                 color:var(--hero-btn-clr);
-                box-shadow:0 0.3rem 0.5rem rgba(0, 0, 0, 0.6);
+                font-weight:600 !important;
+                box-shadow:0 0.2rem 0.2rem rgba(0, 0, 0, 0.3);
             `
 
             case 'delete_note_btn': return css`
@@ -83,15 +87,16 @@ const StyledButton = styled.button<{mode:string|undefined}>`
             `
 
             case 'create_note_btn': return css`
-                background:var(--note-create-btn-bg);
+                background:var(--green);
                 color:hsl(0, 0%, 90%);
+                box-shadow:0 0.2rem 0.2rem rgba(0, 0, 0, 0.3);
             `
             case 'logout_btn': return css`
                 height:unset;
             `
             case 'login_btn': return css`
-                background:var(--note-create-btn-bg);
-                color:white;
+                background:var(--green);
+                color:hsl(0, 0%, 90%);
                 width:100%;
             `
         }

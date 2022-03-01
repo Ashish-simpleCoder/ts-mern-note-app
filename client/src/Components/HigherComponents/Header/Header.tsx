@@ -34,10 +34,11 @@ const StyledHeader = styled.header`
     display: flex;
     align-items: center;
     height: var(--header-height);
-    padding: 0 clamp(1rem, 2rem, 2vw);
+    /* padding: 0 clamp(1rem, 2rem, 2vw); */
+    padding-inline:clamp(1rem, 2rem, 2vw);
     overflow-x:hidden;
     overflow-y:hidden;
-    box-shadow:0 0.1rem 0.3rem rgba(0, 0,0, 0.1);
+    box-shadow:0 0.2rem 0.2rem rgba(0, 0,0, 0.1);
 
     a,button{
         &:hover{

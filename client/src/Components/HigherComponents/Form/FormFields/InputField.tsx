@@ -51,8 +51,12 @@ const StyledInput = styled.input`
     font-size:clamp(1.6rem, 1.7rem, 1.7vw);
     border-radius:0.5rem;
 
-    &:hover{
+    /* &:hover{
         background:var(--input-hover-bg) !important;
+    } */
+    &:focus{
+        background:var(--input-hover-bg) !important;
+        outline:var(--secondary-clr);
     }
 `
 
@@ -85,5 +89,6 @@ const StyledTogglePassword = styled.div`
     z-index:3;
 `
 type TogglePassProps = {
-    handleClick: () => void,img_src:string
+    handleClick: () => void,
+    img_src:string
 }

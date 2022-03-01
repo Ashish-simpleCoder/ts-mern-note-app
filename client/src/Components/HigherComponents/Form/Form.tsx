@@ -43,20 +43,12 @@ const StyledForm = styled.form<{no_bg?:boolean, mode?:string, animate?:boolean}>
                 max-width:40rem;
                 margin-top:5rem;
                 border-radius:0.5rem;
-                box-shadow:0 0.3rem 0.3rem rgba(0,0,0,0.3);
-                padding:0 2rem 2rem 2rem;
+                box-shadow:0 0.2rem 0.2rem rgba(0,0,0,0.3);
+                padding-inline:2rem;
+                padding-block:2rem;
                 //heading of the form
                 >h3{
-                    padding:1rem 0 2rem 0;
-                }
-                //containers of input and label
-                .div{
-                    padding:0 2rem;
-                    margin-top:2rem;
-                    width:100%;
-                    display:flex;
-                    justify-content:space-between;
-                    align-items:center;
+                    margin-block-end:2rem;
                 }
             `
         }
