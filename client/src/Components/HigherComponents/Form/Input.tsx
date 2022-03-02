@@ -6,15 +6,16 @@ import  { useUserCtx } from "../../../Context/UserContext";
 
 const Input = memo(({ placeholder, name, value, handleChange, mode, type}: InputProps)=>{
     const {setSearch} = useUserCtx()
+    const type_pr = type === 'search' ? 'search' : 'text'
 
     return <StyledInput
-        type={type === 'search' ? 'search' : 'text'} name={name} value={value}
+        type={type_pr} name={name} value={value}
         mode={mode}
         onChange={(e)=>{
             if(name === 'search'){
                 setSearch(e.target.value)
             }else{
-                handleChange && handleChange(e,)
+                handleChange && handleChange(e)
             }
         }}
         placeholder={placeholder}
