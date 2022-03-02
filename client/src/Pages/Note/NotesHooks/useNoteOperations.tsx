@@ -22,10 +22,9 @@ const useNoteOperations = () => {
         if(refetch){
             fetchNotes('/api/v1/user/notes').then(res=>{
                 res?.notes && setUser(old=>({...old, notes:res.notes}))
-            })
-            setRefetch(false)
+            }).catch(err => console.log(err)).finally(() => setRefetch(false))
         }
-    }, [refetch, setUser])
+    }, [refetch])
 
     useEffect(()=>{
         let clear:any
@@ -44,9 +43,8 @@ const useNoteOperations = () => {
         setLoader(true)     //displaying the loader while deleting the note
         const {default: deleteNote} = await import('../../../modules/deleteNote')
         const data = await deleteNote(`/api/v1/user/notes/${_id}`, MOVE_TO_BIN, RESTORE)
-        if(data?.success){
-            setRefetch(true)
-        }
+
+        data?.success && setRefetch(true)
         // if note is in note page then disable the modal
         if(setEditNote || MOVE_TO_BIN){
             const modal = document.getElementById('modal') as HTMLDivElement

@@ -12,6 +12,7 @@ import Wrapper from "../../Components/HigherComponents/Wrapper";
 import useNoteOperations from "./NotesHooks/useNoteOperations";
 import If from "../../UtilComponents/If";
 
+
 export type NoteProps = {
     note:NoteInterface,
     styles?: CSSProperties | any,
@@ -24,7 +25,7 @@ const Note = memo(({note, styles, mode = 'note.page'}:NoteProps)=>{
 
 
     return(
-        <StyledNote id={note._id} style={{...styles }} className="note">
+        <StyledNote id={note._id} style={{ ...styles }} className="note">
 
             <Wrapper styles={{padding:'0.5rem 1rem',borderBottom:'var(--border)'}} >
                 <RandomSpan cls='random_span'/>
@@ -63,7 +64,6 @@ const StyledNote = styled.div`
 
     box-shadow:0 0.2rem 0.2rem rgba(0,0,0,0.2);
 
-    /* border-radius:1rem; */
     border-radius:0 0.5rem 0.5rem 0.5rem;
     border:var(--note-border);
 
