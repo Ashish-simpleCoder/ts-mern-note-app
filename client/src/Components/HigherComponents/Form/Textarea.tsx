@@ -29,10 +29,8 @@ const StyledTextArea = styled.textarea<{hover_bg?:boolean}>`
     padding:0.5rem 1rem;
     background:var(--input-bg);
     border-radius:0.5rem;
-    /* &:focus{
-        background:var(--input-hover-bg) !important;
-        outline: var(--focuse-outline);
-    } */
+    border:var(--border);
+
     ${({hover_bg})=>{
         if(hover_bg){
             return css`

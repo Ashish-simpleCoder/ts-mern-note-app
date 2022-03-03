@@ -1,16 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
 :root {
   --prm-clr:hsl(10, 29%, 15%);
-  --secondary-clr:hsl(10, 90%, 50%);
-  --border:1px solid hsl(0, 0%, 80%);
+  --secondary-clr:hsl(214, 90%, 50%);
+  --border:1px solid hsl(0, 0%, 85%);
   --btn-clr:black;
   --hero-btn-clr:white;
-  --transform-label-clr:hsl(10, 90%, 50%);
-  --focuse-outline:1px solid hsl(10, 93%, 45%);
+  --transform-label-clr:hsl(214, 90%, 50%);
+  --focuse-outline:1px solid hsl(214, 93%, 45%);
   --green:green;
   --note-border:1px solid rgba(0,0, 0, 0.1);
   --note-title-border:1px solid hsl(0, 0%, 85%);
   --body-bg:linear-gradient(140deg, hsl(0, 0%, 90%), hsl(0, 0%, 100%));
-  --header-bg:linear-gradient(140deg , hsl(0, 0%, 100%), hsl(0, 0%, 90%));
+  --header-bg:linear-gradient(140deg , hsl(0, 0%, 100%), hsl(0, 0%, 100%));
   --input-bg:hsl(0, 0%, 100%);
   --login-input-bg:hsl(0, 0%, 95%);
   --form-bg:white;
@@ -23,7 +24,8 @@
   --note-create-btn-bg:green;
   --note-bg:hsl(0, 0%, 100%);
   --tooltip-bg:hsl(9, 89%, 50%);
-  --input-hover-bg:hsl(10, 100%, 96%);
+  --input-hover-bg:hsl(214, 100%, 96%);
+  --note-hover-shadow:0 0.2rem 1rem hsl(214, 48%, 80%);
   --width:35rem;
   --header-height:6rem;
   --weight: 500;
@@ -31,17 +33,17 @@
 
 .dark-theme {
   --prm-clr:hsl(0, 0%, 90%);
-  --secondary-clr:hsl(9, 89%, 50%);
+  --secondary-clr:hsl(214, 89%, 50%);
   --border:1px solid hsl(0, 0%, 15%);
   --btn-clr:white;
   --hero-btn-clr:white;
-  --focuse-outline:1px solid hsl(10, 93%, 24%);
+  --focuse-outline:1px solid hsl(214, 93%, 24%);
   --note-border:1px solid rgba(255, 255, 255, 0);
   --note-title-border:1px solid hsl(0, 0%, 15%);
   --body-bg:linear-gradient(140deg, hsl(210, 8%, 8%), hsl(210, 8%, 12%));
   --header-bg:linear-gradient(140deg , hsl(210, 8%, 12%), hsl(210, 8%, 5%));
   --input-bg:hsl(210, 8%, 5%);
-  --login-input-bg:hsl(0, 9%, 7%);
+  --login-input-bg:hsl(214, 9%, 7%);
   --form-bg:hsl(200, 10%, 15%);
   --focused:hsl(0, 0%, 5%);
   --btn-hover-bg:hsl(120, 100%, 20%);
@@ -49,7 +51,8 @@
   --modal-bg:hsl(0, 0%, 10%);
   --save-btn-bg:hsl(120, 100%, 20%);
   --delete-btn-bg:rgb(224, 12, 12);
-  --input-hover-bg:hsl(10, 100%, 10%);
+  --input-hover-bg:hsl(214, 100%, 5%);
+  --note-hover-shadow:0 0.2rem 1rem hsl(214, 48%, 5%);
   --width:35rem;
 }
 
@@ -71,8 +74,8 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: var(--prm-clr);
   line-height: 1.5;
-  -webkit-transition: background 0.3s cubic-bezier(0.5, 1, 0.1, 1);
-  transition: background 0.3s cubic-bezier(0.5, 1, 0.1, 1);
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
   letter-spacing: 0.07rem;
   font-weight: var(--weight) !important;
 }

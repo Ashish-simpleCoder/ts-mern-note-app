@@ -29,7 +29,7 @@ const NoteModal = memo(({ mode } : NoteModalProps)=>{
 
             <StyledEditModal  id='modal' className='edit_modal' style={{background:dark_theme ? edit_note.bg[1] : edit_note.bg[0], border:'var(--border)'}} >
 
-                <Input  name='title' value={edit_note.title} handleChange={handleNoteChange} mode="edit_note" />
+                <Input  name='title' value={edit_note.title} handleChange={handleNoteChange} mode="edit_note"/>
                 <Textarea  name='content' value={edit_note.content} handleChange={handleNoteChange} styles={{background:'inherit'}}/>
 
                 <OverlayMenu>

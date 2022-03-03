@@ -24,6 +24,7 @@ const Note = memo(({note, styles, mode = 'note.page'}:NoteProps)=>{
     const {loader, handleDeleteNote} = useNoteOperations()
 
 
+
     return(
         <StyledNote id={note._id} style={{ ...styles }} className="note">
 
@@ -64,12 +65,12 @@ const StyledNote = styled.div`
 
     box-shadow:0 0.2rem 0.2rem rgba(0,0,0,0.2);
 
-    border-radius:0 0.5rem 0.5rem 0.5rem;
+    border-radius:0 0.5rem 0.5rem 0;
     border:var(--note-border);
 
     display:flex;
     flex-direction:column;
-    animation:animate_note calc(0.25s  * var(--note-order)) ease-in;
+    /* animation:animate_note calc(0.3s  * var(--note-order)) ease-in; */
 
     --note-menu-opacity:0;
 
@@ -114,6 +115,11 @@ const StyledNote = styled.div`
     }
     @media (min-width:700px){
         --note-menu-opacity:0;
+        transition:all 0.3s;
+        &:hover{
+            box-shadow:var(--note-hover-shadow);
+            transform:translateY(-1rem);
+        }
 
         div.overlay-menu {
             height:4rem;
@@ -134,10 +140,16 @@ const StyledNote = styled.div`
         0%{
             transform: scale(0.8);
             animation-timing-function: ease;
-        }50%{
+        }
+        30%{
             animation-timing-function: ease-in;
             opacity: 1;
             transform: scale(1.1);
-        }100%{  }
+        }
+        60%{
+            animation-timing-function: ease-in;
+            transform: scale(0.9);
+        }
+        100%{  }
 }
 `

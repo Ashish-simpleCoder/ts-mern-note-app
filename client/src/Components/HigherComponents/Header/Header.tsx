@@ -16,7 +16,7 @@ const Header = memo(()=>{
             <LogoContainer>
                 <Img src='./imgs/note.png' alt='note'/>
                 <AnchorLink  path="/" styles={{ fontSize:'2rem'}}>
-                    Material <span className="accent">Note</span> App
+                    <span className="accent">Material Note</span> App
                 </AnchorLink>
             </LogoContainer>
 

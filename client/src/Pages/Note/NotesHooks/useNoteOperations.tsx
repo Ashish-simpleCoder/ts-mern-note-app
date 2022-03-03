@@ -39,6 +39,7 @@ const useNoteOperations = () => {
         MOVE_TO_BIN?:boolean,
         RESTORE?:boolean
     }
+
     const handleDeleteNote = useCallback(async({_id, setEditNote, MOVE_TO_BIN = true, RESTORE=false} : DeleteProps) =>{
         setLoader(true)     //displaying the loader while deleting the note
         const {default: deleteNote} = await import('../../../modules/deleteNote')
@@ -65,6 +66,9 @@ const useNoteOperations = () => {
         const modal = document.getElementById('modal') as HTMLDivElement
         const p = modal.parentElement as any
         document.body.classList.remove('edit_mode')
+        const {default:updateNotes} = await import('../../../modules/updateNote')
+        const data = await updateNotes(`/api/v1/user/notes/${note._id}`,note)
+        data?.success && setRefetch(true)
         setTimeout(()=>{
             p.style.display='none'
             modal.style.display='none'
@@ -74,10 +78,7 @@ const useNoteOperations = () => {
                 div_element.style.opacity = '1' //making the note appear again after updatiing
             }
             setEditNote && setEditNote({title:'', content:'', _id:'',bg:[]})
-        },310)
-        const {default:updateNotes} = await import('../../../modules/updateNote')
-        const data = await updateNotes(`/api/v1/user/notes/${note._id}`,note)
-        data?.success && setRefetch(true)
+        },320)
     }, [])
 
     // creating note

@@ -7,17 +7,17 @@ const useEnableEditModal = ({_id}:{_id:string}) => {
     }, [_id])
 
     const enableEditModal = useCallback((_id:string) =>{
-            const modal = document.getElementById('modal') as HTMLDivElement
-            const p = modal.parentElement as any
-            const element = document.getElementById(_id) as HTMLDivElement
-            const {top, left, width, height} = element.getBoundingClientRect()
-            modal.style.top = top+'px'
-            modal.style.left = left+'px'
-            modal.style.width = width+'px'
-            modal.style.height = height+'px'
-            p.style.display='flex'
-            modal.style.display='flex'
-            setTimeout(()=> document.body.classList.add('edit_mode'),10)
+        const modal = document.getElementById('modal') as HTMLDivElement
+        const p = modal.parentElement as any
+        const element = document.getElementById(_id) as HTMLDivElement
+        const {top, left, width, height} = element.getBoundingClientRect()
+        modal.style.top = top+'px'
+        modal.style.left = left+'px'
+        modal.style.width = width+'px'
+        modal.style.height = height+'px'
+        p.style.display='flex'
+        modal.style.display='flex'
+        setTimeout(() => document.body.classList.add('edit_mode'),10)
     }, [])
 
     useEffect(()=>{

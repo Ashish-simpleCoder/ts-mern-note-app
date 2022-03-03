@@ -1,12 +1,13 @@
 :root{
     // font-clrs
     --prm-clr:hsl(10, 29%, 15%);
-    --secondary-clr:hsl(10, 90%, 50%);
-    --border:1px solid hsl(0, 0%, 80%);
+    --secondary-clr:hsl(214, 90%, 50%);
+    // --secondary-clr:hsl(271, 90%, 50%);
+    --border:1px solid hsl(0, 0%, 85%);
     --btn-clr:black;
     --hero-btn-clr:white;
-    --transform-label-clr:hsl(10, 90%, 50%);
-    --focuse-outline:1px solid hsl(10, 93%, 45%);
+    --transform-label-clr:hsl(214, 90%, 50%);
+    --focuse-outline:1px solid hsl(214, 93%, 45%);
 
 
     --green:green;
@@ -19,7 +20,7 @@
 
     // bg-clrs
     --body-bg:linear-gradient(140deg, hsl(0, 0%, 90%), hsl(0, 0%, 100%));
-    --header-bg:linear-gradient(140deg , hsl(0, 0%, 100%), hsl(0, 0%, 90%));
+    --header-bg:linear-gradient(140deg , hsl(0, 0%, 100%), hsl(0, 0%, 100%));
     --input-bg:hsl(0, 0%, 100%);
     --login-input-bg:hsl(0, 0%, 95%);
     --form-bg:white;
@@ -33,7 +34,9 @@
     --note-bg:hsl(0, 0%, 100%);
     --tooltip-bg:hsl(9, 89%, 50%);
 
-    --input-hover-bg:hsl(10, 100%, 96%);
+    --input-hover-bg:hsl(214, 100%, 96%);
+    --note-hover-shadow:0 0.2rem 1rem hsl(214, 48%, 80%);
+
 
     // vars
     --width:35rem;
@@ -45,11 +48,11 @@
 .dark-theme{
     // font-clrs
     --prm-clr:hsl(0, 0%, 90%);
-    --secondary-clr:hsl(9, 89%, 50%);
+    --secondary-clr:hsl(214, 89%, 50%);
     --border:1px solid hsl(0, 0%, 15%);
     --btn-clr:white;
     --hero-btn-clr:white;
-    --focuse-outline:1px solid hsl(10, 93%, 24%);
+    --focuse-outline:1px solid hsl(214, 93%, 24%);
 
     // borders
     --note-border:1px solid rgba(255, 255, 255, 0);
@@ -59,7 +62,7 @@
     --body-bg:linear-gradient(140deg, hsl(210, 8%, 8%), hsl(210, 8%, 12%));
     --header-bg:linear-gradient(140deg , hsl(210, 8%, 12%), hsl(210, 8%, 5%));
     --input-bg:hsl(210, 8%, 5%);
-    --login-input-bg:hsl(0, 9%, 7%);
+    --login-input-bg:hsl(214, 9%, 7%);
     --form-bg:hsl(200, 10%, 15%);
     --focused:hsl(0, 0%, 5%);
     --btn-hover-bg:hsl(120, 100%, 20%);
@@ -68,8 +71,9 @@
     --save-btn-bg:hsl(120, 100%, 20%);
     --delete-btn-bg:rgb(224, 12, 12);
 
-    --input-hover-bg:hsl(10, 100%, 10%);
+    --input-hover-bg:hsl(214, 100%, 5%);
 
+    --note-hover-shadow:0 0.2rem 1rem hsl(214, 48%, 5%);
     // vars
     --width:35rem;
 

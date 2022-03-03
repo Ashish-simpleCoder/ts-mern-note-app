@@ -53,6 +53,7 @@ const StyledInput = styled.input<{mode?:string}>`
         switch (mode){
             case 'edit_note': return css`
                 background:inherit;
+                border:none;
                 &:focus{
                     background:none !important;
                     outline:none;
@@ -60,10 +61,13 @@ const StyledInput = styled.input<{mode?:string}>`
             `
             case 'note_title': return css`
                 width:100%;
+                border:var(--border);
+
                 &:hover{  background: var(--input-hover-bg);  }
             `
             default : return css`
-            &:hover{  background: var(--input-hover-bg);  }
+                border:var(--border);
+                &:hover{  background: var(--input-hover-bg);  }
             `
     }}}
 `
