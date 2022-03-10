@@ -1,6 +1,6 @@
 :root{
     // font-clrs
-    --prm-clr:hsl(10, 29%, 15%);
+    --prm-clr:hsl(214, 90%, 10%);
     --secondary-clr:hsl(214, 90%, 50%);
     // --secondary-clr:hsl(271, 90%, 50%);
     --border:1px solid hsl(0, 0%, 85%);
@@ -42,13 +42,13 @@
     --width:35rem;
     --header-height:6rem;
 
-    --weight: 500;
+    --weight: 600;
 }
 
 .dark-theme{
     // font-clrs
-    --prm-clr:hsl(0, 0%, 90%);
-    --secondary-clr:hsl(214, 89%, 50%);
+    --prm-clr:hsl(214, 90%, 95%);
+    --secondary-clr:hsl(214, 90%, 50%);
     --border:1px solid hsl(0, 0%, 15%);
     --btn-clr:white;
     --hero-btn-clr:white;

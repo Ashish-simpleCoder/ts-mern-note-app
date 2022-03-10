@@ -1,5 +1,5 @@
 @import "./color";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 
 *{
    padding:0;
@@ -10,7 +10,7 @@
    line-height: 1.5;
    transition: background 0.3s ease;
    letter-spacing: 0.07rem;
-   font-weight: var(--weight) !important;
+   font-weight: var(--weight);
 }
 
 
@@ -58,6 +58,9 @@ body{
           animation:animate_ripple 0.5s linear infinite;
       }
     }
+    header{
+      z-index: unset;
+    }
 
     .note{
        pointer-events: none;
@@ -96,4 +99,8 @@ html{
 .show_note_menu_overlay{
    background:rgba(0,0,0, 0.1) !important;
    display:block !important;
+}
+.active_link{
+   text-decoration: underline;
+   color:var(--secondary-clr);
 }

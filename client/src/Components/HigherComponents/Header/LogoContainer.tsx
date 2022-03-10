@@ -16,6 +16,11 @@ const StyledLogoContainer = styled.div`
     display:flex;
     align-items:center;
     flex:1;
+    >a{
+        font-weight:600;
+        text-decoration:none !important;
+        color:unset !important;
+    }
 
     img{
         width:3rem;

@@ -42,6 +42,9 @@ const StyledNav = styled.nav`
     display:flex;
     gap:3rem;
     align-items:center;
+    a{
+        font-weight:500;
+    }
 
     @media (max-width:700px){
         top:var(--header-height);

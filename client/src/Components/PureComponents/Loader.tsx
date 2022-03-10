@@ -36,12 +36,12 @@ const StyledLoader = styled.div<{size?:string}>`
       }}
       border-radius:50%;
       border:clamp(0.3rem, 0.5rem,0.5vw) solid transparent;
-      border-top-color:purple;
+      border-top-color:var(--secondary-clr);
       animation: animate_loaders 1s linear infinite;
    }
 
    .c2{
-      border-bottom-color: red;
+      border-bottom-color: var(--secondary-clr);
       border-top-color:transparent;
    }
 

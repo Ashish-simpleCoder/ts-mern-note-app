@@ -24,7 +24,7 @@ const Button = memo(({
 
 
     return (
-        <StyledButton mode={mode && mode} onClick={(e)=>{
+        <StyledButton mode={mode && mode} loader={loader} onClick={(e)=>{
             e.stopPropagation()
             handleClick && handleClick()
         }}
@@ -43,7 +43,7 @@ export default Button
 
 
 
-const StyledButton = styled.button<{mode:string|undefined}>`
+const StyledButton = styled.button<{mode:string|undefined, loader?:any}>`
     border-radius:0.5rem;
     font-size:clamp(1.5rem, 1.6rem, 1.6vw);
     height:3.5rem;
@@ -77,7 +77,8 @@ const StyledButton = styled.button<{mode:string|undefined}>`
                 &::before{
                     content:'';
                     position:absolute;
-                    background-image:url("./imgs/trash.png");
+
+                    background-image:${props.loader ? '' : 'url("./imgs/trash.png")'};
                     background-repeat:no-repeat;
                     width:100%;
                     height:100%;

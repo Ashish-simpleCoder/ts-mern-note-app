@@ -16,7 +16,7 @@ const Header = memo(()=>{
             <LogoContainer>
                 <Img src='./imgs/note.png' alt='note'/>
                 <AnchorLink  path="/" styles={{ fontSize:'2rem'}}>
-                    <span className="accent">Material Note</span> App
+                    Material<span className="accent"> Note</span> App
                 </AnchorLink>
             </LogoContainer>
 
@@ -34,7 +34,6 @@ const StyledHeader = styled.header`
     display: flex;
     align-items: center;
     height: var(--header-height);
-    /* padding: 0 clamp(1rem, 2rem, 2vw); */
     padding-inline:clamp(1rem, 2rem, 2vw);
     overflow-x:hidden;
     overflow-y:hidden;
@@ -55,6 +54,6 @@ const StyledHeader = styled.header`
     @media (min-width:700px){
         position:sticky;
         top:0;
-        z-index:2;
+        z-index:1;
     }
 `
