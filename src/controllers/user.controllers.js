@@ -43,7 +43,12 @@ exports.handleLogin = (0, asyncWrapper_1.default)((req, res, next) => __awaiter(
             else {
                 const cookie_name = process.env.COOKIE_NAME || 'cookie_name';
                 const cookie = (0, genLoginToken_1.default)(user);
-                res.cookie(cookie_name, cookie, { maxAge: 200000000, sameSite: 'none', secure: false, path: '/', httpOnly: true });
+                //also works for local
+                res.cookie(cookie_name, cookie, { maxAge: 200000000, sameSite: 'none', secure: true, path: '/', httpOnly: true });
+                //also for local
+                // res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', secure:false, path: '/', httpOnly:true})
+                //for local
+                // res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', path: '/', httpOnly:true})
                 return res.send({ _id: user._id, email: user.email });
             }
         }
