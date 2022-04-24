@@ -24,7 +24,8 @@ if(MODE === 'prod'){
 
 
 app.use(cors({
-    origin:'*',
+    origin:['http://localhost:3000', 'https://ts-mern-note-app.herokuapp.com'],
+    credentials:true,
     methods:['GET','POST','DELETE', 'PATCH', 'PUT']
 }))
 app.use(json())
