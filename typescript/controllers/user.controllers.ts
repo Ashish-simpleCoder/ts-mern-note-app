@@ -15,6 +15,7 @@ export const handleRegister = asyncWrapper(async(req:Request, res:Response, next
 
 
 export const handleLogin = asyncWrapper(async(req:Request, res:Response, next:NextFunction)=>{
+    console.log(req.body)
     const {email, password} = req.body
 
     if(!email || !password){
@@ -30,7 +31,7 @@ export const handleLogin = asyncWrapper(async(req:Request, res:Response, next:Ne
             else{
                 const cookie_name = process.env.COOKIE_NAME || 'cookie_name'
                 const cookie = generateLoginToken(user)
-                res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', secure:true})
+                res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', secure:false, path: '/'})
                 return res.send({_id:user._id, email:user.email})
             }
         }
