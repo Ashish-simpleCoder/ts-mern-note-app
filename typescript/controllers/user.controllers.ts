@@ -31,7 +31,8 @@ export const handleLogin = asyncWrapper(async(req:Request, res:Response, next:Ne
             else{
                 const cookie_name = process.env.COOKIE_NAME || 'cookie_name'
                 const cookie = generateLoginToken(user)
-                res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', secure:false, path: '/'})
+                const secure = process.env.MODE === 'prod' ? true : false
+                res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', secure, path: '/'})
                 return res.send({_id:user._id, email:user.email})
             }
         }
