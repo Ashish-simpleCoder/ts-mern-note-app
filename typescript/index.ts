@@ -1,7 +1,7 @@
 import {config} from 'dotenv'
 config()
 import cors from 'cors'
-const {MONGO, PORT, MODE, SECRET} = process.env
+const {MONGO, PORT, MODE} = process.env
 
 import { connect } from 'mongoose'
 
@@ -31,7 +31,7 @@ app.use(cors({
 }))
 app.use(json())
 app.use(urlencoded({extended:true}))
-app.use(cookieParser(SECRET))
+app.use(cookieParser())
 app.use(router)
 app.use(errHandler)
 
