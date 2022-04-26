@@ -35,7 +35,6 @@ exports.handleLogin = (0, asyncWrapper_1.default)((req, res, next) => __awaiter(
         (0, throwRequiredFieldErr_1.default)(email, password, next);
     }
     user_schema_1.default.findOne({ email }, (err, user) => __awaiter(void 0, void 0, void 0, function* () {
-        var _b;
         if (!user)
             return next((0, loginError_1.default)('email'));
         else {
@@ -47,7 +46,7 @@ exports.handleLogin = (0, asyncWrapper_1.default)((req, res, next) => __awaiter(
                 const cookie = (0, genLoginToken_1.default)(user);
                 //also works for local
                 res.cookie(cookie_name, cookie, { maxAge: 200000000, sameSite: 'none', secure: true, path: '/', httpOnly: true,
-                    domain: process.env.MODE == 'prod' ? (_b = req.headers.origin) === null || _b === void 0 ? void 0 : _b.slice(8) : ''
+                    // domain: process.env.MODE == 'prod' ? req.headers.origin?.slice(8) : ''
                     // domain: req.headers.origin?.slice(8)
                 });
                 //also for local

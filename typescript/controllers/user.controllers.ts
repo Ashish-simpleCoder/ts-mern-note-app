@@ -34,7 +34,7 @@ export const handleLogin = asyncWrapper(async(req:Request, res:Response, next:Ne
                 const cookie = generateLoginToken(user)
                 //also works for local
                 res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', secure:true, path: '/', httpOnly:true,
-                domain: process.env.MODE == 'prod' ? req.headers.origin?.slice(8) : ''
+                // domain: process.env.MODE == 'prod' ? req.headers.origin?.slice(8) : ''
                 // domain: req.headers.origin?.slice(8)
             })
                 //also for local
