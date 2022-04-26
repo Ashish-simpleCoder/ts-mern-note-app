@@ -28,7 +28,7 @@ exports.handleRegister = (0, asyncWrapper_1.default)((req, res, next) => __await
     });
 }));
 exports.handleLogin = (0, asyncWrapper_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
+    console.log(req.headers);
     const { email, password } = req.body;
     if (!email || !password) {
         (0, throwRequiredFieldErr_1.default)(email, password, next);
@@ -44,7 +44,9 @@ exports.handleLogin = (0, asyncWrapper_1.default)((req, res, next) => __awaiter(
                 const cookie_name = process.env.COOKIE_NAME || 'cookie_name';
                 const cookie = (0, genLoginToken_1.default)(user);
                 //also works for local
-                res.cookie(cookie_name, cookie, { maxAge: 200000000, sameSite: 'none', secure: true, path: '/', httpOnly: true, domain: 'herokuapp.com' });
+                res.cookie(cookie_name, cookie, { maxAge: 200000000, sameSite: 'none', secure: true, path: '/', httpOnly: true,
+                    domain: process.env.MODE == 'prod' ? 'herokuapp.com' : ''
+                });
                 //also for local
                 // res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', secure:false, path: '/', httpOnly:true})
                 //for local
