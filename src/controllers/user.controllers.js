@@ -45,7 +45,8 @@ exports.handleLogin = (0, asyncWrapper_1.default)((req, res, next) => __awaiter(
                 const cookie = (0, genLoginToken_1.default)(user);
                 //also works for local
                 res.cookie(cookie_name, cookie, { maxAge: 200000000, sameSite: 'none', secure: true, path: '/', httpOnly: true,
-                    domain: process.env.MODE == 'prod' ? 'ts-mern-note-app.herokuapp.com' : ''
+                    // domain: process.env.MODE == 'prod' ? 'ts-mern-note-app.herokuapp.com' : ''
+                    domain: req.headers.origin
                 });
                 //also for local
                 // res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', secure:false, path: '/', httpOnly:true})
