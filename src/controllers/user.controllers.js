@@ -44,6 +44,7 @@ exports.handleLogin = (0, asyncWrapper_1.default)((req, res, next) => __awaiter(
                 const cookie_name = process.env.COOKIE_NAME || 'cookie_name';
                 const cookie = (0, genLoginToken_1.default)(user);
                 res.set('Access-Control-Allow-Origin', req.headers.origin);
+                res.set('Access-Control-Allow-Credentials', 'true');
                 //also works for local
                 res.cookie(cookie_name, cookie, { maxAge: 200000000, sameSite: 'none', secure: true, path: '/', httpOnly: true });
                 //also for local
