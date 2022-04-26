@@ -15,7 +15,7 @@ export const handleRegister = asyncWrapper(async(req:Request, res:Response, next
 
 
 export const handleLogin = asyncWrapper(async(req:Request, res:Response, next:NextFunction)=>{
-    console.log(req.headers)
+    console.log(req.headers.origin?.slice(8))
     const {email, password} = req.body
 
     if(!email || !password){
@@ -34,8 +34,8 @@ export const handleLogin = asyncWrapper(async(req:Request, res:Response, next:Ne
                 const cookie = generateLoginToken(user)
                 //also works for local
                 res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', secure:true, path: '/', httpOnly:true,
-                // domain: process.env.MODE == 'prod' ? 'ts-mern-note-app.herokuapp.com' : ''
-                domain: req.headers.origin
+                domain: process.env.MODE == 'prod' ? req.headers.origin?.slice(8) : ''
+                // domain: req.headers.origin?.slice(8)
             })
                 //also for local
                 // res.cookie(cookie_name,cookie,{maxAge:200000000, sameSite:'none', secure:false, path: '/', httpOnly:true})
