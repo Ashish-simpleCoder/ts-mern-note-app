@@ -25,7 +25,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 const cors_1 = __importDefault(require("cors"));
-const { MONGO, PORT, MODE } = process.env;
+const { MONGO, PORT, MODE, SECRET } = process.env;
 const mongoose_1 = require("mongoose");
 const express_1 = __importStar(require("express"));
 const router_1 = __importDefault(require("./routers/router"));
@@ -48,7 +48,7 @@ app.use((0, cors_1.default)({
 }));
 app.use(json());
 app.use((0, express_1.urlencoded)({ extended: true }));
-app.use((0, cookie_parser_1.default)());
+app.use((0, cookie_parser_1.default)(SECRET));
 app.use(router_1.default);
 app.use(errHandler_1.default);
 app.listen(PORT || 5001);
