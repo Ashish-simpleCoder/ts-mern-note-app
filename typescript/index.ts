@@ -23,12 +23,14 @@ if(MODE === 'prod'){
  }
 
 
-app.use(cors({
+app.use(cors())
+/*app.use(cors({
     origin:['http://localhost:3000', 'https://ts-mern-note-app.herokuapp.com', 'https://ashish-simplecoder.github.io' ],
     // origin: '*',
     credentials:true,
     methods:['GET','POST','DELETE', 'PATCH', 'PUT']
 }))
+*/
 app.use(json())
 app.use(urlencoded({extended:true}))
 app.use(cookieParser())

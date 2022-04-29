@@ -40,12 +40,14 @@ if (MODE === 'prod') {
     app.use(express_1.default.static(join(__dirname, '../', 'client/build')));
     (0, mongoose_1.connect)(MONGO || 'mongodb://localhost:27017/your_db').then(() => console.log('db ok')).catch(() => console.log('failed db'));
 }
-app.use((0, cors_1.default)({
-    origin: ['http://localhost:3000', 'https://ts-mern-note-app.herokuapp.com', 'https://ashish-simplecoder.github.io'],
+app.use((0, cors_1.default)());
+/*app.use(cors({
+    origin:['http://localhost:3000', 'https://ts-mern-note-app.herokuapp.com', 'https://ashish-simplecoder.github.io' ],
     // origin: '*',
-    credentials: true,
-    methods: ['GET', 'POST', 'DELETE', 'PATCH', 'PUT']
-}));
+    credentials:true,
+    methods:['GET','POST','DELETE', 'PATCH', 'PUT']
+}))
+*/
 app.use(json());
 app.use((0, express_1.urlencoded)({ extended: true }));
 app.use((0, cookie_parser_1.default)());
