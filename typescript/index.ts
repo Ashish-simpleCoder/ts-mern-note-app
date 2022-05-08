@@ -13,7 +13,6 @@ import cookieParser from 'cookie-parser'
 const {json} = express
 const app = express()
 
-console.log(MODE)
 
 if(MODE === 'prod'){
     const {join} = require('path')
@@ -24,7 +23,7 @@ if(MODE === 'prod'){
 
 
 app.use(cors({
-    origin:['http://localhost', 'https://ts-mern-note-app.herokuapp.com', 'https://ashish-simplecoder.github.io' ],
+    origin:['http://localhost:3000', 'https://ts-mern-note-app.herokuapp.com', 'https://ashish-simplecoder.github.io' ],
     credentials:true,
     methods:['GET','POST','DELETE', 'PATCH', 'PUT']
 }))
